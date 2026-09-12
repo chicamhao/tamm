@@ -1,0 +1,18 @@
+naming:
+  pascal_case: [types, methods, properties, public_fields]
+  _camelCase: private_fields
+  camelCase: [locals, parameters]
+
+class_structure:
+  sealed_by_default: true
+  using_order: [System*, UnityEngine*, project]
+
+null_checking:
+  init_stage: Assert.IsNotNull
+  require_component: Assert.IsNotNull
+  runtime_guards: optional serialized, state values, GetComponent can-fail
+  events: "?.Invoke()"
+  prohibited_at_init: [is null, is not null, ArgumentNullException, "== null"]
+
+formatting:
+  comments: only-when-unclear  # no inline noise, no obvious-true docs

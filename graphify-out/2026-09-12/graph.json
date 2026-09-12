@@ -1,0 +1,4151 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "id": "assets_scripts_runtime_character_pusher_game_character_pusher",
+      "label": "Pusher",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s22"
+        ]
+      },
+      "norm_label": "pusher",
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L5"
+    },
+    {
+      "id": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols",
+      "label": "MobileDisableAutoSwitchControls",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Mobile.Utilities",
+        "scope_chain": [
+          "s205"
+        ]
+      },
+      "norm_label": "mobiledisableautoswitchcontrols",
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L10"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "label": "InputMonitor",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ]
+      },
+      "norm_label": "inputmonitor",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput",
+      "label": "VirtualInput",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s20"
+        ]
+      },
+      "norm_label": "virtualinput",
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L5"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller",
+      "label": "Controller",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ]
+      },
+      "norm_label": "controller",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L8"
+    },
+    {
+      "id": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput",
+      "label": "TouchscreenInput",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s76"
+        ]
+      },
+      "norm_label": "touchscreeninput",
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L7"
+    },
+    {
+      "id": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick",
+      "label": "VirtualJoystick",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s76"
+        ]
+      },
+      "norm_label": "virtualjoystick",
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L72"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_container",
+      "label": "Container",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ]
+      },
+      "norm_label": "container",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L19"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_fixturea",
+      "label": "FixtureA",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "is_nested_type": true,
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ]
+      },
+      "norm_label": "fixturea",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L100"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_fixtureb",
+      "label": "FixtureB",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "is_nested_type": true,
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ]
+      },
+      "norm_label": "fixtureb",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L111"
+    },
+    {
+      "id": "assets_scripts_runtime_core_game_game_core_game",
+      "label": "Game",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s0"
+        ]
+      },
+      "norm_label": "game",
+      "source_file": "Assets/Scripts/Runtime/Core/Game.cs",
+      "source_location": "L7"
+    },
+    {
+      "id": "assets_scripts_runtime_core_gameroot_game_core_gameroot",
+      "label": "GameRoot",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s63"
+        ]
+      },
+      "norm_label": "gameroot",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L9"
+    },
+    {
+      "id": "assets_scripts_runtime_core_progression_game_core_progression",
+      "label": "Progression",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "Progression",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s25"
+        ]
+      },
+      "norm_label": "progression",
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L9"
+    },
+    {
+      "id": "assets_scripts_runtime_character_pusher_game_character_pusher_oncontrollercolliderhit",
+      "label": ".OnControllerColliderHit()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s22"
+        ]
+      },
+      "norm_label": ".oncontrollercolliderhit()",
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L11"
+    },
+    {
+      "id": "assets_scripts_runtime_character_pusher_game_character_pusher_pushrigidbodies",
+      "label": ".PushRigidBodies()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s22"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "AddForce",
+            "receiver_type": "Rigidbody",
+            "lang": "csharp",
+            "line": "L30"
+          }
+        ]
+      },
+      "norm_label": ".pushrigidbodies()",
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L17"
+    },
+    {
+      "id": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols_disableautoswitchcontrols",
+      "label": ".DisableAutoSwitchControls()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Mobile.Utilities",
+        "scope_chain": [
+          "s205"
+        ]
+      },
+      "norm_label": ".disableautoswitchcontrols()",
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L22"
+    },
+    {
+      "id": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols_start",
+      "label": ".Start()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Mobile.Utilities",
+        "scope_chain": [
+          "s205"
+        ]
+      },
+      "norm_label": ".start()",
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L17"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_jumpinput",
+      "label": ".JumpInput()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ]
+      },
+      "norm_label": ".jumpinput()",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L54"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_lookinput",
+      "label": ".LookInput()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ]
+      },
+      "norm_label": ".lookinput()",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L49"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_moveinput",
+      "label": ".MoveInput()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ]
+      },
+      "norm_label": ".moveinput()",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L44"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onapplicationfocus",
+      "label": ".OnApplicationFocus()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ]
+      },
+      "norm_label": ".onapplicationfocus()",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L64"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onjump",
+      "label": ".OnJump()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ]
+      },
+      "norm_label": ".onjump()",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L34"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onlook",
+      "label": ".OnLook()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Get<Vector2>",
+            "receiver_type": "InputValue",
+            "lang": "csharp",
+            "line": "L30"
+          }
+        ]
+      },
+      "norm_label": ".onlook()",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L26"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onmove",
+      "label": ".OnMove()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Get<Vector2>",
+            "receiver_type": "InputValue",
+            "lang": "csharp",
+            "line": "L23"
+          }
+        ]
+      },
+      "norm_label": ".onmove()",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L21"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onsprint",
+      "label": ".OnSprint()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ]
+      },
+      "norm_label": ".onsprint()",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L39"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_setcursorstate",
+      "label": ".SetCursorState()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ]
+      },
+      "norm_label": ".setcursorstate()",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L69"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_sprintinput",
+      "label": ".SprintInput()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s51"
+        ]
+      },
+      "norm_label": ".sprintinput()",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L59"
+    },
+    {
+      "id": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtualjumpinput",
+      "label": ".VirtualJumpInput()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s20"
+        ]
+      },
+      "norm_label": ".virtualjumpinput()",
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L20"
+    },
+    {
+      "id": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtuallookinput",
+      "label": ".VirtualLookInput()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s20"
+        ]
+      },
+      "norm_label": ".virtuallookinput()",
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L15"
+    },
+    {
+      "id": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtualmoveinput",
+      "label": ".VirtualMoveInput()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s20"
+        ]
+      },
+      "norm_label": ".virtualmoveinput()",
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L10"
+    },
+    {
+      "id": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtualsprintinput",
+      "label": ".VirtualSprintInput()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s20"
+        ]
+      },
+      "norm_label": ".virtualsprintinput()",
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L25"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_awake",
+      "label": ".Awake()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "FindGameObjectWithTag",
+            "receiver_type": "GameObject",
+            "lang": "csharp",
+            "line": "L73"
+          },
+          {
+            "callee": "IsNotNull",
+            "receiver_type": "Assert",
+            "lang": "csharp",
+            "line": "L74"
+          }
+        ]
+      },
+      "norm_label": ".awake()",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L71"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_clampangle",
+      "label": ".ClampAngle()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Clamp",
+            "receiver_type": "Mathf",
+            "lang": "csharp",
+            "line": "L207"
+          }
+        ]
+      },
+      "norm_label": ".clampangle()",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L203"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_jumpandgravity",
+      "label": ".JumpAndGravity()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Sqrt",
+            "receiver_type": "Mathf",
+            "lang": "csharp",
+            "line": "L176"
+          }
+        ]
+      },
+      "norm_label": ".jumpandgravity()",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L161"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_lateupdate",
+      "label": ".LateUpdate()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ]
+      },
+      "norm_label": ".lateupdate()",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L94"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_move",
+      "label": ".Move()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Lerp",
+            "receiver_type": "Mathf",
+            "lang": "csharp",
+            "line": "L141"
+          },
+          {
+            "callee": "Round",
+            "receiver_type": "Mathf",
+            "lang": "csharp",
+            "line": "L143"
+          },
+          {
+            "callee": "Move",
+            "receiver_type": "CharacterController",
+            "lang": "csharp",
+            "line": "L158"
+          }
+        ]
+      },
+      "norm_label": ".move()",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L123"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_ondrawgizmosselected",
+      "label": ".OnDrawGizmosSelected()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "DrawSphere",
+            "receiver_type": "Gizmos",
+            "lang": "csharp",
+            "line": "L218"
+          }
+        ]
+      },
+      "norm_label": ".ondrawgizmosselected()",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L210"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_start",
+      "label": ".Start()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ]
+      },
+      "norm_label": ".start()",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L77"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_update",
+      "label": ".Update()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ]
+      },
+      "norm_label": ".update()",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L87"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_updatecamerarotation",
+      "label": ".UpdateCameraRotation()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Euler",
+            "receiver_type": "Quaternion",
+            "lang": "csharp",
+            "line": "L117"
+          }
+        ]
+      },
+      "norm_label": ".updatecamerarotation()",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L105"
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_updategrounded",
+      "label": ".UpdateGrounded()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "CheckSphere",
+            "receiver_type": "Physics",
+            "lang": "csharp",
+            "line": "L102"
+          }
+        ]
+      },
+      "norm_label": ".updategrounded()",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L99"
+    },
+    {
+      "id": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput_awake",
+      "label": ".Awake()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s76"
+        ]
+      },
+      "norm_label": ".awake()",
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L27"
+    },
+    {
+      "id": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput_start",
+      "label": ".Start()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s76"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Invoke",
+            "receiver_type": "MoveEvent?",
+            "lang": "csharp",
+            "line": "L50"
+          },
+          {
+            "callee": "Invoke",
+            "receiver_type": "LookEvent?",
+            "lang": "csharp",
+            "line": "L59"
+          },
+          {
+            "callee": "Invoke",
+            "receiver_type": "JumpEvent?",
+            "lang": "csharp",
+            "line": "L63"
+          },
+          {
+            "callee": "Invoke",
+            "receiver_type": "SprintEvent?",
+            "lang": "csharp",
+            "line": "L67"
+          }
+        ]
+      },
+      "norm_label": ".start()",
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L42"
+    },
+    {
+      "id": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick_handledrag",
+      "label": ".HandleDrag()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s76"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "HasPointerCapture",
+            "receiver_type": "VisualElement",
+            "lang": "csharp",
+            "line": "L106"
+          },
+          {
+            "callee": "Invoke",
+            "receiver_type": "JoystickEvent?",
+            "lang": "csharp",
+            "line": "L126"
+          }
+        ]
+      },
+      "norm_label": ".handledrag()",
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L104"
+    },
+    {
+      "id": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick_handlepress",
+      "label": ".HandlePress()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s76"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "CapturePointer",
+            "receiver_type": "VisualElement",
+            "lang": "csharp",
+            "line": "L91"
+          }
+        ]
+      },
+      "norm_label": ".handlepress()",
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L89"
+    },
+    {
+      "id": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick_handlerelease",
+      "label": ".HandleRelease()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Input",
+        "scope_chain": [
+          "s76"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "ReleasePointer",
+            "receiver_type": "VisualElement",
+            "lang": "csharp",
+            "line": "L96"
+          },
+          {
+            "callee": "Percent",
+            "receiver_type": "Length",
+            "lang": "csharp",
+            "line": "L98"
+          },
+          {
+            "callee": "Invoke",
+            "receiver_type": "JoystickEvent?",
+            "lang": "csharp",
+            "line": "L101"
+          }
+        ]
+      },
+      "norm_label": ".handlerelease()",
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L94"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_container_check",
+      "label": ".Check()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ]
+      },
+      "norm_label": ".check()",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L83"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_container_describe",
+      "label": ".Describe()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Append",
+            "receiver_type": "StringBuilder",
+            "lang": "csharp",
+            "line": "L93"
+          },
+          {
+            "callee": "ToString",
+            "receiver_type": "StringBuilder",
+            "lang": "csharp",
+            "line": "L96"
+          }
+        ]
+      },
+      "norm_label": ".describe()",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L88"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_container_dispose",
+      "label": ".Dispose()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Clear",
+            "receiver_type": "List",
+            "lang": "csharp",
+            "line": "L45"
+          }
+        ]
+      },
+      "norm_label": ".dispose()",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L41"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_container_grab",
+      "label": ".Grab()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "ContainsKey",
+            "receiver_type": "Dictionary",
+            "lang": "csharp",
+            "line": "L34"
+          }
+        ]
+      },
+      "norm_label": ".grab()",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L32"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_container_provide",
+      "label": ".Provide()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ]
+      },
+      "norm_label": ".provide()",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L24"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "label": ".SelfTest()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ]
+      },
+      "norm_label": ".selftest()",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L55"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_container_track",
+      "label": ".Track()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Add",
+            "receiver_type": "List",
+            "lang": "csharp",
+            "line": "L50"
+          }
+        ]
+      },
+      "norm_label": ".track()",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L48"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_fixturea_dispose",
+      "label": ".Dispose()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Add",
+            "receiver_type": "List",
+            "lang": "csharp",
+            "line": "L107"
+          }
+        ]
+      },
+      "norm_label": ".dispose()",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L105"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container_game_core_fixtureb_dispose",
+      "label": ".Dispose()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s68"
+        ],
+        "unresolved_calls": [
+          {
+            "callee": "Add",
+            "receiver_type": "List",
+            "lang": "csharp",
+            "line": "L119"
+          }
+        ]
+      },
+      "norm_label": ".dispose()",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L117"
+    },
+    {
+      "id": "assets_scripts_runtime_core_gameroot_game_core_gameroot_awake",
+      "label": ".Awake()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s63"
+        ]
+      },
+      "norm_label": ".awake()",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L17"
+    },
+    {
+      "id": "assets_scripts_runtime_core_gameroot_game_core_gameroot_ondestroy",
+      "label": ".OnDestroy()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s63"
+        ]
+      },
+      "norm_label": ".ondestroy()",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L33"
+    },
+    {
+      "id": "assets_scripts_runtime_core_progression_game_core_progression_addscore",
+      "label": ".AddScore()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "Progression",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s25"
+        ]
+      },
+      "norm_label": ".addscore()",
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L13"
+    },
+    {
+      "id": "assets_scripts_runtime_core_progression_game_core_progression_dispose",
+      "label": ".Dispose()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "Progression",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s25"
+        ]
+      },
+      "norm_label": ".dispose()",
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L18"
+    },
+    {
+      "id": "assets_scripts_runtime_character_pusher_cs_layermask",
+      "label": "LayerMask",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "norm_label": "layermask",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols",
+      "label": "MobileDisableAutoSwitchControls.cs",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "norm_label": "mobiledisableautoswitchcontrols.cs",
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_cs_playerinput",
+      "label": "PlayerInput",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "norm_label": "playerinput",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "controllercolliderhit",
+      "label": "ControllerColliderHit",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "norm_label": "controllercolliderhit",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "csharp_namespace:45e157ed15c1239f",
+      "label": "Game.Mobile.Utilities",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "metadata": {
+        "kind": "csharp_namespace",
+        "namespace": "Game.Mobile.Utilities"
+      },
+      "norm_label": "game.mobile.utilities",
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L8",
+      "type": "namespace"
+    },
+    {
+      "id": "monobehaviour",
+      "label": "MonoBehaviour",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "MonoBehaviour",
+      "file_type": "code",
+      "norm_label": "monobehaviour",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller",
+      "label": "Controller.cs",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Game.Input",
+      "file_type": "code",
+      "norm_label": "controller.cs",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_scripts_runtime_character_pusher",
+      "label": "Pusher.cs",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Game.Input",
+      "file_type": "code",
+      "norm_label": "pusher.cs",
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor",
+      "label": "InputMonitor.cs",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Game.Input",
+      "file_type": "code",
+      "norm_label": "inputmonitor.cs",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_scripts_runtime_input_virtualinput",
+      "label": "VirtualInput.cs",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Game.Input",
+      "file_type": "code",
+      "norm_label": "virtualinput.cs",
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L1"
+    },
+    {
+      "id": "csharp_namespace:475f3fe8db2bbe40",
+      "label": "Game.Character",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Game.Input",
+      "file_type": "code",
+      "metadata": {
+        "kind": "csharp_namespace",
+        "namespace": "Game.Character"
+      },
+      "norm_label": "game.character",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L6",
+      "type": "namespace"
+    },
+    {
+      "id": "csharp_namespace:ef1b42353027a514",
+      "label": "Game.Input",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Game.Input",
+      "file_type": "code",
+      "metadata": {
+        "kind": "csharp_namespace",
+        "namespace": "Game.Input"
+      },
+      "norm_label": "game.input",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L4",
+      "type": "namespace"
+    },
+    {
+      "id": "assets_scripts_runtime_input_inputmonitor_cs_vector2",
+      "label": "Vector2",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "norm_label": "vector2",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "assets_scripts_runtime_input_virtualinput_cs_vector2",
+      "label": "Vector2",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "norm_label": "vector2",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "inputvalue",
+      "label": "InputValue",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "InputMonitor",
+      "file_type": "code",
+      "norm_label": "inputvalue",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_cs_layermask",
+      "label": "LayerMask",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "norm_label": "layermask",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_cs_playerinput",
+      "label": "PlayerInput",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "norm_label": "playerinput",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "assets_scripts_runtime_character_controller_game_character_controller_iscurrentdevicemouse",
+      "label": "_isCurrentDeviceMouse",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Character",
+        "scope_chain": [
+          "s104"
+        ]
+      },
+      "norm_label": "_iscurrentdevicemouse",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L69"
+    },
+    {
+      "id": "charactercontroller",
+      "label": "CharacterController",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "norm_label": "charactercontroller",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "gameobject",
+      "label": "GameObject",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "Controller",
+      "file_type": "code",
+      "norm_label": "gameobject",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "assets_scripts_runtime_input_touchscreeninput",
+      "label": "TouchscreenInput.cs",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "norm_label": "touchscreeninput.cs",
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_scripts_runtime_input_touchscreeninput_cs_vector2",
+      "label": "Vector2",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "norm_label": "vector2",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "pointerdownevent",
+      "label": "PointerDownEvent",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "norm_label": "pointerdownevent",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "pointerenterevent",
+      "label": "PointerEnterEvent",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "norm_label": "pointerenterevent",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "pointerleaveevent",
+      "label": "PointerLeaveEvent",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "norm_label": "pointerleaveevent",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "pointermoveevent",
+      "label": "PointerMoveEvent",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "norm_label": "pointermoveevent",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "pointerupevent",
+      "label": "PointerUpEvent",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "norm_label": "pointerupevent",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "uidocument",
+      "label": "UIDocument",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "norm_label": "uidocument",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "unityevent",
+      "label": "UnityEvent",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "norm_label": "unityevent",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "visualelement",
+      "label": "VisualElement",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "VirtualJoystick",
+      "file_type": "code",
+      "norm_label": "visualelement",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "dictionary",
+      "label": "Dictionary",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "norm_label": "dictionary",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "fixturea",
+      "label": "FixtureA",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "norm_label": "fixturea",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "fixtureb",
+      "label": "FixtureB",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "norm_label": "fixtureb",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "func",
+      "label": "Func",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "norm_label": "func",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "idisposable",
+      "label": "IDisposable",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "norm_label": "idisposable",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "list",
+      "label": "List",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "norm_label": "list",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "object",
+      "label": "Object",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "norm_label": "object",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "string",
+      "label": "String",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "norm_label": "string",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "type",
+      "label": "Type",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Container",
+      "file_type": "code",
+      "norm_label": "type",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "mcp",
+      "label": ".mcp.json",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "unity-mcp",
+      "file_type": "code",
+      "metadata": {
+        "mcp_kind": "mcp_config_file"
+      },
+      "norm_label": ".mcp.json",
+      "source_file": ".mcp.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "mcp_command_c_users_usaree_unity_relay_relay_win_exe",
+      "label": "C:\\Users\\usaree\\.unity\\relay\\relay_win.exe",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "unity-mcp",
+      "file_type": "code",
+      "metadata": {
+        "mcp_kind": "mcp_command"
+      },
+      "norm_label": "c:\\users\\usaree\\.unity\\relay\\relay_win.exe",
+      "source_file": ".mcp.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "mcp_mcp_server_unity_mcp",
+      "label": "unity-mcp",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "unity-mcp",
+      "file_type": "code",
+      "metadata": {
+        "mcp_kind": "mcp_server"
+      },
+      "norm_label": "unity-mcp",
+      "source_file": ".mcp.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_scripts_runtime_core_container",
+      "label": "Container.cs",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "norm_label": "container.cs",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_scripts_runtime_core_game",
+      "label": "Game.cs",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "norm_label": "game.cs",
+      "source_file": "Assets/Scripts/Runtime/Core/Game.cs",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_scripts_runtime_core_game_game_core_game_progression",
+      "label": "Progression",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s0"
+        ]
+      },
+      "norm_label": "progression",
+      "source_file": "Assets/Scripts/Runtime/Core/Game.cs",
+      "source_location": "L9"
+    },
+    {
+      "id": "assets_scripts_runtime_core_gameroot",
+      "label": "GameRoot.cs",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "norm_label": "gameroot.cs",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_scripts_runtime_core_gameroot_cs_progression",
+      "label": "Progression",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "norm_label": "progression",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "assets_scripts_runtime_core_gameroot_game_core_gameroot_instance",
+      "label": "Instance",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s63"
+        ]
+      },
+      "norm_label": "instance",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L11"
+    },
+    {
+      "id": "assets_scripts_runtime_core_gameroot_game_core_gameroot_progression",
+      "label": "Progression",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s63"
+        ]
+      },
+      "norm_label": "progression",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L15"
+    },
+    {
+      "id": "assets_scripts_runtime_core_progression",
+      "label": "Progression.cs",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "norm_label": "progression.cs",
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L1"
+    },
+    {
+      "id": "csharp_namespace:47dd3340150f465d",
+      "label": "Game.Core",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "GameRoot",
+      "file_type": "code",
+      "metadata": {
+        "kind": "csharp_namespace",
+        "namespace": "Game.Core"
+      },
+      "norm_label": "game.core",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L5",
+      "type": "namespace"
+    },
+    {
+      "id": "assets_scripts_runtime_core_progression_game_core_progression_score",
+      "label": "Score",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "Progression",
+      "file_type": "code",
+      "metadata": {
+        "namespace": "Game.Core",
+        "scope_chain": [
+          "s25"
+        ]
+      },
+      "norm_label": "score",
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L11"
+    },
+    {
+      "id": "reactiveproperty",
+      "label": "ReactiveProperty",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "Progression",
+      "file_type": "code",
+      "norm_label": "reactiveproperty",
+      "source_file": "",
+      "source_location": ""
+    }
+  ],
+  "links": [
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller_lateupdate",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_updatecamerarotation",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller_update",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_jumpandgravity",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller_update",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_updategrounded",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller_update",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_move",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller_updatecamerarotation",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_clampangle",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L115",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_pusher_game_character_pusher_oncontrollercolliderhit",
+      "target": "assets_scripts_runtime_character_pusher_game_character_pusher_pushrigidbodies",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_dispose",
+      "target": "assets_scripts_runtime_core_container_game_core_fixtureb_dispose",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_provide",
+      "target": "assets_scripts_runtime_core_container_game_core_container_track",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "target": "assets_scripts_runtime_core_container_game_core_container_check",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "target": "assets_scripts_runtime_core_container_game_core_fixtureb",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "target": "assets_scripts_runtime_core_container_game_core_fixturea",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "target": "assets_scripts_runtime_core_container_game_core_container_describe",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot_awake",
+      "target": "assets_scripts_runtime_core_container_game_core_container",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot_awake",
+      "target": "assets_scripts_runtime_core_gameroot_cs_progression",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot_awake",
+      "target": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onapplicationfocus",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_setcursorstate",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onjump",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_jumpinput",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onlook",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_lookinput",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onmove",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_moveinput",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onsprint",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_sprintinput",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput_start",
+      "target": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtualjumpinput",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_jumpinput",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtuallookinput",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_lookinput",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtualmoveinput",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_moveinput",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtualsprintinput",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_sprintinput",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols_start",
+      "target": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols_disableautoswitchcontrols",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "mcp_mcp_server_unity_mcp",
+      "target": "mcp_command_c_users_usaree_unity_relay_relay_win_exe",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "command",
+      "source_file": ".mcp.json",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "charactercontroller",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "CharacterController"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot",
+      "target": "assets_scripts_runtime_core_container_game_core_container",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "Container"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "dictionary",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "Dictionary"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_fixtureb",
+      "target": "fixturea",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "FixtureA"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "gameobject",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "GameObject"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "InputMonitor"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "InputMonitor"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_cs_layermask",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "LayerMask"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_pusher_game_character_pusher",
+      "target": "assets_scripts_runtime_character_pusher_cs_layermask",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "LayerMask"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "list",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "List"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_fixturea",
+      "target": "list",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "List"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_fixtureb",
+      "target": "list",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "List"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L114",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_cs_playerinput",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "PlayerInput"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols",
+      "target": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_cs_playerinput",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "PlayerInput"
+      },
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot",
+      "target": "assets_scripts_runtime_core_game_game_core_game_progression",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "Progression"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_progression_game_core_progression",
+      "target": "reactiveproperty",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "ReactiveProperty"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput",
+      "target": "uidocument",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "UIDocument"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput",
+      "target": "unityevent",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "UnityEvent"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick",
+      "target": "unityevent",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "UnityEvent"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_cs_vector2",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "Vector2"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput",
+      "target": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "VirtualJoystick"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick",
+      "target": "visualelement",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "VisualElement"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_iscurrentdevicemouse",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_game_game_core_game",
+      "target": "assets_scripts_runtime_core_game_game_core_game_progression",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "source_file": "Assets/Scripts/Runtime/Core/Game.cs",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot",
+      "target": "assets_scripts_runtime_core_gameroot_game_core_gameroot_instance",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot",
+      "target": "assets_scripts_runtime_core_gameroot_game_core_gameroot_progression",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_progression_game_core_progression",
+      "target": "assets_scripts_runtime_core_progression_game_core_progression_score",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "field",
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller_start",
+      "target": "charactercontroller",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "CharacterController"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "target": "fixturea",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "FixtureA"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "target": "fixtureb",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "FixtureB"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L70",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller_start",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "InputMonitor"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "object",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "Object"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller_start",
+      "target": "assets_scripts_runtime_character_controller_cs_playerinput",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "PlayerInput"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput_start",
+      "target": "pointerenterevent",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "PointerEnterEvent"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput_start",
+      "target": "pointerleaveevent",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "PointerLeaveEvent"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot_awake",
+      "target": "assets_scripts_runtime_core_game_game_core_game_progression",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "Progression"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "type",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "Type"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput_awake",
+      "target": "uidocument",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "UIDocument"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onlook",
+      "target": "assets_scripts_runtime_input_inputmonitor_cs_vector2",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "Vector2"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onmove",
+      "target": "assets_scripts_runtime_input_inputmonitor_cs_vector2",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "Vector2"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput",
+      "target": "assets_scripts_runtime_input_touchscreeninput_cs_vector2",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "Vector2"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick",
+      "target": "assets_scripts_runtime_input_touchscreeninput_cs_vector2",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "Vector2"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput_start",
+      "target": "visualelement",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "VisualElement"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller",
+      "target": "csharp_namespace:ef1b42353027a514",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "metadata": {
+        "using_kind": "namespace",
+        "target_fqn": "Game.Input",
+        "scope_kind": "file"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_pusher_game_character_pusher_oncontrollercolliderhit",
+      "target": "controllercolliderhit",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "ControllerColliderHit"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_pusher_game_character_pusher_pushrigidbodies",
+      "target": "controllercolliderhit",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "ControllerColliderHit"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_provide",
+      "target": "func",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "Func"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onjump",
+      "target": "inputvalue",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "InputValue"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onlook",
+      "target": "inputvalue",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "InputValue"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onmove",
+      "target": "inputvalue",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "InputValue"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onsprint",
+      "target": "inputvalue",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "InputValue"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_describe",
+      "target": "list",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "List"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_track",
+      "target": "object",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "Object"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick_handlepress",
+      "target": "pointerdownevent",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "PointerDownEvent"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick_handledrag",
+      "target": "pointermoveevent",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "PointerMoveEvent"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick_handlerelease",
+      "target": "pointerupevent",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "PointerUpEvent"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_check",
+      "target": "string",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "String"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_lookinput",
+      "target": "assets_scripts_runtime_input_inputmonitor_cs_vector2",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "Vector2"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_moveinput",
+      "target": "assets_scripts_runtime_input_inputmonitor_cs_vector2",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "Vector2"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtuallookinput",
+      "target": "assets_scripts_runtime_input_virtualinput_cs_vector2",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "Vector2"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtualmoveinput",
+      "target": "assets_scripts_runtime_input_virtualinput_cs_vector2",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "Vector2"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_describe",
+      "target": "string",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "return_type",
+      "metadata": {
+        "ref_token": "String"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "idisposable",
+      "relation": "implements",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "IDisposable"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_fixturea",
+      "target": "idisposable",
+      "relation": "implements",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "IDisposable"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_fixtureb",
+      "target": "idisposable",
+      "relation": "implements",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "IDisposable"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_progression_game_core_progression",
+      "target": "idisposable",
+      "relation": "implements",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "IDisposable"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "monobehaviour",
+      "relation": "inherits",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "MonoBehaviour"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_pusher_game_character_pusher",
+      "target": "monobehaviour",
+      "relation": "inherits",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "MonoBehaviour"
+      },
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot",
+      "target": "monobehaviour",
+      "relation": "inherits",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "MonoBehaviour"
+      },
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "monobehaviour",
+      "relation": "inherits",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "MonoBehaviour"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput",
+      "target": "monobehaviour",
+      "relation": "inherits",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "MonoBehaviour"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput",
+      "target": "monobehaviour",
+      "relation": "inherits",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "MonoBehaviour"
+      },
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols",
+      "target": "monobehaviour",
+      "relation": "inherits",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "metadata": {
+        "ref_token": "MonoBehaviour"
+      },
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller",
+      "target": "csharp_namespace:475f3fe8db2bbe40",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_pusher",
+      "target": "csharp_namespace:475f3fe8db2bbe40",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_pusher",
+      "target": "assets_scripts_runtime_character_pusher_game_character_pusher",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container",
+      "target": "assets_scripts_runtime_core_container_game_core_container",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container",
+      "target": "csharp_namespace:47dd3340150f465d",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "assets_scripts_runtime_core_container_game_core_fixturea",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "assets_scripts_runtime_core_container_game_core_fixtureb",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_game",
+      "target": "csharp_namespace:47dd3340150f465d",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Game.cs",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_game",
+      "target": "assets_scripts_runtime_core_game_game_core_game",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Game.cs",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot",
+      "target": "csharp_namespace:47dd3340150f465d",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot",
+      "target": "assets_scripts_runtime_core_gameroot_game_core_gameroot",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_progression",
+      "target": "csharp_namespace:47dd3340150f465d",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_progression",
+      "target": "assets_scripts_runtime_core_progression_game_core_progression",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor",
+      "target": "csharp_namespace:ef1b42353027a514",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput",
+      "target": "csharp_namespace:ef1b42353027a514",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput",
+      "target": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput",
+      "target": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput",
+      "target": "csharp_namespace:ef1b42353027a514",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput",
+      "target": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols",
+      "target": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols",
+      "target": "csharp_namespace:45e157ed15c1239f",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "mcp",
+      "target": "mcp_mcp_server_unity_mcp",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".mcp.json",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_updatecamerarotation",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_move",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_jumpandgravity",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L161",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_clampangle",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L203",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_ondrawgizmosselected",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L210",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_awake",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_start",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_update",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_lateupdate",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_controller_game_character_controller",
+      "target": "assets_scripts_runtime_character_controller_game_character_controller_updategrounded",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Controller.cs",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_pusher_game_character_pusher",
+      "target": "assets_scripts_runtime_character_pusher_game_character_pusher_oncontrollercolliderhit",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_character_pusher_game_character_pusher",
+      "target": "assets_scripts_runtime_character_pusher_game_character_pusher_pushrigidbodies",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Character/Pusher.cs",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "assets_scripts_runtime_core_container_game_core_container_provide",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "assets_scripts_runtime_core_container_game_core_container_grab",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "assets_scripts_runtime_core_container_game_core_container_dispose",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "assets_scripts_runtime_core_container_game_core_container_track",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "assets_scripts_runtime_core_container_game_core_container_check",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container",
+      "target": "assets_scripts_runtime_core_container_game_core_container_describe",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_fixturea",
+      "target": "assets_scripts_runtime_core_container_game_core_fixturea_dispose",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_fixtureb",
+      "target": "assets_scripts_runtime_core_container_game_core_fixtureb_dispose",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot",
+      "target": "assets_scripts_runtime_core_gameroot_game_core_gameroot_awake",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot",
+      "target": "assets_scripts_runtime_core_gameroot_game_core_gameroot_ondestroy",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_progression_game_core_progression",
+      "target": "assets_scripts_runtime_core_progression_game_core_progression_addscore",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_progression_game_core_progression",
+      "target": "assets_scripts_runtime_core_progression_game_core_progression_dispose",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Core/Progression.cs",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onmove",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onlook",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onjump",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onsprint",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_moveinput",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_lookinput",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_jumpinput",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_sprintinput",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_onapplicationfocus",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor",
+      "target": "assets_scripts_runtime_input_inputmonitor_game_input_inputmonitor_setcursorstate",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/InputMonitor.cs",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput",
+      "target": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput_awake",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput",
+      "target": "assets_scripts_runtime_input_touchscreeninput_game_input_touchscreeninput_start",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick",
+      "target": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick_handledrag",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick",
+      "target": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick_handlepress",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick",
+      "target": "assets_scripts_runtime_input_touchscreeninput_game_input_virtualjoystick_handlerelease",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/TouchscreenInput.cs",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput",
+      "target": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtualmoveinput",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput",
+      "target": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtuallookinput",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput",
+      "target": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtualjumpinput",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput",
+      "target": "assets_scripts_runtime_input_virtualinput_game_input_virtualinput_virtualsprintinput",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Input/VirtualInput.cs",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols",
+      "target": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols_start",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols",
+      "target": "assets_scripts_runtime_mobile_utilities_mobiledisableautoswitchcontrols_game_mobile_utilities_mobiledisableautoswitchcontrols_disableautoswitchcontrols",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Assets/Scripts/Runtime/Mobile/Utilities/MobileDisableAutoSwitchControls.cs",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "target": "assets_scripts_runtime_core_container_game_core_container_provide",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_container_game_core_container_selftest",
+      "target": "assets_scripts_runtime_core_container_game_core_container_dispose",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/Container.cs",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_scripts_runtime_core_gameroot_game_core_gameroot_awake",
+      "target": "assets_scripts_runtime_core_container_game_core_container_provide",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "context": "call",
+      "source_file": "Assets/Scripts/Runtime/Core/GameRoot.cs",
+      "source_location": "L23",
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "eaa81c18e3e223bf49700929c41887267950ebdd"
+}
