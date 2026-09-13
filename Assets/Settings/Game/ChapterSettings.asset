@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1accd37b7deef1d4baf84b1920f263f0, type: 3}
+  m_Name: ChapterSettings
+  m_EditorClassIdentifier: Game.Runtime::Game.Content.ChapterSettings
+  Entries:
+  - key: player_1
+    value:
+      SpawnPointID: Spawn_Player_Start
+      Anim: {fileID: 0}
+      IsVisible: 1
+  - key: cam_1
+    value:
+      SpawnPointID: Spawn_Cam_Bed
+      Anim: {fileID: 0}
+      IsVisible: 1
+  - key: sm_1
+    value:
+      SpawnPointID: Spawn_Table_Sit
+      Anim: {fileID: 0}
+      IsVisible: 1
+  - key: player_2
+    value:
+      SpawnPointID: Spawn_Player_Bed
+      Anim: {fileID: 0}
+      IsVisible: 1
+  - key: cam_2
+    value:
+      SpawnPointID: Spawn_Cam_Bed
+      Anim: {fileID: 0}
+      IsVisible: 1
+  - key: sm_2
+    value:
+      SpawnPointID: Spawn_SM_Bed
+      Anim: {fileID: 0}
+      IsVisible: 1

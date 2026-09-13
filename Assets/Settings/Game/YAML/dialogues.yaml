@@ -1,0 +1,352 @@
+dialogue_entries:
+- card_id: card_betelPalmRoot_cam
+  lines:
+  - text: Mẹ bảo cây mục rồi, đốn đi cho an toàn.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Sợ trời mưa bão rồi lại có thêm tai nạn nữa Thầy ạ.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_betelPalmRoot_sm
+  lines:
+  - text: À, cái gốc cây ngoài sân đấy hả Thầy? Cây đó mục quá tôi đốn đi rồi, để
+      lại gió bão nó đổ vào nhà thì khốn.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Nhà không có đàn ông, một nên tôi quen tay ba cái việc nặng nhọc này.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Dù là phụ nữ, nhưng khi cần, tôi cũng có thể mọi thứ Thầy ạ.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_betelPalmRoot_tao
+  lines:
+  - text: 'T1: Cái cây cao, xum xuê thế mà bị đốn, uổng quá hen.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'TC: Bà mẹ bảo tôi là cây mục rồi nên bà mới đốn mà.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Thầy tin người quá rồi, thầy không thấy con bé Cám đang nằm liệt giường
+      sao, là hậu quả đó.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T3: Cây đó trước giờ rất khỏe mạnh'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Nếu có ai không may té ngã, có thể không phải là sự cố đâu thầy.'
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_bruise_cam
+  lines:
+  - text: Tôi không biết nó từ đâu mà ra.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Sáng dậy tôi đã thấy nó trên tay rồi.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_bruise_sm
+  lines:
+  - text: Thầy tinh mắt thế! Cháu nó đi đứng hậu đậu, chắc là va vào đâu đấy ạ.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Thầy chớ lo, vài bữa là lành ngay ấy mà.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Có vẻ thầy cũng mệt rồi, thầy nên đi nghỉ sớm đi.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Bà có cảm thấy vết bầm đang lan ra không?
+    duration: 3.0
+    expression_id: expr_default
+  - text: Thầy lại suy nghĩ nhiều rồi.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Vài bữa nữa là nó khỏi ấy mà thầy
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_bruise_tao
+  lines:
+  - text: 'T2: Vết bầm này, tôi bắt đầu thấy nó xuất hiện từ đêm hôm kia.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Con bé mộng du, ra ngoài và bước đến giếng. Thầy biết mộng du hông?'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Ông hay lạc đề quá, trả lời đúng trọng tâm cho thầy kìa.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T3: Dưới miệng giếng, có gì đó nắm lấy cánh tay con bé.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'TC: Các ông bà nói gì cơ?'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Hình như tối nay là tới lịch đó, thầy ra coi trực tiếp cho rõ.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Vết bầm này ảnh hưởng đến sinh mệnh con bé, thầy không có nhiều thời
+      gian đâu.'
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_cam_cam
+  lines:
+  - text: Tôi tên là Cám. Mẹ bảo tôi sinh ra vào mùa gặt, người thơm mùi cám mới nên
+      đặt tên thế.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Tôi khờ khạo lắm, không nhanh nhẹn và đảm đang như chị, có gì Thầy đừng
+      cười nhé.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_cam_sm
+  lines:
+  - text: Con tôi năm nay được mười tám cái xuân rồi đấy Thầy ạ.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Con gái có lứa có thì, tôi cũng chỉ muốn gả nó vào một nhà giàu cho ấm cái
+      thân.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Đời tôi chịu khổ nhiều rồi, đời nó phải được sung sướng.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_cam_tao
+  lines:
+  - text: 'T1: Con bé nhỏ.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Cô bé lớn lên trong căn nhà này. Dù mẹ không cho động tay động chân
+      vào việc gì, nhưng con bé hay lén phụ chị lắm.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T3: Tôi thấy 2 chị em nó cãi nhau suốt mà.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Người ta thân thiết mới vậy ông ơi.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Nói chung là hòa thuận đó.'
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_chopsticks_sm
+  lines:
+  - text: Một đôi là của con Tấm.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Nó chết rồi nhưng tôi vẫn để đấy thôi.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_chopsticks_tao
+  lines:
+  - text: 'T3: Đũa này dùng để ăn cơm.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Cái này thì ai cũng biết rồi ông.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Gia đình này không quá ấm cúng, nhưng những bữa cơm của họ cũng không
+      quá lạnh lẽo.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Cho tới dạo gần đây, nhà còn xài hai đôi thôi.'
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_comb_cam
+  lines:
+  - text: Lược này chị hay dùng để chải cho tôi này, tối nào cũng thế.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Chị còn bảo tóc tôi mượt, sau này gả chồng thế nào cũng được người ta thương.
+    duration: 3.0
+    expression_id: expr_default
+  - text: '*Player sẽ miss thông tin này nếu người chơi tương tác với mẹ kế trước*'
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_comb_sm
+  lines:
+  - text: Thầy... Thầy ơi, chiếc lược này vốn là của con Tấm, tôi đã quăng đi rồi,
+      sao bây giờ lại ở đây.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_comb_tao
+  lines:
+  - text: 'T3: Cây lược này con bé lớn vẫn mỗi tối chải tóc cho Cám này.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Vừa chải vừa nói chuyện rôm rả, ồn nhưng vui lắm.'
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_incense_sm
+  lines:
+  - text: Nhang này tôi dùng để cúng các Táo.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Nhưng nếu được thì Thầy cúng cho con Tấm đi khuất mắt giúp tôi.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_incense_tao
+  lines:
+  - text: 'T1: Thầy làm thầy cúng mà cũng phải hỏi à?'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T3: Nhang là sợi dây kết nối giữa thực tại và thế giới tâm linh.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Như thầy đang nói chuyện với tụi tôi nè.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Và trong các nghi lễ, nhang là 1 thành phần quan trọng không thể thiếu.'
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_oriole_sm
+  lines:
+  - text: Đích thị là do NÓ. NÓ đang ám cái nhà này.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Hồn ma của con Tấm...
+    duration: 3.0
+    expression_id: expr_default
+  - text: Sao chết rồi không đi cho khuất mắt đi, còn quay lại ám cái nhà này nữa.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_oriole_tao
+  lines:
+  - text: 'T1: Nhìn vậy chứ không phải vậy, thầy coi chừng nhầm nhé.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Đó đúng là một thực thể tà ác và giận dữ.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T3: Thầy hãy để ý đến người mà NÓ hướng tới, thầy sẽ đoán được câu trả
+      lời thầy đang tìm kiếm.'
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_pa_cam
+  lines:
+  - text: Cây mới mọc gần đây thôi, nhưng lạ lắm Thầy ơi, nó lớn nhanh chỉ sau 1 đêm.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Đứng gần nó tôi cứ thấy nhức hết cả đầu, tai cứ ù đi như có tiếng khung
+      cửi gỗ kêu kèn kẹt...
+    duration: 3.0
+    expression_id: expr_default
+  - text: Với Thầy có thấy đất chỗ cây xoan bị động không Thầy?
+    duration: 3.0
+    expression_id: expr_default
+  - text: Tôi cứ có cảm giác cây đang chuyển động.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_pa_sm
+  lines:
+  - text: Là cây dại đó thầy.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Vườn tược bỏ hoang dạo mưa gió này cỏ cây mọc um tùm.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Nó mới xuất hiện gần đây thôi,
+    duration: 3.0
+    expression_id: expr_default
+  - text: trùng hợp...
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_pa_tao
+  lines:
+  - text: 'T1: Cái cây đó chúng tôi cũng thắc mắc.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'TC: Các ông bà mà cũng thắc mắc à?'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Chúng tôi biết nó là gì, nhưng mọc qua đêm mà cao quá đầu người thì
+      khá ấn tượng đó.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T3: Cây đó đang cố vào trong nhà...'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Nhưng chưa vào được hẳn'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T3: Tôi vừa định nói.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Tôi biết.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'TC: Hai ông đọc ý nhau vậy à?'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Chúng tôi ngồi cùng nhau mấy ngàn năm, không đọc được nhau mới lạ.'
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_sm_cam
+  lines:
+  - text: Mẹ tôi giỏi lắm Thầy.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Hơn 10 năm nay, 1 mình mẹ lo cho cả 2 chị em.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Dù mẹ có nhiều lúc khó tính, nhưng tôi quý mẹ lắm.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Nhưng dạo này không hiểu sao mẹ không ngủ được, cứ hay bồn chồn đi lại.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_sm_sm
+  lines:
+  - text: Nhà tôi giờ chỉ còn hai mẹ con nương tựa vào nhau thôi Thầy ạ.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Là mẹ mà, đương nhiên tôi muốn dành hết tất cả những gì tốt đẹp nhất cho
+      con mình.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Đời tôi coi như bỏ, nhưng con Cám thì phải được đủ đầy, không để nó thua
+      kém ai cái gì cả.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_sm_tao
+  lines:
+  - text: 'T3: Bà ấy có nhiều nỗi sợ.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T3: Sợ con Cám không có chỗ đứng, sợ người khác lấy hết phần của con bà
+      chỉ bằng cách tồn tại.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T2: Nói chung là bà lo cho con mình.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Lo quá mức luôn.'
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_wine_sm
+  lines:
+  - text: Rượu này tôi hay dùng để cúng cho các Táo.
+    duration: 3.0
+    expression_id: expr_default
+  - text: Nhưng dạo này nhiều chuyện xảy ra, tôi phải uống thì mới chợp mắt được Thầy
+      ạ.
+    duration: 3.0
+    expression_id: expr_default
+- card_id: card_wine_tao
+  lines:
+  - text: 'T2: Rượu này bà mẹ hay rót cho chúng tôi uống.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Nhưng chẳng hiểu làm sao dạo gần đây bà cứ lấy uống luôn.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Gần hết bình rồi mà chưa thấy bà mua thêm, thầy nhắc khéo bà ấy giùm
+      chúng tôi.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T3: Trong các nghi lễ cũng cần rượu nữa.'
+    duration: 3.0
+    expression_id: expr_default
+  - text: 'T1: Vậy phải đi mua thêm thôi.'
+    duration: 3.0
+    expression_id: expr_default

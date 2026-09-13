@@ -7,6 +7,7 @@ namespace Game.Core
 	public static class Services
 	{
 		public static GameSession Session => Bootstrapper.Instance?.Session;
+		public static CardInventory Cards => Bootstrapper.Instance?.Cards;
 		public static InputSettings InputSettings => Bootstrapper.Instance?.InputSettings;
 		public static PauseState Pause => Bootstrapper.Instance?.Pause;
 		public static ProgressStore Progress => Bootstrapper.Instance?.Progress;

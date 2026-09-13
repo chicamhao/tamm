@@ -261,9 +261,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 34897009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ec87b82f2117b4fb5433f875498a21, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a1596051dbb50b41824181e493384d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game.Runtime::Game.Interaction.Collectible
+  _card: {fileID: 11400000, guid: 6b0415c17fa60fe4f9232d4a82140465, type: 2}
 --- !u!65 &34897011
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1084,9 +1085,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 696662852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ec87b82f2117b4fb5433f875498a21, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a1596051dbb50b41824181e493384d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game.Runtime::Game.Interaction.Collectible
+  _card: {fileID: 11400000, guid: 0caf3036d2d77d5499311e6d94f2b26b, type: 2}
 --- !u!65 &696662854
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1942,6 +1944,84 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2114283753834967213}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1180889544
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1114260476483171701, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114260476483171701, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000007748604
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114260476483171701, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114260476483171701, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8738124
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114260476483171701, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114260476483171701, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.48626336
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114260476483171701, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114260476483171701, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114260476483171701, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -58.191
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114260476483171701, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862277631971027947, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      propertyPath: m_Name
+      value: RobotKyle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3862277631971027947, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1180889546}
+  m_SourcePrefab: {fileID: 100100000, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+--- !u!1 &1180889545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3862277631971027947, guid: f7a3b83d4996a5c4cba55bdeda5d9c72, type: 3}
+  m_PrefabInstance: {fileID: 1180889544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1180889546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180889545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bed48edfbdf8d49aa5f6767239b630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Runtime::Game.Interaction.NpcInteractable
+  _actorId: cam
 --- !u!1 &1244239491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,9 +2965,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2025109917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ec87b82f2117b4fb5433f875498a21, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a1596051dbb50b41824181e493384d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Game.Runtime::Game.Interaction.Collectible
+  m_EditorClassIdentifier: Game.Runtime::Game.Interaction.CardPickup
+  _card: {fileID: 11400000, guid: a7374f71c13e5e14a93e6a2b94712d3b, type: 2}
 --- !u!1001 &2084445384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3345,7 +3426,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 194691425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 078ab229651dca147beb427615d9fa92, type: 3}
+  m_Script: {fileID: 11500000, guid: d8e9fa4b8ba0a10449ea17a2969dd264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game.Runtime::Game.Interaction.ClickCollector
   _input: {fileID: 5393215579111688480}
@@ -3456,3 +3537,4 @@ SceneRoots:
   - {fileID: 2025109922}
   - {fileID: 696662857}
   - {fileID: 34897014}
+  - {fileID: 1180889544}

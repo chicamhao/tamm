@@ -1,0 +1,45 @@
+expression_definitions:
+  - id: expr_cam_smile
+    morph_targets:
+      - name: smile_L
+        value: 0.8
+        blend_in_time: 0.3
+      - name: smile_R
+        value: 0.8
+        blend_in_time: 0.3
+
+  - id: expr_cam_sad
+    morph_targets:
+      - name: browDown_L
+        value: 0.6
+        blend_in_time: 0.3
+      - name: browDown_R
+        value: 0.6
+        blend_in_time: 0.3
+      - name: mouthSad
+        value: 0.5
+        blend_in_time: 0.3
+
+  - id: expr_cam_shy
+    morph_targets:
+      - name: smileSoft_L
+        value: 0.4
+        blend_in_time: 0.3
+      - name: smileSoft_R
+        value: 0.4
+        blend_in_time: 0.3
+      - name: browDown_L
+        value: 0.3
+        blend_in_time: 0.3
+      - name: browDown_R
+        value: 0.3
+        blend_in_time: 0.3
+
+  - id: expr_cam_surprise
+    morph_targets:
+      - name: browUp_C
+        value: 0.9
+        blend_in_time: 0.2
+      - name: mouthOpen
+        value: 0.5
+        blend_in_time: 0.2

@@ -1,0 +1,25 @@
+chapter_entries:
+  - actor_id: player
+    chapter: 1
+    spawn_point_id: Spawn_Player_Start
+    is_visible: true
+  - actor_id: cam
+    chapter: 1
+    spawn_point_id: Spawn_Cam_Bed
+    is_visible: true
+  - actor_id: sm
+    chapter: 1
+    spawn_point_id: Spawn_Table_Sit
+    is_visible: true
+  - actor_id: player
+    chapter: 2
+    spawn_point_id: Spawn_Player_Bed
+    is_visible: true
+  - actor_id: cam
+    chapter: 2
+    spawn_point_id: Spawn_Cam_Bed
+    is_visible: true
+  - actor_id: sm
+    chapter: 2
+    spawn_point_id: Spawn_SM_Bed
+    is_visible: true

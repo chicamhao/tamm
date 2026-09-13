@@ -1,0 +1,51 @@
+card_definitions:
+- card_id: card_cam
+  display_name: Cám
+  description: Cám
+  icon_path: null
+  target_actor_ids: []
+- card_id: card_sm
+  display_name: Mẹ Kế
+  description: Mẹ Kế
+  icon_path: null
+  target_actor_ids: []
+- card_id: card_bruise
+  display_name: Vết bầm của Cám
+  description: Vết bầm của Cám
+  icon_path: null
+  target_actor_ids: []
+- card_id: card_betelPalmRoot
+  display_name: Gốc cau
+  description: Gốc cau
+  icon_path: null
+  target_actor_ids: []
+- card_id: card_pa
+  display_name: Xoan đào
+  description: Xoan đào
+  icon_path: null
+  target_actor_ids: []
+- card_id: card_comb
+  display_name: Lược
+  description: Lược
+  icon_path: null
+  target_actor_ids: []
+- card_id: card_oriole
+  display_name: Chim vàng anh
+  description: Nghe tiếng chim hót
+  icon_path: null
+  target_actor_ids: []
+- card_id: card_wine
+  display_name: bình rượu
+  description: bình rượu
+  icon_path: null
+  target_actor_ids: []
+- card_id: card_chopsticks
+  display_name: 3 đôi đũa
+  description: 3 đôi đũa
+  icon_path: null
+  target_actor_ids: []
+- card_id: card_incense
+  display_name: Nhang
+  description: Nhang
+  icon_path: null
+  target_actor_ids: []

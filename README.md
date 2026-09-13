@@ -8,9 +8,9 @@ PlayerPrefs saves.
 The loop: **interact with objects to collect cards, use cards to converse with NPCs,
 progress chapters, and reshape the world around you.**
 
-The collect-objects scaffold in `Game.Session`/`Game.Interaction`/`Game.UI` is the
-**reference game** — copy its shape (interact → service rule → reactive UI), then rename
-into the card system.
+The card-interaction scaffold in `Game.Session`/`Game.Interaction`/`Game.UI` is the
+**reference loop** — copy its shape (interact → service rule → reactive UI): objects
+(`CardPickup`) grant cards, NPCs (`NpcInteractable`) open the card selection menu.
 
 ## Stack
 
@@ -23,18 +23,19 @@ into the card system.
 | Assembly | Folder | Contents |
 |---|---|---|
 | `Game.Core` | `Assets/Scripts/Framework/` | Pure-C# DI container. Zero deps — reuse first. |
-| `Game.Runtime` | `Assets/Scripts/Runtime/` | Everything else: composition root, services, input hub, character controller, UI leaves, interaction. |
+| `Game.Runtime` | `Assets/Scripts/Runtime/` | Everything else: composition root, services, input hub, character controller, UI leaves, interaction, content data classes (`Game.Content`). |
+| `Game.Editor` | `Assets/Scripts/Editor/` | Designer tools: YAML ⇄ ScriptableObject content pipeline (cards/dialogues/chapters/expressions). `Assets → Import/Export Content from YAML`. |
 | `Game.Runtime.Tests` | `Assets/Scripts/Tests/` | Edit-mode NUnit tests (Test Runner). |
 
 ## Layers
 
 ```
 Game.Core      Container (DI, pure C#)
-Game.Core      PauseState / ProgressStore / InputSettings — services owned by Booster
+Game.Core      PauseState / ProgressStore / CardInventory / InputSettings — services owned by Booster
 Game.Input     InputMonitor — THE input contract: actions bound from the asset, cursor, hub state
 Game.Character Controller / Pusher — kit character controller (consumes hub)
-Game.UI        GameHud / SettingsMenu — leaf MonoBehaviours; the only file allowed to touch Services
-Game.Interaction Collectible / ClickCollector — reference-game interaction
+Game.UI        GameHud / SettingsMenu / CardSelectionMenu — leaf MonoBehaviours; the only files allowed to touch Services
+Game.Interaction Interactor / CardPickup / NpcInteractable — crosshair interact: objects grant cards, NPCs open the card menu
 ```
 
 Invariant: **only** leaves read `Game.Core.Services`; services never reference leaves;
@@ -46,8 +47,10 @@ Invariant: **only** leaves read `Game.Core.Services`; services never reference l
 2. Player with `InputMonitor` + `Controller`. `InputMonitor._actions` optional — falls back to
    `InputSystem.actions`, registered in `ProjectSettings/EditorBuildSettings.asset` →
    `com.unity.input.settings.actions` (points at `Assets/InputSystem_Actions.inputactions`).
-3. `ClickCollector` (+ assign the player's `InputMonitor`) and up to N `Collectible`s (need colliders).
-4. `GameHud` with 3 TMPro texts; `SettingsMenu` (+ `_input` ref, `_panel`, slider, save/load/new-game buttons).
+3. `Interactor` (+ assign the player's `InputMonitor`) on the player; pickups: `CardPickup`
+   objects (collider + `CardDefinition` asset), NPCs: `NpcInteractable` (collider + `ActorId`).
+4. `GameHud` with 3 TMPro texts; `SettingsMenu` (+ `_input` ref, `_panel`, slider, save/load/new-game buttons);
+   `CardSelectionMenu` (panel + card button template) for the NPC flow.
 
 ## Patterns
 
@@ -55,6 +58,10 @@ Invariant: **only** leaves read `Game.Core.Services`; services never reference l
   → expose on `Booster` → add accessor on `Services` (if leaves need it) → dispose via `IDisposable`.
 - **Add an action:** add name + bindings in `Assets/InputSystem_Actions.inputactions` (Player map)
   → bind in `InputMonitor.Start` → read: state fields (`Move`, …), edge reads (`GetPauseInputDown`), or new getter.
+- **Content pipeline (designer tools):** edit `Assets/Settings/Game/YAML/{cards,dialogues,chapters,expressions}.yaml`
+  → `Assets → Import Content from YAML` creates/updates ScriptableObjects under `Assets/Settings/Game/
+  {Cards,Expressions}` + `DialogueSettings.asset`/`ChapterSettings.asset`. Export is the reverse. Staleness
+  check warns when YAML changes without an import. YamlDotNet comes via NuGet (`Assets/Packages/`,
 - **Pause:** `Services.Pause.Toggle()` → `Time.timeScale` freezes simulation; cursor unlock through
   `InputMonitor.SetCursorState(false)` freezes gameplay input via `CanProcessInput`.
 - **Save/load:** `Services.Progress.Save()/Load()` (PlayerPrefs counter MVP — swap for a file

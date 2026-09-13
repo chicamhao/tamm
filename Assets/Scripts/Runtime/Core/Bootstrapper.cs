@@ -17,6 +17,7 @@ namespace Game.Core
 		private Container _container;
 
 		public GameSession Session { get; private set; }
+		public CardInventory Cards { get; private set; }
 		public InputSettings InputSettings { get; private set; }
 		public PauseState Pause { get; private set; }
 		public ProgressStore Progress { get; private set; }
@@ -32,10 +33,12 @@ namespace Game.Core
 			_container.Provide(new InputSettings(_settings));
 			_container.Provide(new GameSession(_settings));
 			_container.Provide(new PauseState());
-			_container.Provide(g => new ProgressStore(g.Grab<GameSession>()));
+			_container.Provide(new CardInventory());
+			_container.Provide(g => new ProgressStore(g.Grab<GameSession>(), g.Grab<CardInventory>()));
 
 			// Pull order == wiring order. Add Gui, Save, etc. here as they appear.
 			Session = _container.Grab<GameSession>();
+			Cards = _container.Grab<CardInventory>();
 			InputSettings = _container.Grab<InputSettings>();
 			Pause = _container.Grab<PauseState>();
 			Progress = _container.Grab<ProgressStore>();

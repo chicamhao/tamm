@@ -48,7 +48,7 @@ namespace Game.Core
 			UpdateResult();
 		}
 
-		// Called by Collectible leaves, exactly once per object.
+		// Called by interaction leaves, exactly once per object.
 		public void Collect()
 		{
 			Collected.Value += 1;
