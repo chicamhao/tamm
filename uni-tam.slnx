@@ -2,5 +2,8 @@
   <Project Path="Game.Runtime.Tests.csproj" />
   <Project Path="Game.Editor.csproj" />
   <Project Path="Game.Runtime.csproj" />
+  <Project Path="QuickOutline.csproj" />
+  <Project Path="Game.Debug.csproj" />
+  <Project Path="Game.Runtime.PlayTests.csproj" />
   <Project Path="Game.Core.csproj" />
 </Solution>

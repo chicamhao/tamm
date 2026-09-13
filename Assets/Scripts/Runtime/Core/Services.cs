@@ -8,6 +8,8 @@ namespace Game.Core
 	{
 		public static CardInventory Cards => Bootstrapper.Instance?.Cards;
 		public static InteractionService Interactions => Bootstrapper.Instance?.Interactions;
+		public static DialogueService Dialogue => Bootstrapper.Instance?.Dialogue;
+		public static ChapterState Chapter => Bootstrapper.Instance?.Chapter;
 		public static InputSettings InputSettings => Bootstrapper.Instance?.InputSettings;
 		public static PauseState Pause => Bootstrapper.Instance?.Pause;
 		public static ProgressStore Progress => Bootstrapper.Instance?.Progress;

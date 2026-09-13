@@ -1,6 +1,7 @@
 using Game.Character;
 using Game.Input;
 using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TestTools;

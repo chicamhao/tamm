@@ -1,6 +1,5 @@
 using R3;
 using System;
-using Unity.Scripting.LifecycleManagement;
 using UnityEngine;
 
 namespace Game.Core
@@ -8,10 +7,9 @@ namespace Game.Core
 	// Runtime-adjustable input settings: slider -> ReactiveProperty -> consumers.
 	// Defaults are data-driven from GameSettings; the UI overwrites at runtime.
 	// PrefsKey is a constant — never cleaned between scenes.
-	[NoAutoStaticsCleanup]
 	public sealed class InputSettings : IDisposable
 	{
-		private static readonly String PrefsKey = "game.input.mouseSensitivity";
+		private static readonly string PrefsKey = "game.input.mouseSensitivity";
 
 		public ReactiveProperty<float> MouseSensitivity { get; } = new(1.0f);
 

@@ -189,6 +189,60 @@ namespace Game.Editor
 		}
 
 		// ---------------------------------------------------------------
+		// Chapter-advance gates
+		// ---------------------------------------------------------------
+
+		/// <summary>
+		/// Import the chapter-advance gates into ChapterSettings.Gates.
+		/// Replaces the whole list on each import (gates are defined as one list in chapters.yaml).
+		/// </summary>
+		public void ImportChapterGates(List<ChapterGateEntry> gates)
+		{
+			string path = "Assets/Settings/Game/ChapterSettings.asset";
+
+			ChapterSettings chapters;
+			if (File.Exists(Path.GetFullPath(path)))
+			{
+				chapters = AssetDatabase.LoadAssetAtPath<ChapterSettings>(path);
+			}
+			else
+			{
+				chapters = ScriptableObject.CreateInstance<ChapterSettings>();
+				AssetDatabase.CreateAsset(chapters, path);
+				Created++;
+				Updated--;
+			}
+
+			if (chapters == null)
+			{
+				Debug.LogError("[ContentAssetFactory] ChapterSettings is null after load/create — skipping gates.");
+				Skipped++;
+				return;
+			}
+
+			chapters.Gates = gates.Select(gate => new Game.Content.ChapterGate
+			{
+				Chapter = gate.Chapter,
+				Conditions = gate.Conditions.Select(c => new Game.Content.ProgressCondition
+				{
+					Type = ParseConditionType(c.Type),
+					CardId = c.CardId,
+					ActorId = c.ActorId
+				}).ToList()
+			}).ToList();
+
+			EditorUtility.SetDirty(chapters);
+		}
+
+		private static Game.Content.ProgressConditionType ParseConditionType(string type)
+			=> type switch
+			{
+				"owns_card" => Game.Content.ProgressConditionType.OwnsCard,
+				"had_conversation" => Game.Content.ProgressConditionType.HadConversation,
+				_ => Game.Content.ProgressConditionType.OwnsCard
+			};
+
+		// ---------------------------------------------------------------
 		// Expression definitions
 		// ---------------------------------------------------------------
 

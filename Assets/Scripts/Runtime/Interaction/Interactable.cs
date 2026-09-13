@@ -9,6 +9,8 @@ namespace Game.Interaction
 	{
 		[SerializeField] private string _id;
 
+		public string Id => _id;
+
 		private void Awake()
 		{
 			Assert.IsFalse(string.IsNullOrEmpty(_id), "Interactable requires an id");

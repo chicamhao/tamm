@@ -26,6 +26,22 @@ namespace Game.Editor
 	public sealed class ChaptersFile
 	{
 		public List<ChapterEntry> ChapterEntries { get; set; } = new();
+		public List<ChapterGateEntry> ChapterAdvances { get; set; } = new();
+	}
+
+	/// <summary>Raw chapter-advance gate from YAML.</summary>
+	public sealed class ChapterGateEntry
+	{
+		public int Chapter { get; set; } = 1;
+		public List<ProgressConditionEntry> Conditions { get; set; } = new();
+	}
+
+	/// <summary>Raw progress condition from YAML (type: "owns_card" | "had_conversation").</summary>
+	public sealed class ProgressConditionEntry
+	{
+		public string Type { get; set; } = string.Empty;
+		public string CardId { get; set; } = string.Empty;
+		public string ActorId { get; set; } = string.Empty;
 	}
 
 	/// <summary>Root shape of expressions.yaml.</summary>
@@ -129,6 +145,16 @@ namespace Game.Editor
 
 			var file = _deserializer.Deserialize<ChaptersFile>(yamlText);
 			return file?.ChapterEntries ?? new();
+		}
+
+		/// <summary>Parse chapters.yaml content into typed chapter-advance gates.</summary>
+		public List<ChapterGateEntry> ParseChapterAdvances(string yamlText)
+		{
+			if (string.IsNullOrWhiteSpace(yamlText))
+				return new();
+
+			var file = _deserializer.Deserialize<ChaptersFile>(yamlText);
+			return file?.ChapterAdvances ?? new();
 		}
 
 		/// <summary>Parse expressions.yaml content into typed expression entries.</summary>

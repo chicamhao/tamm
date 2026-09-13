@@ -23,3 +23,12 @@ chapter_entries:
     chapter: 2
     spawn_point_id: Spawn_SM_Bed
     is_visible: true
+# Chapter-advance gates: when all conditions hold, the chapter advances.
+chapter_advances:
+  - chapter: 2
+    conditions:
+      - type: owns_card
+        card_id: card_cam
+      - type: had_conversation
+        card_id: card_cam
+        actor_id: cam

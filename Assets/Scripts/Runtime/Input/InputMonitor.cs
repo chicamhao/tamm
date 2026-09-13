@@ -1,5 +1,6 @@
 using Game.Core;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
 namespace Game.Input
@@ -24,13 +25,13 @@ namespace Game.Input
 		// On* events from), remappable in the InputSystem editor like every other action.
 		private InputAction _interactAction;
 		private InputAction _pauseAction;
-		private Game.Core.InputSettings _sensitivity;
+		private Core.InputSettings _sensitivity;
 
 		private void Start()
 		{
-			_sensitivity = Game.Core.Services.InputSettings; // null-safe: absent outside a Bootstrapper scene
+			_sensitivity = Services.InputSettings; // null-safe: absent outside a Bootstrapper scene
 			InputActionAsset asset = InputSystem.actions;
-			if (asset == null) return;
+			Assert.IsNotNull(asset);
 			_interactAction = asset.FindAction("Player/Interact");
 			_interactAction?.Enable();
 			_pauseAction = asset.FindAction("Player/Pause");

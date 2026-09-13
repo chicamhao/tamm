@@ -8,7 +8,7 @@ PlayerPrefs saves.
 The loop: **interact with objects to collect cards, use cards to converse with NPCs,
 progress chapters, and reshape the world around you.**
 
-The card-interaction scaffold in `Game.Session`/`Game.Interaction`/`Game.UI` is the
+The card-interaction scaffold in `Game.Core`/`Game.Interaction`/`Game.UI` is the
 **reference loop** — copy its shape (interact → service rule → reactive UI): every
 `Interactable` carries an id; `InteractionService` grants known card ids and opens the
 card selection menu for known actor ids.
@@ -32,11 +32,11 @@ card selection menu for known actor ids.
 
 ```
 Game.Core      Container (DI, pure C#)
-Game.Core      PauseState / ProgressStore / CardInventory / InputSettings — services owned by Booster
+Game.Core      PauseState / ProgressStore / CardInventory / DialogueService / ChapterState / InputSettings — services owned by Booster
 Game.Input     InputMonitor — THE input contract: actions bound from the asset, cursor, hub state
 Game.Character Controller / Pusher — kit character controller (consumes hub)
-Game.UI        GameHud / SettingsMenu / CardSelectionMenu — leaf MonoBehaviours; the only files allowed to touch Services
-Game.Interaction Interactor / Interactable — crosshair interact; the service routes ids to card grants or the card menu
+Game.UI        SettingsMenu / CardSelectionMenu / DialoguePanel — leaf MonoBehaviours; the only files allowed to touch Services
+Game.Interaction Interactor / Interactable / ChapterSpawner — crosshair interact; the service routes ids to card grants or the card menu; chapter spawner places actors per chapter
 ```
 
 Invariant: **only** leaves read `Game.Core.Services`; services never reference leaves;
@@ -52,8 +52,10 @@ Invariant: **only** leaves read `Game.Core.Services`; services never reference l
 3. `Interactor` (+ assign the player's `InputMonitor`) on the player; every interactable is an
    `Interactable` with an id (collider + id). The id decides card grant vs card menu via
    `InteractionService`, fed by the content settings (card ids, actor ids derived from dialogue keys).
-4. `GameHud` with 3 TMPro texts; `SettingsMenu` (+ `_input` ref, `_panel`, slider, save/load/new-game buttons);
-   `CardSelectionMenu` (panel + card button template) for the NPC flow.
+   Optional: drop `DebugMenu` on any object — F2 opens an arrow-key chapter stepper (dev overlay).
+4. UI leaves: `SettingsMenu` (+ `_input` ref, `_panel`, slider, save/load/new-game buttons);
+   `CardSelectionMenu` (panel + card button template + InputMonitor); `DialoguePanel` (panel + speaker/line
+   TMP texts + InputMonitor).
 
 ## Patterns
 
