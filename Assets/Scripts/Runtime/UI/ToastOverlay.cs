@@ -54,7 +54,7 @@ namespace Game.UI
 			float y = 60;
 			foreach (Toast toast in _toasts)
 			{
-				GUI.Label(new Rect(12, y, 400, 22), toast.Text);
+                GUI.Label(new Rect(12, y, 400, 22), toast.Text);
 				y += 24;
 			}
 		}

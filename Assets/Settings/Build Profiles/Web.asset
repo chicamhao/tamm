@@ -1,9 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!129 &1
-PlayerSettings:
-  m_ObjectHideFlags: 0
-  m_BuildProfilePlayerSettings: {fileID: 0}
+--- !u!1138963649 &-8743814147126774090
+BuildProfilePlayerSettings:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Player Settings
   serializedVersion: 32
   productGUID: 4ebd3ce13438d314db157ecb2b0ed0a3
   AndroidProfiler: 0
@@ -160,7 +163,9 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
+  - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   xboxOneDisableKinectGpuReservation: 1
@@ -578,6 +583,9 @@ PlayerSettings:
   - serializedVersion: 3
     m_BuildTarget: Android
     m_Formats: 03000000i
+  - serializedVersion: 3
+    m_BuildTarget: WebGL
+    m_Formats: 05000000i
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -865,7 +873,8 @@ PlayerSettings:
   scriptingRuntimeVersion: 1
   gcIncremental: 1
   gcWBarrierValidation: 0
-  managedCodeVariant: {}
+  managedCodeVariant:
+    WebGL: 3
   apiCompatibilityLevelPerPlatform: {}
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
@@ -966,3 +975,54 @@ PlayerSettings:
   d3d12DeviceFilterListAsset: {fileID: 0}
   webGPUDeviceFilterListAsset: {fileID: 0}
   allowedHttpConnections: 3
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 15003, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: Web
+  m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.Build.Profile.BuildProfile
+  m_AssetVersion: 3
+  m_BuildTarget: 20
+  m_Subtarget: 0
+  m_PlatformId: 84a3bb9e7420477f885e98145999eb20
+  m_PlatformBuildProfile:
+    rid: 773328617522856051
+  m_SelectedPlatformGuid: 
+  m_OverrideGlobalSceneList: 0
+  m_Scenes: []
+  m_HasScriptingDefines: 0
+  m_ScriptingDefines: []
+  m_PlayerSettingsYaml:
+    m_Settings: []
+  requiredComponents: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 773328617522856051
+      type: {class: WebGLPlatformSettings, ns: UnityEditor.WebGL, asm: UnityEditor.WebGL.Extensions}
+      data:
+        m_Development: 0
+        m_ConnectProfiler: 0
+        m_BuildWithDeepProfilingSupport: 0
+        m_BuildWithCodeCoverage: 0
+        m_AllowDebugging: 0
+        m_WaitForManagedDebugger: 0
+        m_ManagedDebuggerFixedPort: 0
+        m_ExplicitNullChecks: 0
+        m_ExplicitDivideByZeroChecks: 0
+        m_ExplicitArrayBoundsChecks: 0
+        m_CompressionType: -1
+        m_InstallInBuildFolder: 0
+        m_InsightsSettingsContainer:
+          m_BuildProfileEngineDiagnosticsState: 2
+        m_AdaptivePerformanceEnabled: 0
+        m_CodeOptimization: 0
+        m_WebGLClientBrowserPath: 
+        m_WebGLClientBrowserType: 0
+        m_WebGLTextureSubtarget: 0

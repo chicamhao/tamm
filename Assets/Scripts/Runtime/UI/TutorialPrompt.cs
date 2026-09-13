@@ -29,10 +29,10 @@ namespace Game.UI
 		{
 			if (_remaining <= 0) return;
 
-			GUI.Box(new Rect(16, 16, 480, 96), "");
-			GUILayout.BeginArea(new Rect(24, 24, 460, 80));
+			GUI.Box(new Rect(16, 16, 380, 130), "");
+			GUILayout.BeginArea(new Rect(24, 24, 360, 120));
 			GUILayout.Label("Move: WASD       Look: Mouse");
-			GUILayout.Label("Interact: E      Pause: Esc");
+			GUILayout.Label("Interact: E      Pause: P");
 			GUILayout.Label("Interact with objects to collect cards,");
 			GUILayout.Label("then use them when talking to people.");
 			GUILayout.EndArea();
