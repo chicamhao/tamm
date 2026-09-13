@@ -21,17 +21,17 @@ namespace Game.Content
 		public List<DialogueLine> Lines;
 
 		[Header("Reward")]
-		[Tooltip("Card granted to the player when this dialogue ends (null = no reward)")]
-		public CardDefinition RewardCard;
+		[Tooltip("Card id granted to the player when this dialogue ends (empty = no reward)")]
+		public string RewardCardId = string.Empty;
 	}
 
-	/// <summary>A single line of dialogue with display duration and optional facial expression.</summary>
+	/// <summary>A single line of dialogue with display duration and an optional facial expression id.</summary>
 	[System.Serializable]
 	public struct DialogueLine
 	{
 		public string Line;
 		public float DisplayDuration;
-		public ExpressionDefinition Expression;
+		public string ExpressionId;
 	}
 
 	/// <summary>Defines a morph target weight and blend time for facial expressions.</summary>

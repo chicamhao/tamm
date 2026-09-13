@@ -14,5 +14,11 @@ namespace Game.Content
 		public string ID => _id;
 		/// <summary>Display name shown in UI prompts and toasts.</summary>
 		public string DisplayName => _displayName;
+
+		public Identifier(string id, string displayName = "")
+		{
+			_id = id;
+			_displayName = displayName;
+		}
 	}
 }

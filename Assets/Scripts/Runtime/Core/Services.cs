@@ -6,8 +6,8 @@ namespace Game.Core
 	// if the service graph outgrows the scene leaves.
 	public static class Services
 	{
-		public static GameSession Session => Bootstrapper.Instance?.Session;
 		public static CardInventory Cards => Bootstrapper.Instance?.Cards;
+		public static InteractionService Interactions => Bootstrapper.Instance?.Interactions;
 		public static InputSettings InputSettings => Bootstrapper.Instance?.InputSettings;
 		public static PauseState Pause => Bootstrapper.Instance?.Pause;
 		public static ProgressStore Progress => Bootstrapper.Instance?.Progress;

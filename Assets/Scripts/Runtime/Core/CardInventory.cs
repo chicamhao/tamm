@@ -1,4 +1,3 @@
-using Game.Content;
 using R3;
 using System;
 using System.Collections.Generic;
@@ -22,10 +21,10 @@ namespace Game.Core
 
 		public bool Owns(string cardId) => _owned.Contains(cardId);
 
-		public void Grant(CardDefinition card)
+		public void GrantId(string cardId)
 		{
-			if (card == null || !_owned.Add(card.CardID)) return;
-			Granted.OnNext(card.CardID);
+			if (string.IsNullOrEmpty(cardId) || !_owned.Add(cardId)) return;
+			Granted.OnNext(cardId);
 		}
 
 		// Restore from save: adds without firing, so a boot doesn't spam the UI.
@@ -33,6 +32,9 @@ namespace Game.Core
 		{
 			foreach (string id in ids) _owned.Add(id);
 		}
+
+		// Wipe everything (new game). Prefs clearing lives in ProgressStore.Clear.
+		public void Clear() => _owned.Clear();
 
 		public void Dispose()
 		{

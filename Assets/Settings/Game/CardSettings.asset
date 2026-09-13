@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4061d8b69a03b245a25085b64c8f56c, type: 3}
+  m_Name: CardSettings
+  m_EditorClassIdentifier: Game.Runtime::Game.Content.CardSettings
+  Entries:
+  - key: card_cam
+    value:
+      DisplayName: "C\xE1m"
+      Description: "C\xE1m"
+      Icon: {fileID: 0}
+      TargetActorIDs: []
+  - key: card_sm
+    value:
+      DisplayName: "M\u1EB9 K\u1EBF"
+      Description: "M\u1EB9 K\u1EBF"
+      Icon: {fileID: 0}
+      TargetActorIDs: []
+  - key: card_bruise
+    value:
+      DisplayName: "V\u1EBFt b\u1EA7m c\u1EE7a C\xE1m"
+      Description: "V\u1EBFt b\u1EA7m c\u1EE7a C\xE1m"
+      Icon: {fileID: 0}
+      TargetActorIDs: []
+  - key: card_betelPalmRoot
+    value:
+      DisplayName: "G\u1ED1c cau"
+      Description: "G\u1ED1c cau"
+      Icon: {fileID: 0}
+      TargetActorIDs: []
+  - key: card_pa
+    value:
+      DisplayName: "Xoan \u0111\xE0o"
+      Description: "Xoan \u0111\xE0o"
+      Icon: {fileID: 0}
+      TargetActorIDs: []
+  - key: card_comb
+    value:
+      DisplayName: "L\u01B0\u1EE3c"
+      Description: "L\u01B0\u1EE3c"
+      Icon: {fileID: 0}
+      TargetActorIDs: []
+  - key: card_oriole
+    value:
+      DisplayName: "Chim v\xE0ng anh"
+      Description: "Nghe ti\u1EBFng chim h\xF3t"
+      Icon: {fileID: 0}
+      TargetActorIDs: []
+  - key: card_wine
+    value:
+      DisplayName: "b\xECnh r\u01B0\u1EE3u"
+      Description: "b\xECnh r\u01B0\u1EE3u"
+      Icon: {fileID: 0}
+      TargetActorIDs: []
+  - key: card_chopsticks
+    value:
+      DisplayName: "3 \u0111\xF4i \u0111\u0169a"
+      Description: "3 \u0111\xF4i \u0111\u0169a"
+      Icon: {fileID: 0}
+      TargetActorIDs: []
+  - key: card_incense
+    value:
+      DisplayName: Nhang
+      Description: Nhang
+      Icon: {fileID: 0}
+      TargetActorIDs: []

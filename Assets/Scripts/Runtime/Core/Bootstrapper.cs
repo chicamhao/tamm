@@ -1,3 +1,5 @@
+using Game.Content;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -12,12 +14,12 @@ namespace Game.Core
 	{
 		public static Bootstrapper Instance { get; private set; }
 
-		[SerializeField] private GameSettings _settings;
+		[SerializeField] private GameSettings _settings; // hub: content refs + input default
 
 		private Container _container;
 
-		public GameSession Session { get; private set; }
 		public CardInventory Cards { get; private set; }
+		public InteractionService Interactions { get; private set; }
 		public InputSettings InputSettings { get; private set; }
 		public PauseState Pause { get; private set; }
 		public ProgressStore Progress { get; private set; }
@@ -26,19 +28,27 @@ namespace Game.Core
 		{
 			Instance = this;
 			Assert.IsNotNull(_settings, "Bootstrapper requires a GameSettings asset assigned");
+			Assert.IsNotNull(_settings.Cards, "GameSettings requires CardSettings assigned");
+			Assert.IsNotNull(_settings.Dialogues, "GameSettings requires DialogueSettings assigned");
 
 			_container = new Container();
 			// Provide order == construction order; add Gui, Save, etc. here (deps first).
 			_container.Provide(_settings);
 			_container.Provide(new InputSettings(_settings));
-			_container.Provide(new GameSession(_settings));
 			_container.Provide(new PauseState());
 			_container.Provide(new CardInventory());
-			_container.Provide(g => new ProgressStore(g.Grab<GameSession>(), g.Grab<CardInventory>()));
+			_container.Provide(g => new InteractionService(
+				g.Grab<CardInventory>(),
+				new List<string>(_settings.Cards.Entries.Keys).ToArray(),
+				InteractionService.DeriveActorIds(
+					_settings.Dialogues.Entries.Keys,
+					_settings.Chapters != null ? _settings.Chapters.Entries.Keys : null,
+					_settings.Cards.Entries.Keys).ToArray()));
+			_container.Provide(g => new ProgressStore(g.Grab<CardInventory>()));
 
 			// Pull order == wiring order. Add Gui, Save, etc. here as they appear.
-			Session = _container.Grab<GameSession>();
 			Cards = _container.Grab<CardInventory>();
+			Interactions = _container.Grab<InteractionService>();
 			InputSettings = _container.Grab<InputSettings>();
 			Pause = _container.Grab<PauseState>();
 			Progress = _container.Grab<ProgressStore>();

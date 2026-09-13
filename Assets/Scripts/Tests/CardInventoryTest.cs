@@ -1,24 +1,19 @@
-using Game.Content;
-using NUnit.Framework;
 using R3;
-using UnityEngine;
+using NUnit.Framework;
 
 namespace Game.Core
 {
 	public sealed class CardInventoryTest
 	{
 		[Test]
-		public void Grant_AddsOnce_AndFires()
+		public void GrantId_AddsOnce_AndFires()
 		{
 			CardInventory inv = new CardInventory();
-			CardDefinition card = ScriptableObject.CreateInstance<CardDefinition>();
-			card.CardID = "card_cam";
-
 			bool fired = false;
 			using var sub = inv.Granted.Subscribe(id => fired |= id == "card_cam");
 
-			inv.Grant(card);
-			inv.Grant(card); // duplicate must be a no-op
+			inv.GrantId("card_cam");
+			inv.GrantId("card_cam"); // duplicate must be a no-op
 
 			Assert.That(inv.Owns("card_cam"), Is.True);
 			int count = 0;
@@ -29,10 +24,11 @@ namespace Game.Core
 		}
 
 		[Test]
-		public void Grant_NullCard_IsIgnored()
+		public void GrantId_EmptyOrNull_IsIgnored()
 		{
 			CardInventory inv = new CardInventory();
-			inv.Grant(null);
+			inv.GrantId(null);
+			inv.GrantId("");
 			Assert.That(inv.Owned.Count, Is.EqualTo(0));
 			inv.Dispose();
 		}

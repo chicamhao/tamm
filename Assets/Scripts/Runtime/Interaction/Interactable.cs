@@ -1,9 +1,19 @@
+using UnityEngine;
+using UnityEngine.Assertions;
+
 namespace Game.Interaction
 {
-	// Crosshair-ray interaction target. The Interactor dispatches Interact() to the
-	// hit target — a CardPickup (object, grants a card) or an NpcInteractable (actor).
-	public abstract class Interactable : UnityEngine.MonoBehaviour
+	// A single interactable: carries only an id. The InteractionService decides what the
+	// id means — card-granting object, or an NPC that opens the card selection menu.
+	public sealed class Interactable : MonoBehaviour
 	{
-		public abstract void Interact();
+		[SerializeField] private string _id;
+
+		private void Awake()
+		{
+			Assert.IsFalse(string.IsNullOrEmpty(_id), "Interactable requires an id");
+		}
+
+		public void Interact() => Game.Core.Services.Interactions.Interact(_id);
 	}
 }

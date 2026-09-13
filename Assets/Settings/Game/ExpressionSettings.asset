@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b693816600d41ab41868605ce7e075c7, type: 3}
+  m_Name: ExpressionSettings
+  m_EditorClassIdentifier: Game.Runtime::Game.Content.ExpressionSettings
+  Entries:
+  - key: expr_cam_smile
+    value:
+      MorphTargets:
+      - name: smile_L
+        value: 0.8
+        blendInTime: 0.3
+      - name: smile_R
+        value: 0.8
+        blendInTime: 0.3
+  - key: expr_cam_sad
+    value:
+      MorphTargets:
+      - name: browDown_L
+        value: 0.6
+        blendInTime: 0.3
+      - name: browDown_R
+        value: 0.6
+        blendInTime: 0.3
+      - name: mouthSad
+        value: 0.5
+        blendInTime: 0.3
+  - key: expr_cam_shy
+    value:
+      MorphTargets:
+      - name: smileSoft_L
+        value: 0.4
+        blendInTime: 0.3
+      - name: smileSoft_R
+        value: 0.4
+        blendInTime: 0.3
+      - name: browDown_L
+        value: 0.3
+        blendInTime: 0.3
+      - name: browDown_R
+        value: 0.3
+        blendInTime: 0.3
+  - key: expr_cam_surprise
+    value:
+      MorphTargets:
+      - name: browUp_C
+        value: 0.9
+        blendInTime: 0.2
+      - name: mouthOpen
+        value: 0.5
+        blendInTime: 0.2

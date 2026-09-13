@@ -50,7 +50,7 @@ namespace Game.UI
 			_newGameButton?.onClick.AddListener(() =>
 			{
 				_progress?.Clear();
-				Game.Core.Services.Session?.Reset();
+				Game.Core.Services.Cards?.Clear();
 			});
 		}
 

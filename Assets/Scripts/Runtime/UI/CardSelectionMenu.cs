@@ -33,6 +33,7 @@ namespace Game.UI
 			_cardButtonTemplate.gameObject.SetActive(false);
 			_panel.SetActive(false);
 
+			if (Services.Cards == null) return; // outside a Bootstrapper scene
 			_onRequest = Services.Cards.CardSelectionRequested.Subscribe(Open);
 		}
 

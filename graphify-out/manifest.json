@@ -192,21 +192,21 @@
     "semantic_hash": ""
   },
   "Assets/Scripts/Editor/Dialogue/ContentAssetFactory.cs": {
-    "mtime": 1789243172.2184672,
-    "seen": 1789244449.0800014,
-    "ast_hash": "3bad4a84431d8868b1fd1e9d11da4183",
+    "mtime": 1789275033.3267286,
+    "seen": 1789275359.1740336,
+    "ast_hash": "e9e47a12fe63de7b05683b50ba59b8eb",
     "semantic_hash": ""
   },
   "Assets/Scripts/Editor/Dialogue/ContentTools.cs": {
-    "mtime": 1789242934.7840924,
-    "seen": 1789244449.0800066,
+    "mtime": 1789275033.3378038,
+    "seen": 1789275359.174039,
     "ast_hash": "32e00a14604dec9096c654ec910f9b0d",
     "semantic_hash": ""
   },
   "Assets/Scripts/Editor/Dialogue/ContentYAMLExporter.cs": {
-    "mtime": 1789243152.54832,
-    "seen": 1789244449.080009,
-    "ast_hash": "3db0e464d44a9ecbd39fbc30743dfdf0",
+    "mtime": 1789274419.421879,
+    "seen": 1789275359.1740406,
+    "ast_hash": "77c187b613a5e5128ec7432175f745d7",
     "semantic_hash": ""
   },
   "Assets/Scripts/Editor/Dialogue/ContentYAMLParser.cs": {
@@ -221,12 +221,6 @@
     "ast_hash": "26defa181009d68c2d57a310399f448d",
     "semantic_hash": ""
   },
-  "Assets/Scripts/Runtime/Content/CardDefinition.cs": {
-    "mtime": 1789241418.0844793,
-    "seen": 1789244449.080019,
-    "ast_hash": "30e30734b49bf708bd62588848cdc6b4",
-    "semantic_hash": ""
-  },
   "Assets/Scripts/Runtime/Content/ChapterSettings.cs": {
     "mtime": 1789241418.0885053,
     "seen": 1789244449.0800197,
@@ -234,39 +228,27 @@
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Content/DialogueSettings.cs": {
-    "mtime": 1789243127.0656443,
-    "seen": 1789244449.0800204,
-    "ast_hash": "92014537d4540917a6644dc930d917d2",
-    "semantic_hash": ""
-  },
-  "Assets/Scripts/Runtime/Content/ExpressionDefinition.cs": {
-    "mtime": 1789241418.0929809,
-    "seen": 1789244449.0800216,
-    "ast_hash": "ebd4f1b6d3424e8534f069d32ccf1c0d",
+    "mtime": 1789274290.7655883,
+    "seen": 1789275359.1740506,
+    "ast_hash": "da88d7fe56b94988e83c277ff68c9bce",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Content/Identifier.cs": {
-    "mtime": 1789241418.0834806,
-    "seen": 1789244449.0800223,
-    "ast_hash": "21fa24499567865b897dd1f24d904c7c",
+    "mtime": 1789273958.0568447,
+    "seen": 1789275359.174052,
+    "ast_hash": "0fdae3a8adf55612e16aea1c84e8e6ce",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Core/Bootstrapper.cs": {
-    "mtime": 1789234300.8035967,
-    "seen": 1789244449.0800233,
-    "ast_hash": "9f8e96cb9abd6d60f3f4bb7420371917",
-    "semantic_hash": ""
-  },
-  "Assets/Scripts/Runtime/Core/GameSession.cs": {
-    "mtime": 1789234300.8046396,
-    "seen": 1789244449.0800245,
-    "ast_hash": "71ca4e674ad1d07b39abe33fd022fcea",
+    "mtime": 1789275009.2080514,
+    "seen": 1789275359.1740532,
+    "ast_hash": "46aea294db5cc1502da34765e4c6c159",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Core/GameSettings.cs": {
-    "mtime": 1789234300.8046396,
-    "seen": 1789244449.0800254,
-    "ast_hash": "df670fcd6610c67e48b38b18c2fd8764",
+    "mtime": 1789274997.3741703,
+    "seen": 1789275359.1740549,
+    "ast_hash": "7716ecfcae60703ba1493246301be1e9",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Core/InputSettings.cs": {
@@ -282,51 +264,27 @@
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Core/ProgressStore.cs": {
-    "mtime": 1789234300.8071835,
-    "seen": 1789244449.0800276,
-    "ast_hash": "3d838bc9b5d78a6de16287c28521e87c",
+    "mtime": 1789274175.899787,
+    "seen": 1789275359.1740577,
+    "ast_hash": "ca3c990f583f3ba05982920b27aeb4e4",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Core/Services.cs": {
-    "mtime": 1789234300.8071835,
-    "seen": 1789244449.0800285,
-    "ast_hash": "a240558d4249c0fc71e50e38d50d5ec5",
-    "semantic_hash": ""
-  },
-  "Assets/Scripts/Runtime/Interaction/ClickCollector.cs": {
-    "mtime": 1789237390.8202918,
-    "seen": 1789244449.0800326,
-    "ast_hash": "e2b40ea09f904a5d74a0b1f9e76c1a14",
-    "semantic_hash": ""
-  },
-  "Assets/Scripts/Runtime/Interaction/Collectible.cs": {
-    "mtime": 1789234300.8092198,
-    "seen": 1789244449.0800333,
-    "ast_hash": "4aaafa28f684f29a46f4677b9826bc26",
-    "semantic_hash": ""
-  },
-  "Assets/Scripts/Runtime/UI/GameHud.cs": {
-    "mtime": 1789234300.8117363,
-    "seen": 1789244449.0800357,
-    "ast_hash": "a05f2bd000ccbcc0cdfcf7592ea608dc",
+    "mtime": 1789274175.8987322,
+    "seen": 1789275359.1740584,
+    "ast_hash": "b27501c6cc8981e0f103d342b3c8e569",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/UI/SettingsMenu.cs": {
-    "mtime": 1789239781.3081615,
-    "seen": 1789244449.0800364,
-    "ast_hash": "316c93d1f92fbf1c2d9bdcc0385d1a21",
+    "mtime": 1789274520.5929062,
+    "seen": 1789275359.174065,
+    "ast_hash": "a9cbb108683ac592a519825889f756c0",
     "semantic_hash": ""
   },
   "Assets/Scripts/Tests/CharacterControllerTest.cs": {
     "mtime": 1789237275.849305,
     "seen": 1789244449.080037,
     "ast_hash": "2b77666a061d8d5f2817525631b7573b",
-    "semantic_hash": ""
-  },
-  "Assets/Scripts/Tests/GameSessionTest.cs": {
-    "mtime": 1789234300.8137517,
-    "seen": 1789244449.0800393,
-    "ast_hash": "fedbe3ffd94d18fccc4457f0f8666126",
     "semantic_hash": ""
   },
   "Assets/Settings/Game/YAML/cards.yaml": {
@@ -372,9 +330,63 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789243855.499165,
-    "seen": 1789244449.0800452,
-    "ast_hash": "b11df6101f9c79cfaa71c4dea20051f3",
+    "mtime": 1789275081.9162827,
+    "seen": 1789275359.1740742,
+    "ast_hash": "67faa1925d96964482486aae5e78a071",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Content/CardSettings.cs": {
+    "mtime": 1789273958.0537598,
+    "seen": 1789275359.1740484,
+    "ast_hash": "7680591a166a78f217062a65ef1dc51a",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Content/ExpressionSettings.cs": {
+    "mtime": 1789274290.764588,
+    "seen": 1789275359.1740513,
+    "ast_hash": "b75523352a878b29b0b4789a82250cf8",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Core/CardInventory.cs": {
+    "mtime": 1789274520.5929062,
+    "seen": 1789275359.174054,
+    "ast_hash": "c24fd39a6c8c07edac8743744dd168dd",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Core/InteractionService.cs": {
+    "mtime": 1789275096.5078835,
+    "seen": 1789275359.1740563,
+    "ast_hash": "0d56ee4873bdfdae859b9a62a02f7bcd",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Interaction/Interactable.cs": {
+    "mtime": 1789272343.275951,
+    "seen": 1789275359.1740618,
+    "ast_hash": "ddb29f2b9983c2d07d9c23e27b8043f7",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Interaction/Interactor.cs": {
+    "mtime": 1789245128.9530616,
+    "seen": 1789275359.1740625,
+    "ast_hash": "20eceb9c4e12f142cdb45eb3c62bfca1",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/UI/CardSelectionMenu.cs": {
+    "mtime": 1789245152.894836,
+    "seen": 1789275359.1740644,
+    "ast_hash": "03ab34e5bde4bdff5e6d3ec9de0c55d3",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Tests/CardInventoryTest.cs": {
+    "mtime": 1789273515.619874,
+    "seen": 1789275359.1740656,
+    "ast_hash": "046fe97aec0f73048d6c0deab21ebdb7",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Tests/InteractionServiceTest.cs": {
+    "mtime": 1789275065.8932981,
+    "seen": 1789275359.174068,
+    "ast_hash": "e7de5ae0c1f6fe3c3f40b2ab83fac966",
     "semantic_hash": ""
   }
 }

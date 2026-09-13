@@ -37,30 +37,35 @@ namespace Game.Editor
 		// ---------------------------------------------------------------
 
 		/// <summary>
-		/// Export all CardDefinition assets from Assets/Settings/Game/Cards/ to cards.yaml.
+		/// Export all card entries from Assets/Settings/Game/CardSettings.asset to cards.yaml.
 		/// </summary>
 		public void ExportCards(string outputPath)
 		{
-			string folder = "Assets/Settings/Game/Cards";
-			var cardAssets = AssetDatabase.FindAssets("t:CardDefinition", new[] { folder })
-				.Select(guid => AssetDatabase.LoadAssetAtPath<CardDefinition>(AssetDatabase.GUIDToAssetPath(guid)))
-				.Where(c => c != null)
-				.ToList();
+			var cardSettings = AssetDatabase.LoadAssetAtPath<CardSettings>("Assets/Settings/Game/CardSettings.asset");
 
 			var entries = new List<CardEntry>();
-			foreach (var card in cardAssets)
+			if (cardSettings != null)
 			{
-				entries.Add(new CardEntry
+				foreach (var kv in cardSettings.Entries)
 				{
-					CardId = card.CardID,
-					DisplayName = card.DisplayName,
-					Description = card.Description,
-					IconPath = string.Empty,
-					TargetActorIds = card.TargetActorIDs?.Select(id => id.ID).ToList() ?? new()
-				});
+					// Deterministic export: entries are keyed, so sort by id to keep the file stable.
+					var card = kv.Value;
+					entries.Add(new CardEntry
+					{
+						CardId = kv.Key,
+						DisplayName = card.DisplayName,
+						Description = card.Description,
+						IconPath = string.Empty,
+						TargetActorIds = card.TargetActorIDs?.Select(id => id.ID).ToList() ?? new()
+					});
+				}
+			}
+			else
+			{
+				Skipped++;
 			}
 
-			var file = new CardsFile { CardDefinitions = entries };
+			var file = new CardsFile { CardDefinitions = entries.OrderBy(e => e.CardId).ToList() };
 			string yaml = _serializer.Serialize(file);
 			File.WriteAllText(outputPath, yaml);
 			Exported += entries.Count;
@@ -72,7 +77,6 @@ namespace Game.Editor
 
 		/// <summary>
 		/// Export dialogue entries from Assets/Settings/Game/DialogueSettings.asset to dialogues.yaml.
-		/// Expression references are skipped (not representable in YAML).
 		/// </summary>
 		public void ExportDialogues(string outputPath)
 		{
@@ -102,7 +106,7 @@ namespace Game.Editor
 						{
 							Text = line.Line,
 							Duration = line.DisplayDuration,
-							ExpressionId = string.Empty // can't serialize ExpressionDefinition ref
+							ExpressionId = line.ExpressionId // round-trips the expression id
 						});
 					}
 				}
@@ -169,36 +173,39 @@ namespace Game.Editor
 		// ---------------------------------------------------------------
 
 		/// <summary>
-		/// Export all ExpressionDefinition assets from Assets/Settings/Game/Expressions/ to expressions.yaml.
+		/// Export all expressions from Assets/Settings/Game/ExpressionSettings.asset to expressions.yaml.
 		/// </summary>
 		public void ExportExpressions(string outputPath)
 		{
-			string folder = "Assets/Settings/Game/Expressions";
-			var expressionAssets = AssetDatabase.FindAssets("t:ExpressionDefinition", new[] { folder })
-				.Select(guid => AssetDatabase.LoadAssetAtPath<ExpressionDefinition>(AssetDatabase.GUIDToAssetPath(guid)))
-				.Where(e => e != null)
-				.ToList();
+			var settings = AssetDatabase.LoadAssetAtPath<ExpressionSettings>("Assets/Settings/Game/ExpressionSettings.asset");
 
 			var entries = new List<ExpressionEntry>();
-			foreach (var expr in expressionAssets)
+			if (settings != null)
 			{
-				var morphTargets = expr.MorphTargets?
-					.Select(mt => new MorphTargetEntry
-					{
-						Name = mt.name,
-						Value = mt.value,
-						BlendInTime = mt.blendInTime
-					})
-					.ToList() ?? new();
-
-				entries.Add(new ExpressionEntry
+				foreach (var kv in settings.Entries)
 				{
-					Id = expr.name,
-					MorphTargets = morphTargets
-				});
+					var morphTargets = kv.Value.MorphTargets?
+						.Select(mt => new MorphTargetEntry
+						{
+							Name = mt.name,
+							Value = mt.value,
+							BlendInTime = mt.blendInTime
+						})
+						.ToList() ?? new();
+
+					entries.Add(new ExpressionEntry
+					{
+						Id = kv.Key,
+						MorphTargets = morphTargets
+					});
+				}
+			}
+			else
+			{
+				Skipped++;
 			}
 
-			var file = new ExpressionsFile { ExpressionDefinitions = entries };
+			var file = new ExpressionsFile { ExpressionDefinitions = entries.OrderBy(e => e.Id).ToList() };
 			string yaml = _serializer.Serialize(file);
 			File.WriteAllText(outputPath, yaml);
 			Exported += entries.Count;

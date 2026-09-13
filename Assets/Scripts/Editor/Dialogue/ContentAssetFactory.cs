@@ -27,58 +27,52 @@ namespace Game.Editor
 		// ---------------------------------------------------------------
 
 		/// <summary>
-		/// Import a card definition. Looks for existing .asset by CardID in
-		/// Assets/Settings/Game/Cards/. Creates a new CardDefinition if not found.
+		/// Import a card definition into the CardSettings dictionary (key: card id).
+		/// Creates Assets/Settings/Game/CardSettings.asset if needed.
 		/// </summary>
 		public void ImportCard(CardEntry data)
 		{
-			string folder = "Assets/Settings/Game/Cards";
-			EnsureFolder(folder);
+			string path = "Assets/Settings/Game/CardSettings.asset";
 
-			// Look for existing asset by CardID
-			string guid = FindAssetGUID<CardDefinition>(folder, data.CardId);
-			CardDefinition card;
+			CardSettings cards;
 
-			if (!string.IsNullOrEmpty(guid))
+			if (File.Exists(Path.GetFullPath(path)))
 			{
-				string path = AssetDatabase.GUIDToAssetPath(guid);
-				card = AssetDatabase.LoadAssetAtPath<CardDefinition>(path);
-				Updated++;
+				cards = AssetDatabase.LoadAssetAtPath<CardSettings>(path);
 			}
 			else
 			{
-				card = ScriptableObject.CreateInstance<CardDefinition>();
-				string fileName = SanitizeFileName(data.CardId) + ".asset";
-				string path = Path.Combine(folder, fileName);
-				AssetDatabase.CreateAsset(card, path);
+				cards = ScriptableObject.CreateInstance<CardSettings>();
+				AssetDatabase.CreateAsset(cards, path);
 				Created++;
+				Updated--;
 			}
 
-			// Update fields
-			SerializedObject so = new SerializedObject(card);
-			so.FindProperty("CardID").stringValue = data.CardId;
-			so.FindProperty("DisplayName").stringValue = data.DisplayName;
-			so.FindProperty("Description").stringValue = data.Description;
-			// Icon is a Texture2D reference — we skip setting from YAML (no path mapping)
-			so.FindProperty("Icon").objectReferenceValue = null;
-
-			// TargetActorIDs — List<Identifier>
-			SerializedProperty targetList = so.FindProperty("TargetActorIDs");
-			targetList.ClearArray();
-			targetList.arraySize = data.TargetActorIds.Count;
-			for (int i = 0; i < data.TargetActorIds.Count; i++)
+			if (cards == null)
 			{
-				SerializedProperty elem = targetList.GetArrayElementAtIndex(i);
-				SerializedProperty actorIdProp = elem.FindPropertyRelative("_id");
-				SerializedProperty displayNameProp = elem.FindPropertyRelative("_displayName");
-				if (actorIdProp != null)
-					actorIdProp.stringValue = data.TargetActorIds[i];
-				if (displayNameProp != null)
-					displayNameProp.stringValue = string.Empty;
+				Debug.LogError("[ContentAssetFactory] CardSettings is null after load/create — skipping.");
+				Skipped++;
+				return;
 			}
 
-			so.ApplyModifiedPropertiesWithoutUndo();
-			EditorUtility.SetDirty(card);
+			string key = data.CardId;
+
+			bool isNew = !cards.Entries.ContainsKey(key);
+			if (isNew)
+				Created++;
+			else
+				Updated++;
+
+			// Icon is a Texture2D reference — skipped from YAML (no path mapping)
+			cards.Entries[key] = new Card
+			{
+				DisplayName = data.DisplayName,
+				Description = data.Description,
+				Icon = null,
+				TargetActorIDs = data.TargetActorIds.Select(id => new Identifier(id)).ToList()
+			};
+
+			EditorUtility.SetDirty(cards);
 		}
 
 		// ---------------------------------------------------------------
@@ -128,7 +122,7 @@ namespace Game.Editor
 				{
 					Line = l.Text,
 					DisplayDuration = l.Duration,
-					Expression = null
+					ExpressionId = l.ExpressionId
 				}).ToList()
 			};
 
@@ -199,101 +193,53 @@ namespace Game.Editor
 		// ---------------------------------------------------------------
 
 		/// <summary>
-		/// Import an expression definition. Creates an ExpressionDefinition .asset
-		/// by id in Assets/Settings/Game/Expressions/. Updates existing if found.
+		/// Import an expression definition into the ExpressionSettings dictionary (key: expression id).
+		/// Creates Assets/Settings/Game/ExpressionSettings.asset if needed.
 		/// </summary>
 		public void ImportExpression(ExpressionEntry data)
 		{
-			string folder = "Assets/Settings/Game/Expressions";
-			EnsureFolder(folder);
+			string path = "Assets/Settings/Game/ExpressionSettings.asset";
 
-			string fileName = SanitizeFileName(data.Id) + ".asset";
-			string path = Path.Combine(folder, fileName);
-
-			ExpressionDefinition expression;
+			ExpressionSettings expressions;
 
 			if (File.Exists(Path.GetFullPath(path)))
 			{
-				expression = AssetDatabase.LoadAssetAtPath<ExpressionDefinition>(path);
-				Updated++;
+				expressions = AssetDatabase.LoadAssetAtPath<ExpressionSettings>(path);
 			}
 			else
 			{
-				expression = ScriptableObject.CreateInstance<ExpressionDefinition>();
-				AssetDatabase.CreateAsset(expression, path);
+				expressions = ScriptableObject.CreateInstance<ExpressionSettings>();
+				AssetDatabase.CreateAsset(expressions, path);
 				Created++;
+				Updated--;
 			}
 
-			SerializedObject so = new SerializedObject(expression);
-			SerializedProperty morphTargetsProp = so.FindProperty("MorphTargets");
-			morphTargetsProp.ClearArray();
-			morphTargetsProp.arraySize = data.MorphTargets.Count;
-			for (int i = 0; i < data.MorphTargets.Count; i++)
+			if (expressions == null)
 			{
-				SerializedProperty elem = morphTargetsProp.GetArrayElementAtIndex(i);
-				elem.FindPropertyRelative("name").stringValue = data.MorphTargets[i].Name;
-				elem.FindPropertyRelative("value").floatValue = data.MorphTargets[i].Value;
-				elem.FindPropertyRelative("blendInTime").floatValue = data.MorphTargets[i].BlendInTime;
-			}
-
-			so.ApplyModifiedPropertiesWithoutUndo();
-			EditorUtility.SetDirty(expression);
-		}
-
-		// ---------------------------------------------------------------
-		// Helpers
-		// ---------------------------------------------------------------
-
-		/// <summary>Ensure a folder exists under Assets, creating parent folders as needed.</summary>
-		private void EnsureFolder(string folderPath)
-		{
-			if (AssetDatabase.IsValidFolder(folderPath))
+				Debug.LogError("[ContentAssetFactory] ExpressionSettings is null after load/create — skipping.");
+				Skipped++;
 				return;
+			}
 
-			// Split and create recursively
-			string parent = Path.GetDirectoryName(folderPath).Replace("\\", "/");
-			string leaf = Path.GetFileName(folderPath);
-			if (!AssetDatabase.IsValidFolder(parent))
-				EnsureFolder(parent);
-			AssetDatabase.CreateFolder(parent, leaf);
-		}
+			string key = data.Id;
 
-		/// <summary>
-		/// Search for an existing asset of type T under <paramref name="folder"/>
-		/// whose CardID / property matches <paramref name="id"/>.
-		/// Returns the asset GUID or null.
-		/// </summary>
-		private string FindAssetGUID<T>(string folder, string id) where T : ScriptableObject
-		{
-			string[] guids = AssetDatabase.FindAssets($"t:{typeof(T).Name}", new[] { folder });
-			foreach (string guid in guids)
+			bool isNew = !expressions.Entries.ContainsKey(key);
+			if (isNew)
+				Created++;
+			else
+				Updated++;
+
+			expressions.Entries[key] = new Expression
 			{
-				string path = AssetDatabase.GUIDToAssetPath(guid);
-				T asset = AssetDatabase.LoadAssetAtPath<T>(path);
-				if (asset != null)
+				MorphTargets = data.MorphTargets.Select(mt => new MorphTargetValue
 				{
-					// Check if it's the one we're looking for by reading CardID via SerializedObject
-					SerializedObject so = new SerializedObject(asset);
-					SerializedProperty prop = so.FindProperty("CardID");
-					if (prop != null && prop.stringValue == id)
-						return guid;
-				}
-			}
-			return null;
-		}
+					name = mt.Name,
+					value = mt.Value,
+					blendInTime = mt.BlendInTime
+				}).ToList()
+			};
 
-		/// <summary>Replace invalid filename characters.</summary>
-		private string SanitizeFileName(string name)
-		{
-			if (string.IsNullOrEmpty(name))
-				return "Unnamed";
-			char[] invalid = Path.GetInvalidFileNameChars();
-			var sanitized = new System.Text.StringBuilder(name.Length);
-			foreach (char c in name)
-			{
-				sanitized.Append(Array.IndexOf(invalid, c) >= 0 ? '_' : c);
-			}
-			return sanitized.ToString();
+			EditorUtility.SetDirty(expressions);
 		}
 	}
 }
