@@ -5,8 +5,8 @@ using System.Collections.Generic;
 namespace Game.Core
 {
 	// The player's card collection: grant-once ownership, plus the card-use request
-	// fired when the player interacts with an NPC. The dialogue system consumes
-	// CardSelected next; until then the selection menu is the end of the flow.
+	// fired when the player interacts with an NPC. The menu hands the pick to
+	// DialogueService; chapter gates listen to Granted and dialogue completion.
 	public sealed class CardInventory : IDisposable
 	{
 		private readonly HashSet<string> _owned = new();

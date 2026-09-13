@@ -43,3 +43,12 @@ MonoBehaviour:
       SpawnPointID: Spawn_SM_Bed
       Anim: {fileID: 0}
       IsVisible: 1
+  Gates:
+  - Chapter: 2
+    Conditions:
+    - Type: 0
+      CardId: card_cam
+      ActorId: 
+    - Type: 1
+      CardId: card_cam
+      ActorId: cam

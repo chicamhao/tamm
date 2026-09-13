@@ -162,11 +162,32 @@ namespace Game.Editor
 				});
 			}
 
-			var file = new ChaptersFile { ChapterEntries = entries };
+			var file = new ChaptersFile
+			{
+				ChapterEntries = entries,
+				ChapterAdvances = chapters.Gates?.Select(gate => new ChapterGateEntry
+				{
+					Chapter = gate.Chapter,
+					Conditions = gate.Conditions?.Select(c => new ProgressConditionEntry
+					{
+						Type = TypeName(c.Type),
+						CardId = c.CardId,
+						ActorId = c.ActorId
+					}).ToList() ?? new()
+				}).ToList() ?? new()
+			};
 			string yaml = _serializer.Serialize(file);
 			File.WriteAllText(outputPath, yaml);
 			Exported += entries.Count;
 		}
+
+		private static string TypeName(Game.Content.ProgressConditionType type)
+			=> type switch
+			{
+				Game.Content.ProgressConditionType.OwnsCard => "owns_card",
+				Game.Content.ProgressConditionType.HadConversation => "had_conversation",
+				_ => "owns_card"
+			};
 
 		// ---------------------------------------------------------------
 		// Expressions

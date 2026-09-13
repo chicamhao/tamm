@@ -93,6 +93,7 @@ namespace Game.Editor
 							var chapters = parser.ParseChapters(yamlText);
 							foreach (var chapter in chapters)
 								factory.ImportChapter(chapter);
+							factory.ImportChapterGates(parser.ParseChapterAdvances(yamlText));
 							break;
 
 						case "expressions":

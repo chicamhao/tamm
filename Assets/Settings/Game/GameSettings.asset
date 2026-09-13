@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78f2ae63a382414594ce1cb6563d694, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: Game.Runtime::Game.Core.GameSettings
-  ObjectCount: 3
-  TimeLimitSeconds: 60
-  WinMessage: You win!
-  LoseMessage: Time's up!
+  Cards: {fileID: 11400000, guid: ddb1a99f6759cca4ea5c1fb89385fe7a, type: 2}
+  Dialogues: {fileID: 11400000, guid: ac76edddc0a13b2449b6b067758a23b3, type: 2}
+  Chapters: {fileID: 11400000, guid: e5d4a6f2e73356647a1ab5a1444e4323, type: 2}
+  MouseSensitivity: 1

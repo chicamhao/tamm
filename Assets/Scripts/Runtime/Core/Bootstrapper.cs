@@ -20,6 +20,8 @@ namespace Game.Core
 
 		public CardInventory Cards { get; private set; }
 		public InteractionService Interactions { get; private set; }
+		public DialogueService Dialogue { get; private set; }
+		public ChapterState Chapter { get; private set; }
 		public InputSettings InputSettings { get; private set; }
 		public PauseState Pause { get; private set; }
 		public ProgressStore Progress { get; private set; }
@@ -44,14 +46,20 @@ namespace Game.Core
 					_settings.Dialogues.Entries.Keys,
 					_settings.Chapters != null ? _settings.Chapters.Entries.Keys : null,
 					_settings.Cards.Entries.Keys).ToArray()));
-			_container.Provide(g => new ProgressStore(g.Grab<CardInventory>()));
+			_container.Provide(g => new DialogueService(g.Grab<CardInventory>(), _settings.Dialogues));
+			_container.Provide(g => new ChapterState(g.Grab<CardInventory>(), g.Grab<DialogueService>(), _settings.Chapters));
+			_container.Provide(g => new ProgressStore(g.Grab<CardInventory>(), g.Grab<DialogueService>(), g.Grab<ChapterState>()));
 
 			// Pull order == wiring order. Add Gui, Save, etc. here as they appear.
 			Cards = _container.Grab<CardInventory>();
 			Interactions = _container.Grab<InteractionService>();
+			Dialogue = _container.Grab<DialogueService>();
+			Chapter = _container.Grab<ChapterState>();
 			InputSettings = _container.Grab<InputSettings>();
 			Pause = _container.Grab<PauseState>();
 			Progress = _container.Grab<ProgressStore>();
+
+			Progress.Load(); // resume persisted progress on boot (cards, conversations, chapter)
 		}
 
 		private void OnDestroy()
