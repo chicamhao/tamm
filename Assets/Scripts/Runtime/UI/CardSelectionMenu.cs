@@ -31,7 +31,8 @@ namespace Game.UI
 			Assert.IsNotNull(_panel, "CardSelectionMenu requires _panel");
 			Assert.IsNotNull(_listRoot, "CardSelectionMenu requires _listRoot");
 			Assert.IsNotNull(_cardButtonTemplate, "CardSelectionMenu requires a button template");
-			Assert.IsNotNull(_cardButtonTemplate.GetComponent<Button>(), "card button template needs a Button component");
+			// includeInactive: the template is inactive by design (Unity 6 defaults GetComponentInParent to skip inactive)
+			Assert.IsNotNull(_cardButtonTemplate.GetComponentInParent<Button>(true), "card button template needs a Button component");
 			Assert.IsNotNull(_input, "CardSelectionMenu requires the player's InputMonitor assigned");
 
 			_cardButtonTemplate.gameObject.SetActive(false);
@@ -52,23 +53,32 @@ namespace Game.UI
 
 			foreach (string cardId in owned)
 			{
-				TMP_Text label = Instantiate(_cardButtonTemplate, _listRoot);
-				label.gameObject.SetActive(true);
+				// clone the template ROOT so Button + Image + Label come as one piece
+				GameObject templateRoot = _cardButtonTemplate.transform.parent.gameObject;
+				GameObject clone = Instantiate(templateRoot, _listRoot);
+				SetActiveRecursively(clone, true); // Instantiate preserves per-GO inactive flags; wake the whole subtree
+				TMP_Text label = clone.GetComponentInChildren<TMP_Text>(true);
 				label.text = DisplayName(cardId);
-				Button button = label.GetComponent<Button>();
-				button.onClick.AddListener(() => Pick(cardId));
-				_buttons.Add(label.gameObject);
+
+				// stack top-down under the list root (anchored to its top edge)
+				clone.transform.localPosition = new Vector3(0, -(float)_buttons.Count * 52.0f, 0);
+				Button button = clone.GetComponent<Button>();
+				if (button != null)
+					button.onClick.AddListener(() => Pick(cardId));
+				_buttons.Add(clone);
 			}
 
 			_panel.SetActive(true);
-			_input.DisableInput();
+			_input.DisableInput(); // freeze Look/Move so the camera can't rotate under the menu
+			_input.SetCursorState(false); // show + unlock the mouse so buttons are clickable
 		}
 
 		private void Pick(string cardId)
 		{
 			_panel.SetActive(false);
-			Services.Dialogue?.Play(_actorId, cardId, Services.Chapter != null ? Services.Chapter.CurrentChapter.Value : 0);
+			Services.Dialogue?.Play(cardId, _actorId, Services.Chapter != null ? Services.Chapter.CurrentChapter.Value : 0);
 			_input.EnableInput();
+			_input.SetCursorState(true);
 		}
 
 		private string DisplayName(string cardId)
@@ -81,6 +91,13 @@ namespace Game.UI
 		private void OnDestroy()
 		{
 			_onRequest?.Dispose();
+		}
+
+		private static void SetActiveRecursively(GameObject go, bool active)
+		{
+			go.SetActive(active);
+			for (int i = 0; i < go.transform.childCount; i++)
+				SetActiveRecursively(go.transform.GetChild(i).gameObject, active);
 		}
 	}
 }

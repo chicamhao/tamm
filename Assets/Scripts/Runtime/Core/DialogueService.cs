@@ -2,6 +2,7 @@ using Game.Content;
 using R3;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Game.Core
 {
@@ -21,7 +22,7 @@ namespace Game.Core
 
 		public ReactiveProperty<bool> IsPlaying { get; } = new(false);
 		public ReactiveProperty<string> SpeakerName { get; } = new(string.Empty);
-		public ReactiveProperty<DialogueLine> CurrentLine { get; } = new(default);
+		public ReactiveProperty<DialogueLine> CurrentLine { get; } = new();
 
 		/// <summary>Fires with "cardId_actorId" whenever a dialogue finishes (used by chapter gates).</summary>
 		public Subject<string> ConversationConducted { get; } = new();
@@ -49,7 +50,11 @@ namespace Game.Core
 			if (IsPlaying.Value) return;
 
 			DialogueEntry entry = Resolve(cardId, actorId, chapter);
-			if (entry == null || entry.Lines == null || entry.Lines.Count == 0) return;
+			if (entry == null || entry.Lines == null || entry.Lines.Count == 0)
+			{
+				Debug.Log($"[Dialogue] no entry for {cardId}_{actorId}_{chapter}");
+				return;
+			}
 
 			_currentKey = Key(cardId, actorId);
 			_current = entry;

@@ -1,12 +1,7 @@
 {
-    "name": "Game.Runtime",
-    "rootNamespace": "Game",
-    "references": [
-        "Game.Core",
-        "QuickOutline",
-        "Unity.InputSystem",
-        "Unity.TextMeshPro"
-    ],
+    "name": "QuickOutline",
+    "rootNamespace": "",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
