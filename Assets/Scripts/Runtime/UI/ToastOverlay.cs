@@ -27,7 +27,6 @@ namespace Game.UI
 
 		private void Start()
 		{
-			if (Services.Cards == null) return; // outside a Bootstrapper scene
 			_onGranted = Services.Cards.Granted.Subscribe(OnGranted);
 		}
 

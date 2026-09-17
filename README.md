@@ -38,6 +38,14 @@ Content is text files first — you never touch script code.
 collider; optional `Outline` (aim glow) and `WorldTag` (3D label above). UI leaves
 (`CardSelectionMenu`, `DialoguePanel`, …) live under the Canvas and hold font/layout config.
 
+**Scenes — Persistent Core Model:** `Playground.unity` is the **core scene**: it holds the
+`Bootstrapper` GameObject (`DontDestroyOnLoad`, so it survives every transition) plus the
+`GameSettings` asset, and it owns all services. Level scenes hold only content — spawners,
+interactables, UI leaves. Switch levels via `Bootstrapper.LoadLevel("LevelName")` (loads
+additively over the core, unloading the previous level); never call `SceneManager.LoadScene`
+directly. Because the core is always alive, `Services.*` is never null at runtime — no null
+guards on service access (see `conventions.yaml`).
+
 ## Stack
 
 - Unity **6000.7.0a6** (alpha) with the **Input System (New)** — `activeInputHandler: 1` in ProjectSettings

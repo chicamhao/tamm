@@ -38,7 +38,6 @@ namespace Game.UI
 			_cardButtonTemplate.gameObject.SetActive(false);
 			_panel.SetActive(false);
 
-			if (Services.Cards == null) return; // outside a Bootstrapper scene
 			_onRequest = Services.Cards.CardSelectionRequested.Subscribe(Open);
 		}
 
@@ -76,7 +75,7 @@ namespace Game.UI
 		private void Pick(string cardId)
 		{
 			_panel.SetActive(false);
-			Services.Dialogue?.Play(cardId, _actorId, Services.Chapter != null ? Services.Chapter.CurrentChapter.Value : 0);
+			Services.Dialogue.Play(cardId, _actorId, Services.Chapter.CurrentChapter.Value);
 			_input.EnableInput();
 			_input.SetCursorState(true);
 		}

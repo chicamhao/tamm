@@ -37,7 +37,7 @@ namespace Game.UI
 			_progress = Game.Core.Services.Progress;
 
 			if (_panel != null) _panel.SetActive(false);
-			if (_inputSettings == null || _sensitivitySlider == null) return; // outside a Bootstrapper scene
+			if (_sensitivitySlider == null) return;
 
 			_sensitivitySlider.minValue = _min;
 			_sensitivitySlider.maxValue = _max;
@@ -45,12 +45,12 @@ namespace Game.UI
 			_sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
             if (_sensitivityText != null) _sensitivityText.text = FormatSensitivity(_inputSettings.MouseSensitivity.Value);
 
-            _saveButton?.onClick.AddListener(() => _progress?.Save());
-			_loadButton?.onClick.AddListener(() => _progress?.Load());
+            _saveButton?.onClick.AddListener(() => _progress.Save());
+			_loadButton?.onClick.AddListener(() => _progress.Load());
 			_newGameButton?.onClick.AddListener(() =>
 			{
-				_progress?.Clear();
-				Game.Core.Services.Cards?.Clear();
+				_progress.Clear();
+				Game.Core.Services.Cards.Clear();
 			});
 		}
 
@@ -65,7 +65,7 @@ namespace Game.UI
 		private void OpenMenu()
 		{
 			_panel.SetActive(true);
-			_pause?.Toggle();
+			_pause.Toggle();
 			_input.DisableInput(); // freeze Look/Move so the camera can't rotate under the menu
 			_input.SetCursorState(false);
 		}
@@ -73,7 +73,7 @@ namespace Game.UI
 		private void CloseMenu()
 		{
 			_panel.SetActive(false);
-			_pause?.Toggle();
+			_pause.Toggle();
 			_input.EnableInput();
 			_input.SetCursorState(true);
 		}
