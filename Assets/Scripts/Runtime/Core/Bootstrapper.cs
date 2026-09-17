@@ -2,17 +2,20 @@ using Game.Content;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 namespace Game.Core
 {
 	// Composition root — the ONE MonoBehaviour that knows every service.
-	// It owns the Container, builds the service graph in Awake, and tears it
-	// down in OnDestroy. New services are added here; no other file constructs them.
-	// Static Instance is auto-cleaned on scene unload; OnDestroy also nulls it explicitly.
+	// Persistent Core Model: this GameObject is marked DontDestroyOnLoad in Awake,
+	// so it survives every scene transition. Levels load additively on top via
+	// LoadLevel; the core is never teared down. OnDestroy only fires on app quit.
 	[Unity.Scripting.LifecycleManagement.AutoStaticsCleanup]
 	public sealed partial class Bootstrapper : MonoBehaviour
 	{
 		public static Bootstrapper Instance { get; private set; }
+
+		private string _currentLevel; // additive level scene currently loaded, if any
 
 		[SerializeField] private GameSettings _settings; // hub: content refs + input default
 
@@ -28,6 +31,7 @@ namespace Game.Core
 
 		private void Awake()
 		{
+			Object.DontDestroyOnLoad(gameObject); // persistent core: survives level transitions
 			Instance = this;
 			Assert.IsNotNull(_settings, "Bootstrapper requires a GameSettings asset assigned");
 			Assert.IsNotNull(_settings.Cards, "GameSettings requires CardSettings assigned");
@@ -60,6 +64,19 @@ namespace Game.Core
 			Progress = _container.Grab<ProgressStore>();
 
 			Progress.Load(); // resume persisted progress on boot (cards, conversations, chapter)
+		}
+
+		// Loads a level scene additively on top of the persistent core, unloading the
+		// previous level. Use this instead of SceneManager.LoadScene — a plain (non-additive)
+		// load would destroy the Bootstrapper scene; additive keeps the core alive.
+		// ponytail: fire-and-forget async unload, fine while transitions are one per user action.
+		public static void LoadLevel(string name)
+		{
+			Assert.IsNotNull(Instance, "LoadLevel requires the core scene to be running");
+			if (name.Equals(Instance._currentLevel)) return; // already there, no-op
+			if (Instance._currentLevel != null) SceneManager.UnloadSceneAsync(Instance._currentLevel);
+			SceneManager.LoadScene(name, LoadSceneMode.Additive);
+			Instance._currentLevel = name;
 		}
 
 		private void OnDestroy()

@@ -29,7 +29,7 @@ namespace Game.Input
 
 		private void Start()
 		{
-			_sensitivity = Services.InputSettings; // null-safe: absent outside a Bootstrapper scene
+			_sensitivity = Services.InputSettings;
 			InputActionAsset asset = InputSystem.actions;
 			Assert.IsNotNull(asset);
 			_interactAction = asset.FindAction("Player/Interact");
@@ -77,7 +77,7 @@ namespace Game.Input
 			// ponytail: scales gamepad look too — if gamepad feel matters later,
 			// gate on the current device here. Also: if Controller.cs ever gets the
 			// settings-branch sensitivity multiply, drop this one to avoid double-scale.
-			float sensitivity = _sensitivity?.MouseSensitivity.Value ?? 1.0f;
+			float sensitivity = _sensitivity.MouseSensitivity.Value;
 			Look = InputEnabled ? newLookDirection * sensitivity : Vector2.zero;
 		}
 

@@ -10,7 +10,7 @@ class_structure:
 null_checking:
   init_stage: Assert.IsNotNull
   require_component: Assert.IsNotNull
-  runtime_guards: optional serialized, state values, GetComponent can-fail
+  runtime_guards: optional serialized, state values, GetComponent can-fail  # never needed for Services.*: the persistent core guarantees them
   events: "?.Invoke()"
   prohibited_at_init: [is null, is not null, ArgumentNullException, "== null"]
 

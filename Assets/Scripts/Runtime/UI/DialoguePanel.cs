@@ -29,7 +29,6 @@ namespace Game.UI
 			Assert.IsNotNull(_input, "DialoguePanel requires the player's InputMonitor assigned");
 
 			DialogueService dialogue = Services.Dialogue;
-			if (dialogue == null) return; // outside a Bootstrapper scene
 
 			_panel.SetActive(false);
 			_onPlaying = dialogue.IsPlaying.Subscribe(playing =>
@@ -49,7 +48,7 @@ namespace Game.UI
 		private void Update()
 		{
 			DialogueService dialogue = Services.Dialogue;
-			if (dialogue == null || !dialogue.IsPlaying.Value) return;
+			if (!dialogue.IsPlaying.Value) return;
 
 			_lineTime += Time.deltaTime;
 			bool pressed = _input.GetInteractInputDown();

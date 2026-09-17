@@ -30,7 +30,6 @@ namespace Game.Interaction
 			Assert.IsNotNull(_settings, "ChapterSpawner requires ChapterSettings assigned");
 
 			ChapterState chapter = Services.Chapter;
-			if (chapter == null) return;
 
 			Apply(chapter.CurrentChapter.Value);
 			_onChapter = chapter.CurrentChapter.Subscribe(Apply);
