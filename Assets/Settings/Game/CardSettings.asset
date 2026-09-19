@@ -73,3 +73,9 @@ MonoBehaviour:
       Description: Nhang
       Icon: {fileID: 0}
       TargetActorIDs: []
+  - key: rat
+    value:
+      DisplayName: rat game
+      Description: "Ch\u01A1i \u0111\u0169a \u0111\xF3n b\xF3ng c\xF9ng con chu\u1ED9t"
+      Icon: {fileID: 0}
+      TargetActorIDs: []

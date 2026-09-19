@@ -138,6 +138,7 @@ dialogue_entries:
     duration: 3.0
     expression_id: expr_default
 - card_id: card_chopsticks_tao
+  minigame_id: rat
   lines:
   - text: 'T3: Đũa này dùng để ăn cơm.'
     duration: 3.0

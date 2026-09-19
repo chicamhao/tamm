@@ -1,0 +1,306 @@
+using UnityEngine;
+
+namespace Game.Minigames.Rat
+{
+	// Ball physics and state only. Knows nothing about rounds or hearts -
+	// RatManager reads these values and decides what they mean.
+	//
+	// Everything here is measured from the ball's ACTUAL size and launch height rather
+	// than assumed from the start point, so scaling the ball does not break miss detection.
+	// Ported 1:1 from rice/rat (new-physics API: Rigidbody + ForceMode + Physics.gravity).
+	public sealed class BallController : MonoBehaviour
+	{
+		public Rigidbody Rb;
+		public Transform StartPoint;
+
+		[Header("Throw force (tune these live in Play mode)")]
+		public float MinThrowForce = 5f;
+		public float MaxThrowForce = 9f;
+
+		[Header("Throw direction")]
+		[Tooltip("0 = always straight up, ignoring swipe direction (the traditional toss). " +
+		         "1 = lean the full tilt angle toward wherever the player swiped.")]
+		[Range(0f, 1f)]
+		public float DirectionInfluence = 1f;
+
+		[Tooltip("How far the throw may lean away from vertical, in degrees.")]
+		[Range(0f, 75f)]
+		public float MaxTiltDegrees = 30f;
+
+		[Header("Gravity")]
+		[Tooltip("1 = normal gravity, lower = floatier. Lengthens the action window.")]
+		[Range(0.1f, 2f)]
+		public float GravityScale = 1f;
+
+		[Header("Rest position")]
+		[Tooltip("Keep the ball clear of whatever is under the start point.")]
+		public bool RestOnSurface = true;
+
+		[Tooltip("Gap left between the ball and the surface it rests on.")]
+		public float SurfaceSkin = 0.02f;
+
+		[Header("Miss detection")]
+		[Tooltip("The ball must climb this far above the launch height before a miss can be registered.")]
+		public float RiseThreshold = 0.3f;
+
+		[Tooltip("Speed below which a thrown ball counts as settled.")]
+		public float SettleSpeed = 0.35f;
+
+		[Tooltip("How long it must stay settled before the turn is called a miss.")]
+		public float SettleSeconds = 0.35f;
+
+		private bool _thrown;
+		private bool _hasRisen;
+		private float _lastVerticalSpeed;
+		private float _launchY;
+		private float _settledFor;
+
+		private SphereCollider _sphere;
+
+		private static readonly RaycastHit[] _probeBuffer = new RaycastHit[8];
+
+		/// <summary>Y of the start point. Kept for reference; the catch line uses LaunchY.</summary>
+		public float StartY => StartPoint != null ? StartPoint.position.y : 0f;
+
+		/// <summary>
+		/// The height the ball was actually thrown from. The catch line is measured
+		/// from this, not the start point, because a scaled ball rests higher.
+		/// </summary>
+		public float LaunchY => _thrown ? _launchY : transform.position.y;
+
+		/// <summary>World-space radius, including whatever scale the ball has been given.</summary>
+		public float Radius
+		{
+			get
+			{
+				Vector3 s = transform.lossyScale;
+				float maxScale = Mathf.Max(Mathf.Abs(s.x), Mathf.Max(Mathf.Abs(s.y), Mathf.Abs(s.z)));
+				float local = _sphere != null ? _sphere.radius : 0.5f;
+				return local * maxScale;
+			}
+		}
+
+		/// <summary>Normalised swipe strength of the last throw, 0..1.</summary>
+		public float LastThrowStrength { get; private set; }
+
+		/// <summary>The world direction the last throw was actually launched along.</summary>
+		public Vector3 LastThrowDirection { get; private set; }
+
+		/// <summary>
+		/// Total hang time of the last throw, in seconds. This is the player's action
+		/// window - derived from the VERTICAL component of the launch velocity.
+		/// </summary>
+		public float PredictedAirtime
+		{
+			get
+			{
+				float g = EffectiveGravity;
+				if (g <= 0.01f) return 0f;
+				return 2f * _lastVerticalSpeed / g;
+			}
+		}
+
+		/// <summary>Gravity actually acting on the ball this round, in m/s2.</summary>
+		public float EffectiveGravity => Mathf.Max(Physics.gravity.magnitude * GravityScale, 0.0001f);
+
+		private void Awake()
+		{
+			if (Rb == null) Rb = GetComponent<Rigidbody>();
+			_sphere = GetComponent<SphereCollider>();
+
+			// Gravity is applied by hand in FixedUpdate so it can be scaled per round.
+			// Unity 3D has no per-rigidbody gravity scale; that is a 2D-only feature.
+			if (Rb != null) Rb.useGravity = false;
+
+			LastThrowDirection = Vector3.up;
+		}
+
+		private void Start() => ResetBall();
+
+		private void Update()
+		{
+			if (!_thrown) return;
+
+			// Arm the miss check once the ball is genuinely in the air.
+			if (!_hasRisen && transform.position.y > _launchY + RiseThreshold) _hasRisen = true;
+
+			// Track how long a risen ball has been essentially stationary.
+			if (_hasRisen && Rb.linearVelocity.sqrMagnitude < SettleSpeed * SettleSpeed)
+				_settledFor += Time.deltaTime;
+			else
+				_settledFor = 0f;
+		}
+
+		private void FixedUpdate()
+		{
+			// Hand-applied gravity, because useGravity was switched off so it can be
+			// scaled per round. Acceleration mode ignores mass, matching real gravity.
+			if (Rb != null && !Rb.isKinematic)
+				Rb.AddForce(Physics.gravity * GravityScale, ForceMode.Acceleration);
+		}
+
+		/// <summary>Straight-up throw, the traditional toss.</summary>
+		public void Throw(float normalizedForce) => Throw(normalizedForce, Vector3.zero);
+
+		/// <summary>
+		/// Throws along <paramref name="swipeDirection"/>, a world-space horizontal vector.
+		/// Pass zero for straight up. The lean is clamped to maxTiltDegrees and scaled by
+		/// DirectionInfluence, so the ball always keeps enough vertical velocity to be catchable.
+		/// </summary>
+		public void Throw(float normalizedForce, Vector3 swipeDirection)
+		{
+			if (_thrown) return;
+
+			_thrown = true;
+			_hasRisen = false;
+			_settledFor = 0f;
+
+			// Remember where it actually left from, whatever its size.
+			_launchY = transform.position.y;
+
+			LastThrowStrength = Mathf.Clamp01(normalizedForce);
+
+			Vector3 dir = ResolveThrowDirection(swipeDirection);
+			LastThrowDirection = dir;
+
+			// Enable physics
+			Rb.isKinematic = false;
+
+			Rb.linearVelocity = Vector3.zero;
+			Rb.angularVelocity = Vector3.zero;
+
+			float force = Mathf.Lerp(MinThrowForce, MaxThrowForce, LastThrowStrength);
+			Rb.AddForce(dir * force, ForceMode.Impulse);
+
+			// An impulse imparts force/mass of velocity. Hang time depends on the
+			// vertical part of it only.
+			float speed = force / Mathf.Max(Rb.mass, 0.0001f);
+			_lastVerticalSpeed = speed * Mathf.Max(dir.y, 0f);
+		}
+
+		/// <summary>
+		/// Tilts straight-up toward the swipe direction by at most maxTiltDegrees,
+		/// scaled by DirectionInfluence.
+		/// </summary>
+		private Vector3 ResolveThrowDirection(Vector3 swipeDirection)
+		{
+			// Only the horizontal part of the swipe steers the throw.
+			Vector3 horizontal = new Vector3(swipeDirection.x, 0f, swipeDirection.z);
+
+			if (horizontal.sqrMagnitude < 0.000001f) return Vector3.up;
+
+			float tilt = MaxTiltDegrees * Mathf.Clamp01(DirectionInfluence);
+			if (tilt <= 0.01f) return Vector3.up;
+
+			horizontal.Normalize();
+
+			// Rotate the up vector toward the swipe direction by the tilt angle.
+			return Vector3.RotateTowards(Vector3.up, horizontal, tilt * Mathf.Deg2Rad, 0f).normalized;
+		}
+
+		public void Catch()
+		{
+			if (!_thrown) return;
+
+			_thrown = false;
+			_hasRisen = false;
+			_settledFor = 0f;
+
+			ReturnToStart();
+		}
+
+		public void ResetBall()
+		{
+			_thrown = false;
+			_hasRisen = false;
+			_settledFor = 0f;
+			_lastVerticalSpeed = 0f;
+			LastThrowStrength = 0f;
+			LastThrowDirection = Vector3.up;
+
+			ReturnToStart();
+		}
+
+		private void ReturnToStart()
+		{
+			// Stop physics before moving the transform, otherwise the old velocity carries.
+			if (!Rb.isKinematic)
+			{
+				Rb.linearVelocity = Vector3.zero;
+				Rb.angularVelocity = Vector3.zero;
+			}
+
+			Rb.isKinematic = true;
+
+			if (StartPoint == null) return;
+
+			transform.position = RestPosition();
+		}
+
+		/// <summary>
+		/// The start point, lifted if the ball's own radius would push it through whatever
+		/// is underneath. Probing beats hard-coding a height: the designer can rescale the
+		/// ball freely and it still sits on the surface instead of inside it.
+		/// </summary>
+		private Vector3 RestPosition()
+		{
+			Vector3 p = StartPoint.position;
+
+			if (!RestOnSurface) return p;
+
+			float radius = Radius;
+
+			int count = Physics.RaycastNonAlloc(
+				new Vector3(p.x, p.y + 20f, p.z),
+				Vector3.down,
+				_probeBuffer,
+				60f,
+				~0,
+				QueryTriggerInteraction.Ignore
+			);
+
+			float bestY = float.NegativeInfinity;
+
+			for (int i = 0; i < count; i++)
+			{
+				// Skip the ball itself, and anything it should not perch on.
+				if (_probeBuffer[i].collider.GetComponentInParent<BallController>() != null) continue;
+				if (_probeBuffer[i].collider.GetComponentInParent<Chopstick>() != null) continue;
+
+				if (_probeBuffer[i].point.y > bestY) bestY = _probeBuffer[i].point.y;
+			}
+
+			if (bestY > float.NegativeInfinity)
+				p.y = Mathf.Max(p.y, bestY + radius + SurfaceSkin);
+
+			return p;
+		}
+
+		public bool IsThrown() => _thrown;
+
+		public bool IsFalling()
+		{
+			if (Rb.isKinematic) return false;
+			return Rb.linearVelocity.y < 0f;
+		}
+
+		/// <summary>
+		/// True once a thrown ball has climbed clear of the launch height and then dropped
+		/// back to <paramref name="y"/> on its way down.
+		/// </summary>
+		public bool HasFallenBelow(float y)
+		{
+			if (!_thrown || !_hasRisen) return false;
+			return transform.position.y <= y && Rb.linearVelocity.y <= 0f;
+		}
+
+		/// <summary>
+		/// Safety net: a thrown ball that has risen and then come to rest can never be
+		/// caught, whatever the geometry.
+		/// </summary>
+		public bool HasSettledAfterThrow() => _thrown && _hasRisen && _settledFor >= SettleSeconds;
+
+		/// <summary>Height above the catch line, used for the time-remaining readout.</summary>
+		public float HeightAboveCatchLine(float catchLineY) => transform.position.y - catchLineY;
+	}
+}

@@ -123,7 +123,8 @@ namespace Game.Editor
 					Line = l.Text,
 					DisplayDuration = l.Duration,
 					ExpressionId = l.ExpressionId
-				}).ToList()
+				}).ToList(),
+				MinigameId = data.MinigameId
 			};
 
 			dialogue.Entries[key] = entry;
@@ -232,6 +233,54 @@ namespace Game.Editor
 			}).ToList();
 
 			EditorUtility.SetDirty(chapters);
+		}
+
+		// ---------------------------------------------------------------
+		// Minigame definitions
+		// ---------------------------------------------------------------
+
+		/// <summary>
+		/// Import a minigame definition into the MinigameSettings dictionary (key: minigame id).
+		/// Creates Assets/Settings/Game/MinigameSettings.asset if needed.
+		/// </summary>
+		public void ImportMinigame(MinigameEntry data)
+		{
+			string path = "Assets/Settings/Game/MinigameSettings.asset";
+
+			MinigameSettings minigames;
+
+			if (File.Exists(Path.GetFullPath(path)))
+			{
+				minigames = AssetDatabase.LoadAssetAtPath<MinigameSettings>(path);
+			}
+			else
+			{
+				minigames = ScriptableObject.CreateInstance<MinigameSettings>();
+				AssetDatabase.CreateAsset(minigames, path);
+				Created++;
+				Updated--;
+			}
+
+			if (minigames == null)
+			{
+				Debug.LogError("[ContentAssetFactory] MinigameSettings is null after load/create — skipping.");
+				Skipped++;
+				return;
+			}
+
+			bool isNew = !minigames.Entries.ContainsKey(data.MinigameId);
+			if (isNew)
+				Created++;
+			else
+				Updated++;
+
+			minigames.Entries[data.MinigameId] = new Game.Content.MinigameEntry
+			{
+				SceneName = data.SceneName,
+				RewardCardId = data.RewardCardId
+			};
+
+			EditorUtility.SetDirty(minigames);
 		}
 
 		private static Game.Content.ProgressConditionType ParseConditionType(string type)

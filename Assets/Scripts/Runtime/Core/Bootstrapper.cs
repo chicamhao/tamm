@@ -2,6 +2,7 @@ using Game.Content;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Game.Core
@@ -24,6 +25,7 @@ namespace Game.Core
 		public CardInventory Cards { get; private set; }
 		public InteractionService Interactions { get; private set; }
 		public DialogueService Dialogue { get; private set; }
+		public MinigameService Minigames { get; private set; }
 		public ChapterState Chapter { get; private set; }
 		public InputSettings InputSettings { get; private set; }
 		public PauseState Pause { get; private set; }
@@ -50,7 +52,8 @@ namespace Game.Core
 					_settings.Dialogues.Entries.Keys,
 					_settings.Chapters != null ? _settings.Chapters.Entries.Keys : null,
 					_settings.Cards.Entries.Keys).ToArray()));
-			_container.Provide(g => new DialogueService(g.Grab<CardInventory>(), _settings.Dialogues));
+			_container.Provide(g => new MinigameService(g.Grab<CardInventory>(), _settings.Minigames));
+			_container.Provide(g => new DialogueService(g.Grab<CardInventory>(), _settings.Dialogues, g.Grab<MinigameService>()));
 			_container.Provide(g => new ChapterState(g.Grab<CardInventory>(), g.Grab<DialogueService>(), _settings.Chapters));
 			_container.Provide(g => new ProgressStore(g.Grab<CardInventory>(), g.Grab<DialogueService>(), g.Grab<ChapterState>()));
 
@@ -58,6 +61,7 @@ namespace Game.Core
 			Cards = _container.Grab<CardInventory>();
 			Interactions = _container.Grab<InteractionService>();
 			Dialogue = _container.Grab<DialogueService>();
+			Minigames = _container.Grab<MinigameService>();
 			Chapter = _container.Grab<ChapterState>();
 			InputSettings = _container.Grab<InputSettings>();
 			Pause = _container.Grab<PauseState>();
@@ -66,17 +70,44 @@ namespace Game.Core
 			Progress.Load(); // resume persisted progress on boot (cards, conversations, chapter)
 		}
 
+		public static string CurrentLevel => Instance != null ? Instance._currentLevel : null;
+
+		// ESC while a minigame runs abandons it (no reward, back to the world).
+		// The poll lives here (the one persistent core Mono) while the policy lives
+		// in MinigameService — every minigame gets the escape hatch for free.
+		private void Update()
+		{
+			if (Minigames.ActiveId != null &&
+				Keyboard.current != null &&
+				Keyboard.current.escapeKey.wasPressedThisFrame)
+			{
+				Minigames.Abort();
+			}
+		}
+
 		// Loads a level scene additively on top of the persistent core, unloading the
 		// previous level. Use this instead of SceneManager.LoadScene — a plain (non-additive)
 		// load would destroy the Bootstrapper scene; additive keeps the core alive.
+		// The stored level name is normalized (path or plain name both accepted) because
+		// UnloadSceneAsync only takes a scene NAME, never an asset path.
 		// ponytail: fire-and-forget async unload, fine while transitions are one per user action.
 		public static void LoadLevel(string name)
 		{
 			Assert.IsNotNull(Instance, "LoadLevel requires the core scene to be running");
-			if (name.Equals(Instance._currentLevel)) return; // already there, no-op
+			string level = System.IO.Path.GetFileNameWithoutExtension(name);
+			if (level.Equals(Instance._currentLevel)) return; // already there, no-op
 			if (Instance._currentLevel != null) SceneManager.UnloadSceneAsync(Instance._currentLevel);
 			SceneManager.LoadScene(name, LoadSceneMode.Additive);
-			Instance._currentLevel = name;
+			Instance._currentLevel = level;
+		}
+
+		public static void UnloadLevel()
+		{
+			Assert.IsNotNull(Instance, "UnloadLevel requires the core scene to be running");
+			if (Instance._currentLevel == null)
+				return;
+			SceneManager.UnloadSceneAsync(Instance._currentLevel);
+			Instance._currentLevel = null;
 		}
 
 		private void OnDestroy()

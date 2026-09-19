@@ -15,4 +15,5 @@ MonoBehaviour:
   Cards: {fileID: 11400000, guid: ddb1a99f6759cca4ea5c1fb89385fe7a, type: 2}
   Dialogues: {fileID: 11400000, guid: ac76edddc0a13b2449b6b067758a23b3, type: 2}
   Chapters: {fileID: 11400000, guid: e5d4a6f2e73356647a1ab5a1444e4323, type: 2}
+  Minigames: {fileID: 11400000, guid: 804381a3fa7df6041a2fdd80c6970543, type: 2}
   MouseSensitivity: 1

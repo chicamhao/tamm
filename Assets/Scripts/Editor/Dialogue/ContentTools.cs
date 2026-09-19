@@ -102,6 +102,12 @@ namespace Game.Editor
 								factory.ImportExpression(expression);
 							break;
 
+						case "minigames":
+							var minigames = parser.ParseMinigames(yamlText);
+							foreach (var minigame in minigames)
+								factory.ImportMinigame(minigame);
+							break;
+
 						default:
 							Debug.LogWarning($"[ContentTools] Unknown YAML file '{fileName}.yaml' — skipping.");
 							break;

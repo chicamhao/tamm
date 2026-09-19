@@ -49,3 +49,8 @@ card_definitions:
   description: Nhang
   icon_path: null
   target_actor_ids: []
+- card_id: rat
+  display_name: rat game
+  description: Chơi đũa đón bóng cùng con chuột
+  icon_path: null
+  target_actor_ids: []

@@ -23,6 +23,10 @@ namespace Game.Content
 		[Header("Reward")]
 		[Tooltip("Card id granted to the player when this dialogue ends (empty = no reward)")]
 		public string RewardCardId = string.Empty;
+
+		[Header("Minigame")]
+		[Tooltip("Minigame id launched when this dialogue ends (empty = none). See MinigameSettings.")]
+		public string MinigameId = string.Empty;
 	}
 
 	/// <summary>A single line of dialogue with display duration and an optional facial expression id.</summary>
