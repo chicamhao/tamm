@@ -2,6 +2,7 @@ using Game.Content;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Game.Core
@@ -71,17 +72,33 @@ namespace Game.Core
 
 		public static string CurrentLevel => Instance != null ? Instance._currentLevel : null;
 
+		// ESC while a minigame runs abandons it (no reward, back to the world).
+		// The poll lives here (the one persistent core Mono) while the policy lives
+		// in MinigameService — every minigame gets the escape hatch for free.
+		private void Update()
+		{
+			if (Minigames.ActiveId != null &&
+				Keyboard.current != null &&
+				Keyboard.current.escapeKey.wasPressedThisFrame)
+			{
+				Minigames.Abort();
+			}
+		}
+
 		// Loads a level scene additively on top of the persistent core, unloading the
 		// previous level. Use this instead of SceneManager.LoadScene — a plain (non-additive)
 		// load would destroy the Bootstrapper scene; additive keeps the core alive.
+		// The stored level name is normalized (path or plain name both accepted) because
+		// UnloadSceneAsync only takes a scene NAME, never an asset path.
 		// ponytail: fire-and-forget async unload, fine while transitions are one per user action.
 		public static void LoadLevel(string name)
 		{
 			Assert.IsNotNull(Instance, "LoadLevel requires the core scene to be running");
-			if (name.Equals(Instance._currentLevel)) return; // already there, no-op
+			string level = System.IO.Path.GetFileNameWithoutExtension(name);
+			if (level.Equals(Instance._currentLevel)) return; // already there, no-op
 			if (Instance._currentLevel != null) SceneManager.UnloadSceneAsync(Instance._currentLevel);
 			SceneManager.LoadScene(name, LoadSceneMode.Additive);
-			Instance._currentLevel = name;
+			Instance._currentLevel = level;
 		}
 
 		public static void UnloadLevel()

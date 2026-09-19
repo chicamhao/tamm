@@ -77,14 +77,14 @@ namespace Game.Minigames.Rat
 			Instance = this;
 
 			if (Ball == null)
-				Ball = FindFirstObjectByType<BallController>();
+				Ball = FindAnyObjectByType<BallController>();
 
-			_chopstickManager = FindFirstObjectByType<ChopstickManager>();
+			_chopstickManager = FindAnyObjectByType<ChopstickManager>();
 
 			if (_chopstickManager == null)
 				Debug.LogError("RatManager: no ChopstickManager in the scene.", this);
 
-			Canvas canvas = FindFirstObjectByType<Canvas>();
+			Canvas canvas = FindAnyObjectByType<Canvas>();
 
 			_prompts = ActionPromptPanel.CreateIn(canvas);
 

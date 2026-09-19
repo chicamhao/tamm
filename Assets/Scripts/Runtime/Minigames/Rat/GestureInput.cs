@@ -34,10 +34,10 @@ namespace Game.Minigames.Rat
 				Cam = Camera.main;
 
 			if (Ball == null)
-				Ball = FindFirstObjectByType<BallController>();
+				Ball = FindAnyObjectByType<BallController>();
 
 			if (ChopstickManager == null)
-				ChopstickManager = FindFirstObjectByType<ChopstickManager>();
+				ChopstickManager = FindAnyObjectByType<ChopstickManager>();
 		}
 
 		private void Update()

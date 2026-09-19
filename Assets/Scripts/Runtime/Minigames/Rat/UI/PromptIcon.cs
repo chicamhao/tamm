@@ -11,8 +11,9 @@ namespace Game.Minigames.Rat.UI
 	// The CanvasRenderer requirement is declared HERE, not just inherited from Graphic:
 	// inherited RequireComponent did not get applied through this abstract base, so every
 	// icon ended up with no CanvasRenderer, generated a correct mesh, and drew nothing.
+	[Unity.Scripting.LifecycleManagement.AutoStaticsCleanup]
 	[RequireComponent(typeof(CanvasRenderer))]
-	public abstract class PromptIcon : MaskableGraphic
+	public abstract partial class PromptIcon : MaskableGraphic
 	{
 		[Header("Outline")]
 		public Color OutlineColor = new Color(0.06f, 0.24f, 0.62f, 1f);

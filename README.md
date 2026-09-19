@@ -162,14 +162,34 @@ small pieces plus designer data:
 
 ### Importing a minigame (the agent recipe)
 
-1. **Drop a scene** under `Assets/Scenes/` (additively loaded; talk to the core
-   through `Services`).
+1. **Drop a scene** under `Assets/Scenes/` — additive level, with its **own camera,
+   AudioListener and EventSystem** (the core's are parked while it runs). The scene
+   must be **enabled in Build Profiles** (File → Build Profiles), or
+   `SceneManager.LoadScene` rejects it.
 2. **Add one entry** to `minigames.yaml`: `id: { scene_name, reward_card_id }` and
    run *Assets → Import Content from YAML*.
-3. **Wire the trigger**: set `minigame_id` on a dialogues.yaml entry, or call
+3. **Wire a trigger**: the sandbox way is a `MinigameTrigger` on a prop — an
+   `Interactable` subclass whose `_id` **is** the minigame id, so `Interactor`
+   handles it like any object (collider + optional `Outline`/`WorldTag`). The
+   narrative way is `minigame_id` on a dialogues.yaml entry, or call
    `Services.Minigame.Start("id")` from any scene code.
 
 No system file is touched per minigame.
+
+### While a minigame owns the world
+
+The minigame loads **additively into the same world**, so `MinigameService.Start`
+hands the whole session over before the scene loads, and `Complete` hands it back:
+
+- every **root object** of every loaded (pre-minigame) scene is parked
+  (`SetActive(false)`, the persistent `Bootstrapper` container excepted) — the
+  minigame's camera sees an empty world, and its own camera/AudioListener/
+  EventSystem are the only ones left; the player controller and HUD are off too
+- the player's `InputMonitor` is frozen and the **pointer freed** for gestures
+- **ESC** (`Bootstrapper.Update` → `MinigameService.Abort()`) exits any minigame
+  early with no reward; `ActiveId` gates against stale/double outcomes
+- `Bootstrapper.LoadLevel` accepts a scene **path or plain name** and stores the
+  normalized name (UnloadSceneAsync only takes plain names)
 
 ### Ported: Banh Đũa (Chơi Chuyền), codename Rat — rounds 1–3
 
@@ -184,11 +204,14 @@ Port from `rice/rat` prototype, cut to minimum-functionality tap-through:
 | Prompt HUD (icons, chips, badges) | `Runtime/Minigames/Rat/UI/` — ActionPromptPanel + 4 procedural icons (PromptIcon, ArrowIcon, TapIcon, CircleIcon), ported 1:1; scene config GO restored |
 | Scene, prefabs, HUD | `Scenes/Rat.unity`, `Prefabs/Chopsticks.prefab`, `Prefabs/Table.prefab` — panel config GO restored, instruction/progress texts blanked (the panel renders live labels) |
 | Data + first hook | `minigames.yaml` (`rat` entry) + `minigame_id: rat` on the `card_chopsticks_tao` dialogue; win reward: `card_chopsticks` |
+| Trigger | Sandbox path: `MinigameTrigger` (`_id: rat`) on any prop with a collider in a level. Committed entry: the `minigame_id: rat` dialogue hook (`card_chopsticks_tao`) |
 
 **Not ported (deferred)** — sweep/drag-to-collect affordance, rounds 4+, the balance
 table tuning tier, score display, `TuningHud` (debug overlay, not player UI).
-Compile + import + play-mode tests are verified headless (`Unity.exe -batchmode`);
-the port still needs one interactive playthrough.
+
+Playtested in-editor (Playground → disc → play → ESC/win/lose → back to the world):
+controller freezes and the pointer frees during the minigame, the playground hides,
+offset returns and gameplay resumes cleanly.
 
 ## Porting checklist
 
