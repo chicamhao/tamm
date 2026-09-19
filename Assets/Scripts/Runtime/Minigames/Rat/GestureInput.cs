@@ -12,32 +12,32 @@ namespace Game.Minigames.Rat
 	public sealed class GestureInput : MonoBehaviour
 	{
 		[Header("Optional - found automatically if left empty")]
-		public Camera cam;
-		public BallController ball;
-		public ChopstickManager chopstickManager;
+		public Camera Cam;
+		public BallController Ball;
+		public ChopstickManager ChopstickManager;
 
 		[Header("Swipe thresholds (pixels)")]
-		public float minSwipeDistance = 50f;
-		public float maxSwipeDistance = 400f;
+		public float MinSwipeDistance = 50f;
+		public float MaxSwipeDistance = 400f;
 
 		[Tooltip("A pointer that moves less than this counts as a tap, not a swipe.")]
-		public float tapSlop = 24f;
+		public float TapSlop = 24f;
 
-		private Vector2 pointerDownPosition;
-		private bool pointerIsDown;
+		private Vector2 _pointerDownPosition;
+		private bool _pointerIsDown;
 
-		private static readonly RaycastHit[] HitBuffer = new RaycastHit[16];
+		private static readonly RaycastHit[] _hitBuffer = new RaycastHit[16];
 
 		private void Awake()
 		{
-			if (cam == null)
-				cam = Camera.main;
+			if (Cam == null)
+				Cam = Camera.main;
 
-			if (ball == null)
-				ball = FindFirstObjectByType<BallController>();
+			if (Ball == null)
+				Ball = FindFirstObjectByType<BallController>();
 
-			if (chopstickManager == null)
-				chopstickManager = FindFirstObjectByType<ChopstickManager>();
+			if (ChopstickManager == null)
+				ChopstickManager = FindFirstObjectByType<ChopstickManager>();
 		}
 
 		private void Update()
@@ -46,14 +46,14 @@ namespace Game.Minigames.Rat
 
 			if (TryReadPointerDown(out position))
 			{
-				pointerDownPosition = position;
-				pointerIsDown = true;
+				_pointerDownPosition = position;
+				_pointerIsDown = true;
 			}
 
-			if (pointerIsDown && TryReadPointerUp(out position))
+			if (_pointerIsDown && TryReadPointerUp(out position))
 			{
-				pointerIsDown = false;
-				ResolveGesture(pointerDownPosition, position);
+				_pointerIsDown = false;
+				ResolveGesture(_pointerDownPosition, position);
 			}
 		}
 
@@ -110,15 +110,15 @@ namespace Game.Minigames.Rat
 
 			// Any swipe past the threshold throws. Checked before tap so a fast flick is
 			// never mistaken for a tap on whatever happened to be under the finger.
-			if (delta.magnitude > minSwipeDistance)
+			if (delta.magnitude > MinSwipeDistance)
 			{
-				float strength = Mathf.Clamp01(delta.magnitude / Mathf.Max(maxSwipeDistance, 1f));
+				float strength = Mathf.Clamp01(delta.magnitude / Mathf.Max(MaxSwipeDistance, 1f));
 
 				RatManager.Instance.OnThrowInput(strength);
 				return;
 			}
 
-			if (delta.magnitude <= tapSlop)
+			if (delta.magnitude <= TapSlop)
 				HandleTap(to);
 		}
 
@@ -127,7 +127,7 @@ namespace Game.Minigames.Rat
 			if (RatManager.Instance == null)
 				return;
 
-			if (cam == null)
+			if (Cam == null)
 				return;
 
 			Chopstick nearestChopstick;
@@ -155,14 +155,14 @@ namespace Game.Minigames.Rat
 			chopstick = null;
 			ballHit = null;
 
-			if (cam == null)
+			if (Cam == null)
 				return;
 
-			Ray ray = cam.ScreenPointToRay(screenPosition);
+			Ray ray = Cam.ScreenPointToRay(screenPosition);
 
 			int count = Physics.RaycastNonAlloc(
 				ray,
-				HitBuffer,
+				_hitBuffer,
 				1000f,
 				~0,
 				QueryTriggerInteraction.Ignore
@@ -173,7 +173,7 @@ namespace Game.Minigames.Rat
 
 			for (int i = 0; i < count; i++)
 			{
-				RaycastHit hit = HitBuffer[i];
+				RaycastHit hit = _hitBuffer[i];
 
 				Chopstick c = hit.collider.GetComponentInParent<Chopstick>();
 

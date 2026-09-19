@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Game.Minigames.Rat
 {
 	// One chopstick. Owns its own id and state; it does not decide whether a tap is
-	// legal - GameManager does that and then calls Collect().
+	// legal - RatManager does that and then calls Collect().
 	// Ported 1:1 from rice/rat (new-physics Renderer/MaterialPropertyBlock tinting).
 	public sealed class Chopstick : MonoBehaviour
 	{
@@ -14,50 +14,50 @@ namespace Game.Minigames.Rat
 			Collected
 		}
 
-		public int id;
+		public int Id;
 
 		[Header("Collect feedback")]
-		public Color collectColor = new Color(0.25f, 1f, 0.35f);
-		public float flashSeconds = 0.12f;
+		public Color CollectColor = new Color(0.25f, 1f, 0.35f);
+		public float FlashSeconds = 0.12f;
 
 		public ChopstickState State { get; private set; }
 
-		private Renderer rend;
-		private MaterialPropertyBlock mpb;
+		private Renderer _rend;
+		private MaterialPropertyBlock _mpb;
 
 		// Base collider sizes, so the per-round hit scale is always applied to the
 		// original radius rather than compounding on the previous round's value.
-		private CapsuleCollider[] capsules;
-		private float[] baseCapsuleRadii;
-		private SphereCollider[] spheres;
-		private float[] baseSphereRadii;
-		private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
-		private static readonly int ColorId = Shader.PropertyToID("_Color");
+		private CapsuleCollider[] _capsules;
+		private float[] _baseCapsuleRadii;
+		private SphereCollider[] _spheres;
+		private float[] _baseSphereRadii;
+		private static readonly int _baseColorId = Shader.PropertyToID("_BaseColor");
+		private static readonly int _colorId = Shader.PropertyToID("_Color");
 
 		private void Awake()
 		{
-			rend = GetComponent<Renderer>();
+			_rend = GetComponent<Renderer>();
 
 			// A property block tints the shared material without instantiating a
 			// copy per chopstick, which is what tinting rend.material would do.
-			mpb = new MaterialPropertyBlock();
+			_mpb = new MaterialPropertyBlock();
 
 			CacheColliders();
 		}
 
 		private void CacheColliders()
 		{
-			capsules = GetComponentsInChildren<CapsuleCollider>(true);
-			baseCapsuleRadii = new float[capsules.Length];
+			_capsules = GetComponentsInChildren<CapsuleCollider>(true);
+			_baseCapsuleRadii = new float[_capsules.Length];
 
-			for (int i = 0; i < capsules.Length; i++)
-				baseCapsuleRadii[i] = capsules[i].radius;
+			for (int i = 0; i < _capsules.Length; i++)
+				_baseCapsuleRadii[i] = _capsules[i].radius;
 
-			spheres = GetComponentsInChildren<SphereCollider>(true);
-			baseSphereRadii = new float[spheres.Length];
+			_spheres = GetComponentsInChildren<SphereCollider>(true);
+			_baseSphereRadii = new float[_spheres.Length];
 
-			for (int i = 0; i < spheres.Length; i++)
-				baseSphereRadii[i] = spheres[i].radius;
+			for (int i = 0; i < _spheres.Length; i++)
+				_baseSphereRadii[i] = _spheres[i].radius;
 		}
 
 		/// <summary>
@@ -66,27 +66,27 @@ namespace Game.Minigames.Rat
 		/// </summary>
 		public void SetHitScale(float scale)
 		{
-			if (capsules == null)
+			if (_capsules == null)
 				CacheColliders();
 
 			float s = Mathf.Max(scale, 0.01f);
 
-			for (int i = 0; i < capsules.Length; i++)
+			for (int i = 0; i < _capsules.Length; i++)
 			{
-				if (capsules[i] != null)
-					capsules[i].radius = baseCapsuleRadii[i] * s;
+				if (_capsules[i] != null)
+					_capsules[i].radius = _baseCapsuleRadii[i] * s;
 			}
 
-			for (int i = 0; i < spheres.Length; i++)
+			for (int i = 0; i < _spheres.Length; i++)
 			{
-				if (spheres[i] != null)
-					spheres[i].radius = baseSphereRadii[i] * s;
+				if (_spheres[i] != null)
+					_spheres[i].radius = _baseSphereRadii[i] * s;
 			}
 		}
 
 		public void Initialize(int chopstickID)
 		{
-			id = chopstickID;
+			Id = chopstickID;
 			ResetChopstick();
 		}
 
@@ -123,9 +123,9 @@ namespace Game.Minigames.Rat
 
 		private IEnumerator FlashThenHide()
 		{
-			SetTint(collectColor);
+			SetTint(CollectColor);
 
-			yield return new WaitForSeconds(flashSeconds);
+			yield return new WaitForSeconds(FlashSeconds);
 
 			ClearTint();
 
@@ -134,23 +134,23 @@ namespace Game.Minigames.Rat
 
 		private void SetTint(Color c)
 		{
-			if (rend == null) return;
+			if (_rend == null) return;
 
-			rend.GetPropertyBlock(mpb);
+			_rend.GetPropertyBlock(_mpb);
 
 			// URP Lit uses _BaseColor; set _Color too so this still reads correctly
 			// if the placeholder material is ever swapped for a built-in shader.
-			mpb.SetColor(BaseColorId, c);
-			mpb.SetColor(ColorId, c);
+			_mpb.SetColor(_baseColorId, c);
+			_mpb.SetColor(_colorId, c);
 
-			rend.SetPropertyBlock(mpb);
+			_rend.SetPropertyBlock(_mpb);
 		}
 
 		private void ClearTint()
 		{
-			if (rend == null) return;
+			if (_rend == null) return;
 
-			rend.SetPropertyBlock(null);
+			_rend.SetPropertyBlock(null);
 		}
 	}
 }

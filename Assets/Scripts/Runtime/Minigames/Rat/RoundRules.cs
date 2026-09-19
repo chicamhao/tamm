@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Minigames.Rat
@@ -31,7 +32,7 @@ namespace Game.Minigames.Rat
 		/// <summary>The full turn breakdown, e.g. round 3 -> [3, 3, 3, 1].</summary>
 		public static int[] TurnsForRound(int round)
 		{
-			var turns = new System.Collections.Generic.List<int>();
+			var turns = new List<int>();
 
 			int remaining = TotalChopsticks;
 

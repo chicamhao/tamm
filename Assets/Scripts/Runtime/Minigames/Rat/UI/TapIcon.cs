@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Minigames.Rat
+namespace Game.Minigames.Rat.UI
 {
 	// Hand-tap prompt: a simple hand silhouette under an expanding ripple ring.
 	// This is the badge that sits on the thing the player must touch - a chopstick
@@ -9,22 +9,22 @@ namespace Game.Minigames.Rat
 	public sealed class TapIcon : PromptIcon
 	{
 		[Header("Ripple")]
-		public bool ripple = true;
-		public Color rippleColor = new Color(1f, 1f, 1f, 0.9f);
-		public float rippleSpeed = 1.25f;
+		public bool Ripple = true;
+		public Color RippleColor = new Color(1f, 1f, 1f, 0.9f);
+		public float RippleSpeed = 1.25f;
 
-		private float ripplePhase;
+		private float _ripplePhase;
 
 		private void Update()
 		{
-			if (!ripple)
+			if (!Ripple)
 				return;
 
-			float phase = (Time.unscaledTime * rippleSpeed) % 1f;
+			float phase = (Time.unscaledTime * RippleSpeed) % 1f;
 
-			if (Mathf.Abs(phase - ripplePhase) > 0.004f)
+			if (Mathf.Abs(phase - _ripplePhase) > 0.004f)
 			{
-				ripplePhase = phase;
+				_ripplePhase = phase;
 				Redraw();
 			}
 		}
@@ -33,10 +33,10 @@ namespace Game.Minigames.Rat
 		{
 			vh.Clear();
 
-			if (ripple)
+			if (Ripple)
 				BuildRipple(vh);
 
-			BuildHand(vh, outlineWidth, outlineColor);
+			BuildHand(vh, OutlineWidth, OutlineColor);
 			BuildHand(vh, 0f, color);
 		}
 
@@ -44,11 +44,11 @@ namespace Game.Minigames.Rat
 		{
 			float s = Size;
 
-			float radius = Mathf.Lerp(0.30f * s, 0.54f * s, ripplePhase);
-			float thickness = Mathf.Lerp(0.045f * s, 0.015f * s, ripplePhase);
+			float radius = Mathf.Lerp(0.30f * s, 0.54f * s, _ripplePhase);
+			float thickness = Mathf.Lerp(0.045f * s, 0.015f * s, _ripplePhase);
 
-			Color c = rippleColor;
-			c.a *= 1f - ripplePhase;
+			Color c = RippleColor;
+			c.a *= 1f - _ripplePhase;
 
 			AddRing(
 				vh,

@@ -30,66 +30,66 @@ namespace Game.Minigames.Rat
 			SliceComplete
 		}
 
-		public GameState state;
+		public GameState State;
 
 		[Header("Gameplay")]
-		public int round = 1;
-		public int hearts = 3;
+		public int Round = 1;
+		public int Hearts = 3;
 
-		public BallController ball;
+		public BallController Ball;
 
 		[Header("Catch line")]
 		[Tooltip("Catch line height ABOVE the throw point. The ball rests on the table at its start height, so a line below that could never be crossed.")]
-		public float catchLineOffset = 0.05f;
+		public float CatchLineOffset = 0.05f;
 
 		[Header("Pacing (seconds)")]
-		public float turnDelay = 0.7f;
-		public float failDelay = 1.1f;
-		public float roundDelay = 1.4f;
+		public float TurnDelay = 0.7f;
+		public float FailDelay = 1.1f;
+		public float RoundDelay = 1.4f;
 
 		[Header("UI")]
-		public TMP_Text roundText;
-		public TMP_Text instructionText;
-		public TMP_Text progressText;
-		public TMP_Text heartsText;
-		public TMP_Text resultText;
+		public TMP_Text RoundText;
+		public TMP_Text InstructionText;
+		public TMP_Text ProgressText;
+		public TMP_Text HeartsText;
+		public TMP_Text ResultText;
 
-		private ChopstickManager chopstickManager;
-		private ActionPromptPanel prompts;
+		private ChopstickManager _chopstickManager;
+		private ActionPromptPanel _prompts;
 
-		private int remainingInRound;
-		private int requiredThisTurn;
-		private int collectedThisTurn;
+		private int _remainingInRound;
+		private int _requiredThisTurn;
+		private int _collectedThisTurn;
 
-		private readonly List<Chopstick> collectedThisTurnList = new List<Chopstick>();
+		private readonly List<Chopstick> _collectedThisTurnList = new List<Chopstick>();
 
 		/// <summary>Minigame id registered in MinigameSettings; used to report the outcome.</summary>
-		private static readonly string MinigameId = "rat";
+		private static readonly string _minigameId = "rat";
 
-		public int RequiredThisTurn => requiredThisTurn;
-		public int CollectedThisTurn => collectedThisTurn;
+		public int RequiredThisTurn => _requiredThisTurn;
+		public int CollectedThisTurn => _collectedThisTurn;
 
 		/// <summary>Y at which a descending ball counts as missed. Sits just above the throw point.</summary>
-		public float CatchLineY => ball != null ? ball.LaunchY + catchLineOffset : 0f;
+		public float CatchLineY => Ball != null ? Ball.LaunchY + CatchLineOffset : 0f;
 
 		private void Awake()
 		{
 			Instance = this;
 
-			if (ball == null)
-				ball = FindFirstObjectByType<BallController>();
+			if (Ball == null)
+				Ball = FindFirstObjectByType<BallController>();
 
-			chopstickManager = FindFirstObjectByType<ChopstickManager>();
+			_chopstickManager = FindFirstObjectByType<ChopstickManager>();
 
-			if (chopstickManager == null)
+			if (_chopstickManager == null)
 				Debug.LogError("RatManager: no ChopstickManager in the scene.", this);
 
 			Canvas canvas = FindFirstObjectByType<Canvas>();
 
-			prompts = ActionPromptPanel.CreateIn(canvas);
+			_prompts = ActionPromptPanel.CreateIn(canvas);
 
-			if (prompts != null)
-				prompts.AdoptExistingTexts(roundText, instructionText, progressText, heartsText, resultText);
+			if (_prompts != null)
+				_prompts.AdoptExistingTexts(RoundText, InstructionText, ProgressText, HeartsText, ResultText);
 		}
 
 		private void Start() => StartGame();
@@ -98,8 +98,8 @@ namespace Game.Minigames.Rat
 		{
 			CancelInvoke();
 
-			round = 1;
-			hearts = 3;
+			Round = 1;
+			Hearts = 3;
 
 			StartRound();
 		}
@@ -108,12 +108,12 @@ namespace Game.Minigames.Rat
 		{
 			CancelInvoke();
 
-			remainingInRound = RoundRules.TotalFor(round);
+			_remainingInRound = RoundRules.TotalFor(Round);
 
 			ApplyRoundConfig();
 
-			if (chopstickManager != null)
-				chopstickManager.DropChopsticks(remainingInRound);
+			if (_chopstickManager != null)
+				_chopstickManager.DropChopsticks(_remainingInRound);
 
 			ShowRoundIntro();
 
@@ -125,25 +125,25 @@ namespace Game.Minigames.Rat
 		{
 			// The slice uses the traditional rules with no per-round tuning: every
 			// round keeps the built-in ball and spawn settings.
-			if (prompts != null)
-				prompts.SetRoundStyle(RoundRules.PromptVerb(round), RoundRules.AllowSweep(round));
+			if (_prompts != null)
+				_prompts.SetRoundStyle(RoundRules.PromptVerb(Round), RoundRules.AllowSweep(Round));
 		}
 
 		private void BeginTurn()
 		{
 			CancelInvoke();
 
-			requiredThisTurn = RoundRules.RequiredForTurn(round, remainingInRound);
-			collectedThisTurn = 0;
-			collectedThisTurnList.Clear();
+			_requiredThisTurn = RoundRules.RequiredForTurn(Round, _remainingInRound);
+			_collectedThisTurn = 0;
+			_collectedThisTurnList.Clear();
 
-			state = GameState.WaitingForThrow;
+			State = GameState.WaitingForThrow;
 
-			if (ball != null)
-				ball.ResetBall();
+			if (Ball != null)
+				Ball.ResetBall();
 
-			if (prompts != null)
-				prompts.ShowThrow();
+			if (_prompts != null)
+				_prompts.ShowThrow();
 
 			UpdateUI();
 		}
@@ -154,32 +154,32 @@ namespace Game.Minigames.Rat
 
 		public void OnThrowInput(float normalizedStrength)
 		{
-			if (state != GameState.WaitingForThrow || ball == null)
+			if (State != GameState.WaitingForThrow || Ball == null)
 				return;
 
-			ball.Throw(normalizedStrength);
+			Ball.Throw(normalizedStrength);
 
 			OnBallThrown();
 		}
 
 		public void OnBallThrown()
 		{
-			if (state != GameState.WaitingForThrow)
+			if (State != GameState.WaitingForThrow)
 				return;
 
-			state = GameState.Picking;
+			State = GameState.Picking;
 
 			ClearResult();
 
-			if (prompts != null)
-				prompts.ShowTap(collectedThisTurn, requiredThisTurn);
+			if (_prompts != null)
+				_prompts.ShowTap(_collectedThisTurn, _requiredThisTurn);
 
 			UpdateUI();
 		}
 
 		public void OnChopstickTapped(Chopstick chopstick)
 		{
-			if (state != GameState.Picking || chopstick == null)
+			if (State != GameState.Picking || chopstick == null)
 				return;
 
 			// Any available chopstick counts - there is no wrong one. Failure in this
@@ -187,10 +187,10 @@ namespace Game.Minigames.Rat
 			if (!chopstick.TryCollect())
 				return;
 
-			collectedThisTurn++;
-			collectedThisTurnList.Add(chopstick);
+			_collectedThisTurn++;
+			_collectedThisTurnList.Add(chopstick);
 
-			if (collectedThisTurn >= requiredThisTurn)
+			if (_collectedThisTurn >= _requiredThisTurn)
 				EnterCatchPhase();
 
 			UpdateUI();
@@ -198,18 +198,18 @@ namespace Game.Minigames.Rat
 
 		private void EnterCatchPhase()
 		{
-			state = GameState.WaitingForCatch;
+			State = GameState.WaitingForCatch;
 
-			if (prompts != null && ball != null)
-				prompts.ShowCatch(ball.transform);
+			if (_prompts != null && Ball != null)
+				_prompts.ShowCatch(Ball.transform);
 		}
 
 		public void TryCatchBall()
 		{
-			if (state != GameState.WaitingForCatch || ball == null)
+			if (State != GameState.WaitingForCatch || Ball == null)
 				return;
 
-			ball.Catch();
+			Ball.Catch();
 
 			OnBallCaught();
 		}
@@ -220,75 +220,75 @@ namespace Game.Minigames.Rat
 
 		private void OnBallCaught()
 		{
-			state = GameState.RoundComplete;
+			State = GameState.RoundComplete;
 
-			remainingInRound -= requiredThisTurn;
+			_remainingInRound -= _requiredThisTurn;
 
 			SetResult("SUCCESS");
 
-			if (prompts != null)
-				prompts.Hide();
+			if (_prompts != null)
+				_prompts.Hide();
 
 			UpdateUI();
 
-			if (remainingInRound <= 0)
-				Invoke(nameof(CompleteRound), roundDelay);
+			if (_remainingInRound <= 0)
+				Invoke(nameof(CompleteRound), RoundDelay);
 			else
-				Invoke(nameof(BeginTurn), turnDelay);
+				Invoke(nameof(BeginTurn), TurnDelay);
 		}
 
 		private void CompleteRound()
 		{
-			if (round >= RoundRules.FinalRound)
+			if (Round >= RoundRules.FinalRound)
 			{
 				EnterSliceComplete();
 				return;
 			}
 
-			round++;
+			Round++;
 
 			StartRound();
 		}
 
 		public void FailTurn()
 		{
-			if (state == GameState.Failed ||
-				state == GameState.GameOver ||
-				state == GameState.SliceComplete)
+			if (State == GameState.Failed ||
+				State == GameState.GameOver ||
+				State == GameState.SliceComplete)
 				return;
 
 			CancelInvoke();
 
-			state = GameState.Failed;
+			State = GameState.Failed;
 
-			hearts--;
+			Hearts--;
 
 			SetResult("MISS");
 
-			if (prompts != null)
-				prompts.Hide();
+			if (_prompts != null)
+				_prompts.Hide();
 
-			if (ball != null)
-				ball.ResetBall();
+			if (Ball != null)
+				Ball.ResetBall();
 
 			// The turn failed, so chopsticks taken during it go back on the table.
-			if (chopstickManager != null)
-				chopstickManager.ReturnToTable(collectedThisTurnList);
+			if (_chopstickManager != null)
+				_chopstickManager.ReturnToTable(_collectedThisTurnList);
 
-			collectedThisTurnList.Clear();
-			collectedThisTurn = 0;
+			_collectedThisTurnList.Clear();
+			_collectedThisTurn = 0;
 
 			UpdateUI();
 
-			if (hearts <= 0)
-				Invoke(nameof(EnterGameOver), failDelay);
+			if (Hearts <= 0)
+				Invoke(nameof(EnterGameOver), FailDelay);
 			else
-				Invoke(nameof(BeginTurn), failDelay);
+				Invoke(nameof(BeginTurn), FailDelay);
 		}
 
 		private void EnterGameOver()
 		{
-			state = GameState.GameOver;
+			State = GameState.GameOver;
 
 			SetResult("You ran out of hearts");
 
@@ -297,7 +297,7 @@ namespace Game.Minigames.Rat
 
 		private void EnterSliceComplete()
 		{
-			state = GameState.SliceComplete;
+			State = GameState.SliceComplete;
 
 			SetResult("ALL ROUNDS CLEAR");
 
@@ -309,7 +309,7 @@ namespace Game.Minigames.Rat
 		{
 			// Unloading the minigame scene destroys this GameObject next frame; the
 			// static Instance is cleared by the core scene teardown, not here.
-			Services.Minigame?.Complete(MinigameId, won);
+			Services.Minigame?.Complete(_minigameId, won);
 		}
 
 		// =========================================
@@ -318,16 +318,16 @@ namespace Game.Minigames.Rat
 
 		private void Update()
 		{
-			if (state != GameState.Picking && state != GameState.WaitingForCatch)
+			if (State != GameState.Picking && State != GameState.WaitingForCatch)
 				return;
 
-			if (ball == null)
+			if (Ball == null)
 				return;
 
 			// Two independent miss conditions: the ball crossed the catch line on the way
 			// down, or it has come to rest after being thrown. The second covers geometry
 			// the first cannot - a ball scaled large enough never reaches the line.
-			if (ball.HasFallenBelow(CatchLineY) || ball.HasSettledAfterThrow())
+			if (Ball.HasFallenBelow(CatchLineY) || Ball.HasSettledAfterThrow())
 				FailTurn();
 		}
 
@@ -337,24 +337,24 @@ namespace Game.Minigames.Rat
 
 		private void ShowRoundIntro()
 		{
-			SetResult(RoundRules.RoundName(round) + "\n" + RoundRules.TurnBreakdown(round));
+			SetResult(RoundRules.RoundName(Round) + "\n" + RoundRules.TurnBreakdown(Round));
 		}
 
 		private void SetResult(string s)
 		{
-			if (resultText != null)
-				resultText.text = s;
+			if (ResultText != null)
+				ResultText.text = s;
 		}
 
 		private void ClearResult() => SetResult("");
 
 		private void UpdateUI()
 		{
-			if (roundText != null)
-				roundText.text = "ROUND " + round + " - " + RoundRules.RoundName(round);
+			if (RoundText != null)
+				RoundText.text = "ROUND " + Round + " - " + RoundRules.RoundName(Round);
 
-			if (heartsText != null)
-				heartsText.text = "HEARTS: " + Mathf.Max(hearts, 0);
+			if (HeartsText != null)
+				HeartsText.text = "HEARTS: " + Mathf.Max(Hearts, 0);
 		}
 	}
 }

@@ -16,15 +16,15 @@ namespace Game.Minigames.Tests
 		[Test]
 		public void TurnPatternsFollowTheTradition()
 		{
-			Assert.AreEqual(10, RoundRules.TotalFor(1));
-			Assert.AreEqual(3, RoundRules.FinalRound);
+			Assert.That(RoundRules.TotalFor(1), Is.EqualTo(10));
+			Assert.That(RoundRules.FinalRound, Is.EqualTo(3));
 
 			Assert.That(RoundRules.TurnsForRound(1), Is.EquivalentTo(new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }));
 			Assert.That(RoundRules.TurnsForRound(2), Is.EquivalentTo(new int[] { 2, 2, 2, 2, 2 }));
 			Assert.That(RoundRules.TurnsForRound(3), Is.EquivalentTo(new int[] { 3, 3, 3, 1 }));
 
-			Assert.AreEqual(3, RoundRules.RequiredForTurn(3, 10));
-			Assert.AreEqual(0, RoundRules.RequiredForTurn(3, 0));
+			Assert.That(RoundRules.RequiredForTurn(3, 10), Is.EqualTo(3));
+			Assert.That(RoundRules.RequiredForTurn(3, 0), Is.EqualTo(0));
 		}
 
 		// The minigame host bridges the scene's outcome into the card economy:
@@ -43,14 +43,14 @@ namespace Game.Minigames.Tests
 			var service = new MinigameService(cards, settings);
 
 			service.Complete("rat", false);
-			Assert.IsFalse(cards.Owns("card_chopsticks"));
+			Assert.That(cards.Owns("card_chopsticks"), Is.False);
 
 			service.Complete("rat", true);
-			Assert.IsTrue(cards.Owns("card_chopsticks"));
+			Assert.That(cards.Owns("card_chopsticks"), Is.True);
 
 			// Unknown ids are no-ops, not crashes.
 			service.Complete("does_not_exist", true);
-			Assert.IsFalse(cards.Owns("does_not_exist"));
+			Assert.That(cards.Owns("does_not_exist"), Is.False);
 		}
 	}
 }

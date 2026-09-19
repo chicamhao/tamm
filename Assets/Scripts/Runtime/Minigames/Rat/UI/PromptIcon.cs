@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Minigames.Rat
+namespace Game.Minigames.Rat.UI
 {
 	// Base for the Cooking-Mama-style action prompt icons. Every icon builds its own
 	// geometry in OnPopulateMesh, so the prototype ships with no sprites, no atlas and
@@ -15,13 +15,13 @@ namespace Game.Minigames.Rat
 	public abstract class PromptIcon : MaskableGraphic
 	{
 		[Header("Outline")]
-		public Color outlineColor = new Color(0.06f, 0.24f, 0.62f, 1f);
-		public float outlineWidth = 6f;
+		public Color OutlineColor = new Color(0.06f, 0.24f, 0.62f, 1f);
+		public float OutlineWidth = 6f;
 
 		[Tooltip("Width of the transparent skirt used to soften edges, in pixels.")]
-		public float edgeSoftness = 1.25f;
+		public float EdgeSoftness = 1.25f;
 
-		private static readonly List<Vector2> Scratch = new List<Vector2>(64);
+		private static readonly List<Vector2> _scratch = new List<Vector2>(64);
 
 		/// <summary>Shortest side of the rect. All icon geometry is expressed as a fraction of it.</summary>
 		protected float Size
@@ -70,7 +70,7 @@ namespace Game.Minigames.Rat
 				vh.AddTriangle(centreIndex, a, b);
 			}
 
-			if (edgeSoftness <= 0f)
+			if (EdgeSoftness <= 0f)
 				return;
 
 			Color32 fade = new Color32(color.r, color.g, color.b, 0);
@@ -81,7 +81,7 @@ namespace Game.Minigames.Rat
 			{
 				Vector2 outward = (points[i] - centre).normalized;
 
-				vh.AddVert(points[i] + outward * edgeSoftness, fade, Vector2.zero);
+				vh.AddVert(points[i] + outward * EdgeSoftness, fade, Vector2.zero);
 			}
 
 			for (int i = 0; i < points.Count; i++)
@@ -95,16 +95,16 @@ namespace Game.Minigames.Rat
 
 		protected void AddCircle(VertexHelper vh, Vector2 centre, float radius, Color32 color, int segments = 28)
 		{
-			Scratch.Clear();
+			_scratch.Clear();
 
 			for (int i = 0; i < segments; i++)
 			{
 				float a = (i / (float)segments) * Mathf.PI * 2f;
 
-				Scratch.Add(centre + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * radius);
+				_scratch.Add(centre + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * radius);
 			}
 
-			AddConvexPolygon(vh, Scratch, color);
+			AddConvexPolygon(vh, _scratch, color);
 		}
 
 		/// <summary>Axis-aligned or rotated rounded rectangle.</summary>
@@ -121,7 +121,7 @@ namespace Game.Minigames.Rat
 
 			radius = Mathf.Clamp(radius, 0f, Mathf.Min(half.x, half.y));
 
-			Scratch.Clear();
+			_scratch.Clear();
 
 			// Corner centres, counter-clockwise from bottom-right.
 			Vector2[] corners =
@@ -140,7 +140,7 @@ namespace Game.Minigames.Rat
 				{
 					float a = start + (s / (float)cornerSegments) * Mathf.PI * 0.5f;
 
-					Scratch.Add(corners[c] + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * radius);
+					_scratch.Add(corners[c] + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * radius);
 				}
 			}
 
@@ -150,28 +150,28 @@ namespace Game.Minigames.Rat
 				float cos = Mathf.Cos(rad);
 				float sin = Mathf.Sin(rad);
 
-				for (int i = 0; i < Scratch.Count; i++)
+				for (int i = 0; i < _scratch.Count; i++)
 				{
-					Vector2 p = Scratch[i];
+					Vector2 p = _scratch[i];
 
-					Scratch[i] = new Vector2(p.x * cos - p.y * sin, p.x * sin + p.y * cos);
+					_scratch[i] = new Vector2(p.x * cos - p.y * sin, p.x * sin + p.y * cos);
 				}
 			}
 
-			for (int i = 0; i < Scratch.Count; i++)
-				Scratch[i] += centre;
+			for (int i = 0; i < _scratch.Count; i++)
+				_scratch[i] += centre;
 
-			AddConvexPolygon(vh, Scratch, color);
+			AddConvexPolygon(vh, _scratch, color);
 		}
 
 		protected void AddTriangle(VertexHelper vh, Vector2 a, Vector2 b, Vector2 c, Color32 color)
 		{
-			Scratch.Clear();
-			Scratch.Add(a);
-			Scratch.Add(b);
-			Scratch.Add(c);
+			_scratch.Clear();
+			_scratch.Add(a);
+			_scratch.Add(b);
+			_scratch.Add(c);
 
-			AddConvexPolygon(vh, Scratch, color);
+			AddConvexPolygon(vh, _scratch, color);
 		}
 
 		// =========================================

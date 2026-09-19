@@ -147,6 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d0b0105a3ca4ae499c056ba79a9c0ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
-  collectColor: {r: 0.25, g: 1, b: 0.35, a: 1}
-  flashSeconds: 0.12
+  Id: 1
+  CollectColor: {r: 0.25, g: 1, b: 0.35, a: 1}
+  FlashSeconds: 0.12

@@ -1,3 +1,4 @@
+using Game.Minigames.Rat.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +18,7 @@ namespace Game.Minigames.Rat
 	// this component to a GameObject under the Canvas - CreateIn will reuse it instead
 	// of building a throwaway one.
 	//
-	// GameManager tells this which step is live. It holds no game rules.
+	// RatManager tells this which step is live. It holds no game rules.
 	// Ported 1:1 from rice/rat.
 	public sealed class ActionPromptPanel : MonoBehaviour
 	{
@@ -28,7 +29,7 @@ namespace Game.Minigames.Rat
 			Catch = 2
 		}
 
-		private const int StepCount = 3;
+		private const int _stepCount = 3;
 
 		// =========================================
 		// LAYOUT - all tunable, all applied live
@@ -40,99 +41,99 @@ namespace Game.Minigames.Rat
 
 		[Header("Main prompt (anchored to screen centre)")]
 		[Tooltip("Where the prompt block sits when it is NOT riding a world object.")]
-		public Vector2 promptRestingPosition = new Vector2(0f, -185f);
+		public Vector2 PromptRestingPosition = new Vector2(0f, -185f);
 
 		[Tooltip("Size of the big arrow / hand icon.")]
-		public Vector2 promptIconSize = new Vector2(118f, 118f);
+		public Vector2 PromptIconSize = new Vector2(118f, 118f);
 
 		[Tooltip("Icon offset inside the prompt block.")]
-		public Vector2 promptIconOffset = new Vector2(0f, 30f);
+		public Vector2 PromptIconOffset = new Vector2(0f, 30f);
 
 		[Tooltip("Offset of the SWIPE UP / TAP n label.")]
-		public Vector2 promptLabelOffset = new Vector2(0f, -52f);
+		public Vector2 PromptLabelOffset = new Vector2(0f, -52f);
 
 		[Tooltip("Offset of the 0 / 3 counter.")]
-		public Vector2 promptCountOffset = new Vector2(0f, -84f);
+		public Vector2 PromptCountOffset = new Vector2(0f, -84f);
 
-		public float promptLabelFontSize = 30f;
-		public float promptCountFontSize = 24f;
+		public float PromptLabelFontSize = 30f;
+		public float PromptCountFontSize = 24f;
 
 		[Header("Sweep hint")]
 		[Tooltip("Shown beside the hand on rounds where dragging is unlocked.")]
-		public Vector2 sweepHintOffset = new Vector2(84f, 30f);
-		public Vector2 sweepHintSize = new Vector2(62f, 62f);
+		public Vector2 SweepHintOffset = new Vector2(84f, 30f);
+		public Vector2 SweepHintSize = new Vector2(62f, 62f);
 
 		[Header("Hand badge while riding the ball")]
 		[Tooltip("Nudge applied on top of the ball's screen position during CATCH.")]
-		public Vector2 worldBadgeOffset = new Vector2(0f, 0f);
+		public Vector2 WorldBadgeOffset = new Vector2(0f, 0f);
 
 		[Tooltip("Icon size while the badge is pinned to a world object.")]
-		public Vector2 worldBadgeIconSize = new Vector2(96f, 96f);
+		public Vector2 WorldBadgeIconSize = new Vector2(96f, 96f);
 
 		[Tooltip("Hide the label and counter while the badge rides the ball.")]
-		public bool hideLabelWhileRiding = false;
+		public bool HideLabelWhileRiding = false;
 
 		[Header("Step chips (anchored to top centre)")]
-		public Vector2 chipRowPosition = new Vector2(0f, -52f);
-		public float chipSpacing = 108f;
-		public float chipDiameter = 62f;
-		public float chipGlyphSize = 36f;
-		public float chipCaptionY = -34f;
-		public float chipYOffset = 6f;
-		public float chipActiveScale = 1.18f;
-		public float chipIdleScale = 0.92f;
-		public float chipCaptionFontSize = 15f;
-		public bool showChips = true;
+		public Vector2 ChipRowPosition = new Vector2(0f, -52f);
+		public float ChipSpacing = 108f;
+		public float ChipDiameter = 62f;
+		public float ChipGlyphSize = 36f;
+		public float ChipCaptionY = -34f;
+		public float ChipYOffset = 6f;
+		public float ChipActiveScale = 1.18f;
+		public float ChipIdleScale = 0.92f;
+		public float ChipCaptionFontSize = 15f;
+		public bool ShowChips = true;
 
 		[Header("HUD texts (GDD 27)")]
 		[Tooltip("Offsets from the TOP-LEFT corner.")]
-		public Vector2 roundTextPosition = new Vector2(18f, -14f);
-		public Vector2 heartsTextPosition = new Vector2(18f, -60f);
+		public Vector2 RoundTextPosition = new Vector2(18f, -14f);
+		public Vector2 HeartsTextPosition = new Vector2(18f, -60f);
 
 		[Tooltip("Offsets from the BOTTOM-CENTRE.")]
-		public Vector2 instructionTextPosition = new Vector2(0f, 96f);
-		public Vector2 progressTextPosition = new Vector2(0f, 56f);
+		public Vector2 InstructionTextPosition = new Vector2(0f, 96f);
+		public Vector2 ProgressTextPosition = new Vector2(0f, 56f);
 
 		[Tooltip("Offset from the SCREEN CENTRE, for the round intro / MISS / SUCCESS banner.")]
-		public Vector2 resultTextPosition = new Vector2(0f, 60f);
+		public Vector2 ResultTextPosition = new Vector2(0f, 60f);
 
 		[Header("Colours")]
-		public Color ink = new Color(0.06f, 0.24f, 0.62f, 1f);
-		public Color fill = new Color(0.62f, 0.85f, 1f, 1f);
-		public Color chipIdleColor = new Color(0.78f, 0.84f, 0.90f, 1f);
-		public Color chipDoneColor = new Color(0.55f, 0.80f, 0.58f, 1f);
+		public Color Ink = new Color(0.06f, 0.24f, 0.62f, 1f);
+		public Color Fill = new Color(0.62f, 0.85f, 1f, 1f);
+		public Color ChipIdleColor = new Color(0.78f, 0.84f, 0.90f, 1f);
+		public Color ChipDoneColor = new Color(0.55f, 0.80f, 0.58f, 1f);
 
 		// =========================================
 
-		private Canvas canvas;
-		private RectTransform canvasRect;
+		private Canvas _canvas;
+		private RectTransform _canvasRect;
 
-		private RectTransform promptRoot;
-		private RectTransform chipRow;
-		private ArrowIcon arrow;
-		private ArrowIcon sweepHint;
-		private TapIcon hand;
-		private TMP_Text promptLabel;
-		private TMP_Text promptCount;
+		private RectTransform _promptRoot;
+		private RectTransform _chipRow;
+		private ArrowIcon _arrow;
+		private ArrowIcon _sweepHint;
+		private TapIcon _hand;
+		private TMP_Text _promptLabel;
+		private TMP_Text _promptCount;
 
-		private readonly CircleIcon[] chipBacks = new CircleIcon[StepCount];
-		private readonly PromptIcon[] chipGlyphs = new PromptIcon[StepCount];
-		private readonly TMP_Text[] chipLabels = new TMP_Text[StepCount];
+		private readonly CircleIcon[] _chipBacks = new CircleIcon[_stepCount];
+		private readonly PromptIcon[] _chipGlyphs = new PromptIcon[_stepCount];
+		private readonly TMP_Text[] _chipLabels = new TMP_Text[_stepCount];
 
-		private TMP_Text roundText;
-		private TMP_Text instructionText;
-		private TMP_Text progressText;
-		private TMP_Text heartsText;
-		private TMP_Text resultText;
+		private TMP_Text _roundText;
+		private TMP_Text _instructionText;
+		private TMP_Text _progressText;
+		private TMP_Text _heartsText;
+		private TMP_Text _resultText;
 
-		private Transform worldTarget;
-		private Step activeStep;
-		private int activeRequired;
+		private Transform _worldTarget;
+		private Step _activeStep;
+		private int _activeRequired;
 
 		// Set per round from the round rules. The wording is data, not code.
-		private string promptVerb = "TAP";
-		private bool sweepEnabled;
-		private bool built;
+		private string _promptVerb = "TAP";
+		private bool _sweepEnabled;
+		private bool _built;
 
 		// =========================================
 		// CONSTRUCTION
@@ -155,8 +156,8 @@ namespace Game.Minigames.Rat
 
 			if (existing != null)
 			{
-				existing.canvas = canvas;
-				existing.canvasRect = (RectTransform)canvas.transform;
+				existing._canvas = canvas;
+				existing._canvasRect = (RectTransform)canvas.transform;
 				existing.Build();
 
 				return existing;
@@ -169,8 +170,8 @@ namespace Game.Minigames.Rat
 
 			ActionPromptPanel panel = go.AddComponent<ActionPromptPanel>();
 
-			panel.canvas = canvas;
-			panel.canvasRect = (RectTransform)canvas.transform;
+			panel._canvas = canvas;
+			panel._canvasRect = (RectTransform)canvas.transform;
 			panel.Build();
 
 			return panel;
@@ -178,10 +179,10 @@ namespace Game.Minigames.Rat
 
 		private void Build()
 		{
-			if (built)
+			if (_built)
 				return;
 
-			built = true;
+			_built = true;
 
 			// Fill the canvas, whether this object was created here or found in the scene.
 			RectTransform self = (RectTransform)transform;
@@ -201,53 +202,53 @@ namespace Game.Minigames.Rat
 
 		private void BuildPrompt()
 		{
-			promptRoot = MakeRect("Prompt", transform, new Vector2(0.5f, 0.5f), new Vector2(240f, 210f));
+			_promptRoot = MakeRect("Prompt", transform, new Vector2(0.5f, 0.5f), new Vector2(240f, 210f));
 
-			arrow = MakeIcon<ArrowIcon>("Arrow", promptRoot);
-			arrow.direction = ArrowIcon.Dir.Up;
+			_arrow = MakeIcon<ArrowIcon>("Arrow", _promptRoot);
+			_arrow.Direction = ArrowIcon.Dir.Up;
 
-			hand = MakeIcon<TapIcon>("Hand", promptRoot);
+			_hand = MakeIcon<TapIcon>("Hand", _promptRoot);
 
-			sweepHint = MakeIcon<ArrowIcon>("SweepHint", promptRoot);
-			sweepHint.direction = ArrowIcon.Dir.Right;
+			_sweepHint = MakeIcon<ArrowIcon>("SweepHint", _promptRoot);
+			_sweepHint.Direction = ArrowIcon.Dir.Right;
 
-			promptLabel = MakeText("Label", promptRoot, promptLabelFontSize, TextAlignmentOptions.Center);
-			promptCount = MakeText("Count", promptRoot, promptCountFontSize, TextAlignmentOptions.Center);
+			_promptLabel = MakeText("Label", _promptRoot, PromptLabelFontSize, TextAlignmentOptions.Center);
+			_promptCount = MakeText("Count", _promptRoot, PromptCountFontSize, TextAlignmentOptions.Center);
 		}
 
 		private void BuildChips()
 		{
-			chipRow = MakeRect("StepChips", transform, new Vector2(0.5f, 1f), new Vector2(360f, 96f));
+			_chipRow = MakeRect("StepChips", transform, new Vector2(0.5f, 1f), new Vector2(360f, 96f));
 
-			for (int i = 0; i < StepCount; i++)
+			for (int i = 0; i < _stepCount; i++)
 			{
-				CircleIcon back = MakeIcon<CircleIcon>("Chip" + i, chipRow);
-				back.rimWidth = 4f;
+				CircleIcon back = MakeIcon<CircleIcon>("Chip" + i, _chipRow);
+				back.RimWidth = 4f;
 
-				chipBacks[i] = back;
+				_chipBacks[i] = back;
 
 				RectTransform backRect = (RectTransform)back.transform;
 
 				if (i == (int)Step.Throw)
 				{
 					ArrowIcon glyph = MakeIcon<ArrowIcon>("Glyph", backRect);
-					glyph.direction = ArrowIcon.Dir.Up;
-					glyph.animate = false;
-					glyph.outlineWidth = 2.5f;
+					glyph.Direction = ArrowIcon.Dir.Up;
+					glyph.Animate = false;
+					glyph.OutlineWidth = 2.5f;
 
-					chipGlyphs[i] = glyph;
+					_chipGlyphs[i] = glyph;
 				}
 				else
 				{
 					TapIcon glyph = MakeIcon<TapIcon>("Glyph", backRect);
-					glyph.ripple = false;
-					glyph.outlineWidth = 2.5f;
+					glyph.Ripple = false;
+					glyph.OutlineWidth = 2.5f;
 
-					chipGlyphs[i] = glyph;
+					_chipGlyphs[i] = glyph;
 				}
 
-				chipLabels[i] = MakeText("Caption" + i, chipRow, chipCaptionFontSize, TextAlignmentOptions.Center);
-				chipLabels[i].text = CaptionFor((Step)i, 0);
+				_chipLabels[i] = MakeText("Caption" + i, _chipRow, ChipCaptionFontSize, TextAlignmentOptions.Center);
+				_chipLabels[i].text = CaptionFor((Step)i, 0);
 			}
 
 			SetActiveStep(Step.Throw, 0);
@@ -259,7 +260,7 @@ namespace Game.Minigames.Rat
 
 		private void LateUpdate()
 		{
-			if (!built)
+			if (!_built)
 				return;
 
 			ApplyLayout();
@@ -268,51 +269,51 @@ namespace Game.Minigames.Rat
 
 		private void ApplyLayout()
 		{
-			bool riding = worldTarget != null;
+			bool riding = _worldTarget != null;
 
-			Vector2 iconSize = riding ? worldBadgeIconSize : promptIconSize;
+			Vector2 iconSize = riding ? WorldBadgeIconSize : PromptIconSize;
 
-			SetRect((RectTransform)arrow.transform, iconSize, promptIconOffset);
-			SetRect((RectTransform)hand.transform, iconSize, promptIconOffset);
-			SetRect((RectTransform)sweepHint.transform, sweepHintSize, sweepHintOffset);
+			SetRect((RectTransform)_arrow.transform, iconSize, PromptIconOffset);
+			SetRect((RectTransform)_hand.transform, iconSize, PromptIconOffset);
+			SetRect((RectTransform)_sweepHint.transform, SweepHintSize, SweepHintOffset);
 
-			SetRect(promptLabel.rectTransform, new Vector2(240f, 40f), promptLabelOffset);
-			SetRect(promptCount.rectTransform, new Vector2(240f, 34f), promptCountOffset);
+			SetRect(_promptLabel.rectTransform, new Vector2(240f, 40f), PromptLabelOffset);
+			SetRect(_promptCount.rectTransform, new Vector2(240f, 34f), PromptCountOffset);
 
-			promptLabel.fontSize = promptLabelFontSize;
-			promptCount.fontSize = promptCountFontSize;
+			_promptLabel.fontSize = PromptLabelFontSize;
+			_promptCount.fontSize = PromptCountFontSize;
 
-			bool textVisible = !(riding && hideLabelWhileRiding);
+			bool textVisible = !(riding && HideLabelWhileRiding);
 
-			promptLabel.enabled = textVisible;
-			promptCount.enabled = textVisible;
+			_promptLabel.enabled = textVisible;
+			_promptCount.enabled = textVisible;
 
-			chipRow.gameObject.SetActive(showChips);
-			chipRow.anchoredPosition = chipRowPosition;
+			_chipRow.gameObject.SetActive(ShowChips);
+			_chipRow.anchoredPosition = ChipRowPosition;
 
-			for (int i = 0; i < StepCount; i++)
+			for (int i = 0; i < _stepCount; i++)
 			{
-				float x = (i - 1) * chipSpacing;
+				float x = (i - 1) * ChipSpacing;
 
 				SetRect(
-					(RectTransform)chipBacks[i].transform,
-					new Vector2(chipDiameter, chipDiameter),
-					new Vector2(x, chipYOffset)
+					(RectTransform)_chipBacks[i].transform,
+					new Vector2(ChipDiameter, ChipDiameter),
+					new Vector2(x, ChipYOffset)
 				);
 
 				SetRect(
-					(RectTransform)chipGlyphs[i].transform,
-					new Vector2(chipGlyphSize, chipGlyphSize),
+					(RectTransform)_chipGlyphs[i].transform,
+					new Vector2(ChipGlyphSize, ChipGlyphSize),
 					Vector2.zero
 				);
 
 				SetRect(
-					chipLabels[i].rectTransform,
-					new Vector2(chipSpacing - 4f, 22f),
-					new Vector2(x, chipCaptionY)
+					_chipLabels[i].rectTransform,
+					new Vector2(ChipSpacing - 4f, 22f),
+					new Vector2(x, ChipCaptionY)
 				);
 
-				chipLabels[i].fontSize = chipCaptionFontSize;
+				_chipLabels[i].fontSize = ChipCaptionFontSize;
 			}
 
 			ApplyStepAppearance();
@@ -321,35 +322,35 @@ namespace Game.Minigames.Rat
 
 		private void UpdatePromptPosition()
 		{
-			if (promptRoot == null || !promptRoot.gameObject.activeSelf)
+			if (_promptRoot == null || !_promptRoot.gameObject.activeSelf)
 				return;
 
-			if (worldTarget == null)
+			if (_worldTarget == null)
 			{
-				promptRoot.anchoredPosition = promptRestingPosition;
+				_promptRoot.anchoredPosition = PromptRestingPosition;
 				return;
 			}
 
 			Camera cam = Camera.main;
 
-			if (cam == null || canvasRect == null)
+			if (cam == null || _canvasRect == null)
 				return;
 
-			Vector3 screen = cam.WorldToScreenPoint(worldTarget.position);
+			Vector3 screen = cam.WorldToScreenPoint(_worldTarget.position);
 
 			if (screen.z < 0f)
 				return;
 
-			Camera uiCamera = canvas != null && canvas.renderMode == RenderMode.ScreenSpaceOverlay
+			Camera uiCamera = _canvas != null && _canvas.renderMode == RenderMode.ScreenSpaceOverlay
 				? null
-				: (canvas != null ? canvas.worldCamera : null);
+				: (_canvas != null ? _canvas.worldCamera : null);
 
 			Vector2 local;
 
 			if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
-					canvasRect, screen, uiCamera, out local))
+					_canvasRect, screen, uiCamera, out local))
 			{
-				promptRoot.anchoredPosition = local + worldBadgeOffset;
+				_promptRoot.anchoredPosition = local + WorldBadgeOffset;
 			}
 		}
 
@@ -359,50 +360,50 @@ namespace Game.Minigames.Rat
 
 		public void ShowThrow()
 		{
-			worldTarget = null;
+			_worldTarget = null;
 
-			promptRoot.gameObject.SetActive(true);
+			_promptRoot.gameObject.SetActive(true);
 
-			arrow.gameObject.SetActive(true);
-			hand.gameObject.SetActive(false);
-			sweepHint.gameObject.SetActive(false);
+			_arrow.gameObject.SetActive(true);
+			_hand.gameObject.SetActive(false);
+			_sweepHint.gameObject.SetActive(false);
 
-			promptLabel.text = "SWIPE UP";
-			promptCount.text = "";
+			_promptLabel.text = "SWIPE UP";
+			_promptCount.text = "";
 
 			SetActiveStep(Step.Throw, 0);
 		}
 
 		/// <summary>
 		/// Sets the wording and whether the sweep affordance is shown. Called once per
-		/// round from GameManager, straight out of the round rules.
+		/// round from RatManager, straight out of the round rules.
 		/// </summary>
 		public void SetRoundStyle(string verb, bool allowSweep)
 		{
-			promptVerb = string.IsNullOrEmpty(verb) ? "TAP" : verb;
-			sweepEnabled = allowSweep;
+			_promptVerb = string.IsNullOrEmpty(verb) ? "TAP" : verb;
+			_sweepEnabled = allowSweep;
 		}
 
 		/// <summary>Short form for the chip caption, which is too narrow for "TAP OR SWEEP".</summary>
 		private string ShortVerb()
 		{
-			int space = promptVerb.IndexOf(' ');
+			int space = _promptVerb.IndexOf(' ');
 
-			return space > 0 ? promptVerb.Substring(0, space) : promptVerb;
+			return space > 0 ? _promptVerb.Substring(0, space) : _promptVerb;
 		}
 
 		public void ShowTap(int collected, int required)
 		{
-			worldTarget = null;
+			_worldTarget = null;
 
-			promptRoot.gameObject.SetActive(true);
+			_promptRoot.gameObject.SetActive(true);
 
-			arrow.gameObject.SetActive(false);
-			hand.gameObject.SetActive(true);
-			sweepHint.gameObject.SetActive(sweepEnabled);
+			_arrow.gameObject.SetActive(false);
+			_hand.gameObject.SetActive(true);
+			_sweepHint.gameObject.SetActive(_sweepEnabled);
 
-			promptLabel.text = promptVerb + " " + required;
-			promptCount.text = collected + " / " + required;
+			_promptLabel.text = _promptVerb + " " + required;
+			_promptCount.text = collected + " / " + required;
 
 			SetActiveStep(Step.Tap, required);
 		}
@@ -410,26 +411,26 @@ namespace Game.Minigames.Rat
 		/// <summary>Pins the hand badge to a world object so it rides the ball as it falls.</summary>
 		public void ShowCatch(Transform target)
 		{
-			worldTarget = target;
+			_worldTarget = target;
 
-			promptRoot.gameObject.SetActive(true);
+			_promptRoot.gameObject.SetActive(true);
 
-			arrow.gameObject.SetActive(false);
-			hand.gameObject.SetActive(true);
-			sweepHint.gameObject.SetActive(false);
+			_arrow.gameObject.SetActive(false);
+			_hand.gameObject.SetActive(true);
+			_sweepHint.gameObject.SetActive(false);
 
-			promptLabel.text = "CATCH";
-			promptCount.text = "";
+			_promptLabel.text = "CATCH";
+			_promptCount.text = "";
 
 			SetActiveStep(Step.Catch, 0);
 		}
 
 		public void Hide()
 		{
-			worldTarget = null;
+			_worldTarget = null;
 
-			if (promptRoot != null)
-				promptRoot.gameObject.SetActive(false);
+			if (_promptRoot != null)
+				_promptRoot.gameObject.SetActive(false);
 		}
 
 		// =========================================
@@ -438,13 +439,13 @@ namespace Game.Minigames.Rat
 
 		private void SetActiveStep(Step active, int required)
 		{
-			activeStep = active;
-			activeRequired = required;
+			_activeStep = active;
+			_activeRequired = required;
 
-			for (int i = 0; i < StepCount; i++)
+			for (int i = 0; i < _stepCount; i++)
 			{
-				if (chipLabels[i] != null)
-					chipLabels[i].text = CaptionFor((Step)i, activeRequired);
+				if (_chipLabels[i] != null)
+					_chipLabels[i].text = CaptionFor((Step)i, _activeRequired);
 			}
 
 			ApplyStepAppearance();
@@ -452,45 +453,45 @@ namespace Game.Minigames.Rat
 
 		private void ApplyStepAppearance()
 		{
-			for (int i = 0; i < StepCount; i++)
+			for (int i = 0; i < _stepCount; i++)
 			{
-				bool isActive = i == (int)activeStep;
-				bool isDone = i < (int)activeStep;
+				bool isActive = i == (int)_activeStep;
+				bool isDone = i < (int)_activeStep;
 
 				float alpha = isActive ? 1f : (isDone ? 0.55f : 0.35f);
 
-				if (chipBacks[i] != null)
+				if (_chipBacks[i] != null)
 				{
-					chipBacks[i].color = isActive ? fill : (isDone ? chipDoneColor : chipIdleColor);
-					chipBacks[i].outlineColor = ink;
-					chipBacks[i].transform.localScale =
-						Vector3.one * (isActive ? chipActiveScale : chipIdleScale);
+					_chipBacks[i].color = isActive ? Fill : (isDone ? ChipDoneColor : ChipIdleColor);
+					_chipBacks[i].OutlineColor = Ink;
+					_chipBacks[i].transform.localScale =
+						Vector3.one * (isActive ? ChipActiveScale : ChipIdleScale);
 				}
 
-				if (chipGlyphs[i] != null)
+				if (_chipGlyphs[i] != null)
 				{
-					Color c = ink;
+					Color c = Ink;
 					c.a = alpha;
 
 					// Dim the outline too, otherwise a faded glyph keeps a hard dark edge.
-					chipGlyphs[i].color = c;
-					chipGlyphs[i].outlineColor = c;
+					_chipGlyphs[i].color = c;
+					_chipGlyphs[i].OutlineColor = c;
 				}
 
-				if (chipLabels[i] != null)
-					chipLabels[i].alpha = alpha;
+				if (_chipLabels[i] != null)
+					_chipLabels[i].alpha = alpha;
 			}
 
-			if (arrow != null)
+			if (_arrow != null)
 			{
-				arrow.color = fill;
-				arrow.outlineColor = ink;
+				_arrow.color = Fill;
+				_arrow.OutlineColor = Ink;
 			}
 
-			if (hand != null)
+			if (_hand != null)
 			{
-				hand.color = fill;
-				hand.outlineColor = ink;
+				_hand.color = Fill;
+				_hand.OutlineColor = Ink;
 			}
 		}
 
@@ -521,31 +522,31 @@ namespace Game.Minigames.Rat
 			TMP_Text hearts,
 			TMP_Text result)
 		{
-			roundText = round;
-			instructionText = instruction;
-			progressText = progress;
-			heartsText = hearts;
-			resultText = result;
+			_roundText = round;
+			_instructionText = instruction;
+			_progressText = progress;
+			_heartsText = hearts;
+			_resultText = result;
 
-			Configure(roundText, 32f, TextAlignmentOptions.TopLeft);
-			Configure(heartsText, 22f, TextAlignmentOptions.TopLeft);
-			Configure(instructionText, 30f, TextAlignmentOptions.Center);
-			Configure(progressText, 24f, TextAlignmentOptions.Center);
-			Configure(resultText, 40f, TextAlignmentOptions.Center);
+			Configure(_roundText, 32f, TextAlignmentOptions.TopLeft);
+			Configure(_heartsText, 22f, TextAlignmentOptions.TopLeft);
+			Configure(_instructionText, 30f, TextAlignmentOptions.Center);
+			Configure(_progressText, 24f, TextAlignmentOptions.Center);
+			Configure(_resultText, 40f, TextAlignmentOptions.Center);
 
-			if (resultText != null)
-				resultText.text = "";
+			if (_resultText != null)
+				_resultText.text = "";
 
 			ApplyHudTextPositions();
 		}
 
 		private void ApplyHudTextPositions()
 		{
-			Place(roundText, new Vector2(0f, 1f), new Vector2(0f, 1f), roundTextPosition, new Vector2(460f, 46f));
-			Place(heartsText, new Vector2(0f, 1f), new Vector2(0f, 1f), heartsTextPosition, new Vector2(300f, 34f));
-			Place(instructionText, new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f), instructionTextPosition, new Vector2(520f, 46f));
-			Place(progressText, new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f), progressTextPosition, new Vector2(300f, 36f));
-			Place(resultText, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), resultTextPosition, new Vector2(620f, 180f));
+			Place(_roundText, new Vector2(0f, 1f), new Vector2(0f, 1f), RoundTextPosition, new Vector2(460f, 46f));
+			Place(_heartsText, new Vector2(0f, 1f), new Vector2(0f, 1f), HeartsTextPosition, new Vector2(300f, 34f));
+			Place(_instructionText, new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f), InstructionTextPosition, new Vector2(520f, 46f));
+			Place(_progressText, new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f), ProgressTextPosition, new Vector2(300f, 36f));
+			Place(_resultText, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), ResultTextPosition, new Vector2(620f, 180f));
 		}
 
 		private static void Configure(TMP_Text text, float fontSize, TextAlignmentOptions alignment)
@@ -619,8 +620,8 @@ namespace Game.Minigames.Rat
 
 			T icon = go.AddComponent<T>();
 
-			icon.color = fill;
-			icon.outlineColor = ink;
+			icon.color = Fill;
+			icon.OutlineColor = Ink;
 			icon.raycastTarget = false;
 
 			return icon;

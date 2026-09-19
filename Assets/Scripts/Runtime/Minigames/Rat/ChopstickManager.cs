@@ -4,47 +4,47 @@ using UnityEngine;
 namespace Game.Minigames.Rat
 {
 	// Owns the chopstick pool: creates them from the prefab, scatters them, hands
-	// them out. Single source of truth - GameManager asks it rather than keeping
+	// them out. Single source of truth - RatManager asks it rather than keeping
 	// its own array. Ported from rice/rat, minus the balance-table pool sizing.
 	public sealed class ChopstickManager : MonoBehaviour
 	{
 		[Header("Chopstick Setup")]
-		public GameObject chopstickPrefab;
+		public GameObject ChopstickPrefab;
 
 		[Tooltip("How many chopstick objects to create. Rounds may use fewer than this, " +
 		         "never more, so set it to the largest total any round asks for.")]
-		public int poolSize = RoundRules.TotalChopsticks;
+		public int PoolSize = RoundRules.TotalChopsticks;
 
 		[Tooltip("Default count when no round says otherwise.")]
-		public int chopstickCount = RoundRules.TotalChopsticks;
+		public int ChopstickCount = RoundRules.TotalChopsticks;
 
 		[Header("Spawn Area")]
-		public float spawnAreaX = 5f;
-		public float spawnAreaZ = 5f;
+		public float SpawnAreaX = 5f;
+		public float SpawnAreaZ = 5f;
 
-		private Chopstick[] chopsticks;
+		private Chopstick[] _chopsticks;
 
 		// Half the chopstick's vertical thickness when it lies flat. Measured from the
 		// mesh rather than serialised: the old serialised value floated every stick
 		// a fifth of a unit above the table surface.
-		private float restHeight = 0.05f;
+		private float _restHeight = 0.05f;
 
 		// How many of the pool this round is using. The rest stay hidden.
-		private int activeCount;
+		private int _activeCount;
 
 		/// <summary>How many chopsticks are still on the table.</summary>
 		public int AvailableCount
 		{
 			get
 			{
-				if (chopsticks == null) return 0;
+				if (_chopsticks == null) return 0;
 
 				int n = 0;
 
-				for (int i = 0; i < chopsticks.Length; i++)
+				for (int i = 0; i < _chopsticks.Length; i++)
 				{
-					if (i >= activeCount) continue;
-					if (chopsticks[i] != null && !chopsticks[i].IsCollected()) n++;
+					if (i >= _activeCount) continue;
+					if (_chopsticks[i] != null && !_chopsticks[i].IsCollected()) n++;
 				}
 
 				return n;
@@ -55,24 +55,24 @@ namespace Game.Minigames.Rat
 
 		private void CreateChopsticks()
 		{
-			if (chopsticks != null) return;
+			if (_chopsticks != null) return;
 
-			if (chopstickPrefab == null)
+			if (ChopstickPrefab == null)
 			{
-				Debug.LogError("ChopstickManager: chopstickPrefab is not assigned.", this);
+				Debug.LogError("ChopstickManager: ChopstickPrefab is not assigned.", this);
 				return;
 			}
 
-			int size = Mathf.Max(poolSize, chopstickCount);
+			int size = Mathf.Max(PoolSize, ChopstickCount);
 
 			// Size the pool to the largest round, then show only what each round needs.
 			// Chopsticks are never created mid-run: instantiating during a turn would
 			// stall the frame the player is trying to act in.
-			chopsticks = new Chopstick[size];
+			_chopsticks = new Chopstick[size];
 
 			for (int i = 0; i < size; i++)
 			{
-				GameObject obj = Instantiate(chopstickPrefab, transform);
+				GameObject obj = Instantiate(ChopstickPrefab, transform);
 
 				Chopstick chopstick = obj.GetComponent<Chopstick>();
 
@@ -85,11 +85,11 @@ namespace Game.Minigames.Rat
 				chopstick.Initialize(i + 1);
 
 				if (i == 0)
-					restHeight = MeasureRestHeight(obj);
+					_restHeight = MeasureRestHeight(obj);
 
 				obj.SetActive(false);
 
-				chopsticks[i] = chopstick;
+				_chopsticks[i] = chopstick;
 			}
 		}
 
@@ -101,56 +101,56 @@ namespace Game.Minigames.Rat
 		{
 			Renderer r = obj.GetComponentInChildren<Renderer>();
 
-			if (r == null) return restHeight;
+			if (r == null) return _restHeight;
 
 			return Mathf.Max(r.bounds.extents.y, 0.01f);
 		}
 
 		/// <summary>Scatters all 10 chopsticks across the table.</summary>
-		public void DropChopsticks() => DropChopsticks(chopstickCount);
+		public void DropChopsticks() => DropChopsticks(ChopstickCount);
 
 		/// <summary>Scatters <paramref name="count"/> chopsticks and hides the rest of the pool.</summary>
 		public void DropChopsticks(int count)
 		{
-			if (chopsticks == null) return;
+			if (_chopsticks == null) return;
 
-			activeCount = Mathf.Clamp(count, 0, chopsticks.Length);
+			_activeCount = Mathf.Clamp(count, 0, _chopsticks.Length);
 
-			if (count > chopsticks.Length)
+			if (count > _chopsticks.Length)
 			{
 				Debug.LogWarning(
 					"ChopstickManager: round asked for " + count + " chopsticks but the pool " +
-					"holds " + chopsticks.Length + ". Raise poolSize.", this);
+					"holds " + _chopsticks.Length + ". Raise PoolSize.", this);
 			}
 
-			for (int i = 0; i < chopsticks.Length; i++)
+			for (int i = 0; i < _chopsticks.Length; i++)
 			{
-				if (chopsticks[i] == null) continue;
+				if (_chopsticks[i] == null) continue;
 
-				if (i >= activeCount)
+				if (i >= _activeCount)
 				{
-					chopsticks[i].gameObject.SetActive(false);
+					_chopsticks[i].gameObject.SetActive(false);
 					continue;
 				}
 
-				chopsticks[i].ResetChopstick();
+				_chopsticks[i].ResetChopstick();
 
-				RandomizePosition(chopsticks[i]);
+				RandomizePosition(_chopsticks[i]);
 			}
 		}
 
 		/// <summary>Applies this round's spawn footprint and hit-target size.</summary>
 		public void Configure(float areaX, float areaZ, float targetScale)
 		{
-			spawnAreaX = areaX;
-			spawnAreaZ = areaZ;
+			SpawnAreaX = areaX;
+			SpawnAreaZ = areaZ;
 
-			if (chopsticks == null) return;
+			if (_chopsticks == null) return;
 
-			for (int i = 0; i < chopsticks.Length; i++)
+			for (int i = 0; i < _chopsticks.Length; i++)
 			{
-				if (chopsticks[i] != null)
-					chopsticks[i].SetHitScale(targetScale);
+				if (_chopsticks[i] != null)
+					_chopsticks[i].SetHitScale(targetScale);
 			}
 		}
 
@@ -190,8 +190,8 @@ namespace Game.Minigames.Rat
 
 			for (int attempt = 0; attempt < maxAttempts; attempt++)
 			{
-				float x = Random.Range(-spawnAreaX, spawnAreaX);
-				float z = Random.Range(-spawnAreaZ, spawnAreaZ);
+				float x = Random.Range(-SpawnAreaX, SpawnAreaX);
+				float z = Random.Range(-SpawnAreaZ, SpawnAreaZ);
 
 				RaycastHit hit;
 
@@ -210,21 +210,21 @@ namespace Game.Minigames.Rat
 				if (hit.collider.GetComponentInParent<Chopstick>() != null) continue;
 				if (hit.collider.GetComponentInParent<BallController>() != null) continue;
 
-				return new Vector3(x, hit.point.y + restHeight, z);
+				return new Vector3(x, hit.point.y + _restHeight, z);
 			}
 
 			// Nothing solid under the spawn area at all. Fall back to the origin so the
 			// chopsticks stay visible and the misconfiguration is obvious on screen.
-			return new Vector3(0f, restHeight, 0f);
+			return new Vector3(0f, _restHeight, 0f);
 		}
 
 		public Chopstick GetChopstick(int index)
 		{
-			if (chopsticks == null || index < 0 || index >= chopsticks.Length) return null;
+			if (_chopsticks == null || index < 0 || index >= _chopsticks.Length) return null;
 
-			return chopsticks[index];
+			return _chopsticks[index];
 		}
 
-		public Chopstick[] GetAllChopsticks() => chopsticks;
+		public Chopstick[] GetAllChopsticks() => _chopsticks;
 	}
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Minigames.Rat
+namespace Game.Minigames.Rat.UI
 {
 	// Directional prompt arrow with a round anchor dot at its tail, drawn procedurally.
 	// Covers the whole GDD section 18 prompt set - eight compass directions plus the two
@@ -24,26 +24,26 @@ namespace Game.Minigames.Rat
 		}
 
 		[Header("Arrow")]
-		public Dir direction = Dir.Up;
+		public Dir Direction = Dir.Up;
 
 		[Header("Idle animation")]
-		public bool animate = true;
+		public bool Animate = true;
 		[Tooltip("How far the arrow drifts along its own axis, in pixels.")]
-		public float travel = 9f;
-		public float speed = 1.7f;
+		public float Travel = 9f;
+		public float Speed = 1.7f;
 
-		private float animShift;
+		private float _animShift;
 
 		private void Update()
 		{
-			if (!animate)
+			if (!Animate)
 				return;
 
-			float shift = Mathf.Sin(Time.unscaledTime * speed * Mathf.PI) * travel * 0.5f;
+			float shift = Mathf.Sin(Time.unscaledTime * Speed * Mathf.PI) * Travel * 0.5f;
 
-			if (!Mathf.Approximately(shift, animShift))
+			if (!Mathf.Approximately(shift, _animShift))
 			{
-				animShift = shift;
+				_animShift = shift;
 				Redraw();
 			}
 		}
@@ -52,14 +52,14 @@ namespace Game.Minigames.Rat
 		{
 			vh.Clear();
 
-			if (direction == Dir.RotateCW || direction == Dir.RotateCCW)
+			if (Direction == Dir.RotateCW || Direction == Dir.RotateCCW)
 			{
-				BuildRotate(vh, outlineWidth, outlineColor);
+				BuildRotate(vh, OutlineWidth, OutlineColor);
 				BuildRotate(vh, 0f, color);
 				return;
 			}
 
-			BuildArrow(vh, outlineWidth, outlineColor);
+			BuildArrow(vh, OutlineWidth, OutlineColor);
 			BuildArrow(vh, 0f, color);
 		}
 
@@ -70,7 +70,7 @@ namespace Game.Minigames.Rat
 		private void BuildArrow(VertexHelper vh, float pad, Color32 col)
 		{
 			float s = Size;
-			float angle = AngleFor(direction);
+			float angle = AngleFor(Direction);
 
 			// Built pointing up, then rotated into place.
 			float dotRadius = 0.100f * s + pad;
@@ -87,7 +87,7 @@ namespace Game.Minigames.Rat
 				ExpandTriangle(ref headLeft, ref headRight, ref headTip, pad);
 
 			// The whole arrow drifts along its own pointing axis.
-			Vector2 drift = new Vector2(0f, animShift);
+			Vector2 drift = new Vector2(0f, _animShift);
 
 			AddCircle(vh, Rotate(dotCentre + drift, angle), dotRadius, col);
 
@@ -120,7 +120,7 @@ namespace Game.Minigames.Rat
 			float radius = 0.30f * s;
 			float thickness = 0.085f * s + pad * 2f;
 
-			bool clockwise = direction == Dir.RotateCW;
+			bool clockwise = Direction == Dir.RotateCW;
 
 			float start = clockwise ? 300f : -120f;
 			float sweep = clockwise ? -250f : 250f;

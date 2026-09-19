@@ -336,35 +336,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7a49a9febfe9c4ebb882ac94fa8ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptRestingPosition: {x: 0, y: -185}
-  promptIconSize: {x: 80, y: 80}
-  promptIconOffset: {x: 0, y: 30}
-  promptLabelOffset: {x: 0, y: -52}
-  promptCountOffset: {x: 0, y: -84}
-  promptLabelFontSize: 24
-  promptCountFontSize: 20
-  worldBadgeOffset: {x: 0, y: 0}
-  worldBadgeIconSize: {x: 96, y: 96}
-  hideLabelWhileRiding: 0
-  chipRowPosition: {x: 0, y: -52}
-  chipSpacing: 108
-  chipDiameter: 62
-  chipGlyphSize: 36
-  chipCaptionY: -34
-  chipYOffset: 6
-  chipActiveScale: 1.18
-  chipIdleScale: 0.92
-  chipCaptionFontSize: 15
-  showChips: 1
-  roundTextPosition: {x: 18, y: -14}
-  heartsTextPosition: {x: 18, y: -60}
-  instructionTextPosition: {x: 0, y: 96}
-  progressTextPosition: {x: 0, y: 56}
-  resultTextPosition: {x: 0, y: 60}
-  ink: {r: 0.06, g: 0.24, b: 0.62, a: 1}
-  fill: {r: 0.62, g: 0.85, b: 1, a: 1}
-  chipIdleColor: {r: 0.78, g: 0.84, b: 0.9, a: 1}
-  chipDoneColor: {r: 0.55, g: 0.8, b: 0.58, a: 1}
+  PromptRestingPosition: {x: 0, y: -185}
+  PromptIconSize: {x: 80, y: 80}
+  PromptIconOffset: {x: 0, y: 30}
+  PromptLabelOffset: {x: 0, y: -52}
+  PromptCountOffset: {x: 0, y: -84}
+  PromptLabelFontSize: 24
+  PromptCountFontSize: 20
+  WorldBadgeOffset: {x: 0, y: 0}
+  WorldBadgeIconSize: {x: 96, y: 96}
+  HideLabelWhileRiding: 0
+  ChipRowPosition: {x: 0, y: -52}
+  ChipSpacing: 108
+  ChipDiameter: 62
+  ChipGlyphSize: 36
+  ChipCaptionY: -34
+  ChipYOffset: 6
+  ChipActiveScale: 1.18
+  ChipIdleScale: 0.92
+  ChipCaptionFontSize: 15
+  ShowChips: 1
+  RoundTextPosition: {x: 18, y: -14}
+  HeartsTextPosition: {x: 18, y: -60}
+  InstructionTextPosition: {x: 0, y: 96}
+  ProgressTextPosition: {x: 0, y: 56}
+  ResultTextPosition: {x: 0, y: 60}
+  Ink: {r: 0.06, g: 0.24, b: 0.62, a: 1}
+  Fill: {r: 0.62, g: 0.85, b: 1, a: 1}
+  ChipIdleColor: {r: 0.78, g: 0.84, b: 0.9, a: 1}
+  ChipDoneColor: {r: 0.55, g: 0.8, b: 0.58, a: 1}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,17 +534,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213c48a1ddae181489e40556168ce447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 411828048}
-  startPoint: {fileID: 184459982}
-  minThrowForce: 5
-  maxThrowForce: 11
-  directionInfluence: 0.7
-  maxTiltDegrees: 20
-  restOnSurface: 1
-  surfaceSkin: 0.02
-  riseThreshold: 1
-  settleSpeed: 0.35
-  settleSeconds: 0.35
+  Rb: {fileID: 411828048}
+  StartPoint: {fileID: 184459982}
+  MinThrowForce: 5
+  MaxThrowForce: 11
+  DirectionInfluence: 0.7
+  MaxTiltDegrees: 20
+  RestOnSurface: 1
+  SurfaceSkin: 0.02
+  RiseThreshold: 1
+  SettleSpeed: 0.35
+  SettleSeconds: 0.35
 --- !u!135 &411828047
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -724,19 +724,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e33a0253c69b1b19956709e96b4534b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
-  round: 1
-  hearts: 3
-  ball: {fileID: 411828046}
-  catchLineOffset: 0.05
-  turnDelay: 0.7
-  failDelay: 1.1
-  roundDelay: 1.4
-  roundText: {fileID: 1450738679}
-  instructionText: {fileID: 1746071002}
-  progressText: {fileID: 1746072002}
-  heartsText: {fileID: 1583781669}
-  resultText: {fileID: 949358595}
+  State: 0
+  Round: 1
+  Hearts: 3
+  Ball: {fileID: 411828046}
+  CatchLineOffset: 0.05
+  TurnDelay: 0.7
+  FailDelay: 1.1
+  RoundDelay: 1.4
+  RoundText: {fileID: 1450738679}
+  InstructionText: {fileID: 1746071002}
+  ProgressText: {fileID: 1746072002}
+  HeartsText: {fileID: 1583781669}
+  ResultText: {fileID: 949358595}
 --- !u!4 &837224184
 Transform:
   m_ObjectHideFlags: 0
@@ -918,10 +918,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f585f8bfa325c1f49a0860a4307f6a3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chopstickPrefab: {fileID: 3793408269565627425, guid: 657279767ffe3024bb2916966a98afd6, type: 3}
-  chopstickCount: 10
-  spawnAreaX: 5
-  spawnAreaZ: 5
+  ChopstickPrefab: {fileID: 3793408269565627425, guid: 657279767ffe3024bb2916966a98afd6, type: 3}
+  ChopstickCount: 10
+  SpawnAreaX: 5
+  SpawnAreaZ: 5
 --- !u!4 &1127302577
 Transform:
   m_ObjectHideFlags: 0
@@ -1709,12 +1709,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6aee6b77330fcce221527e2f56c474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  ball: {fileID: 411828046}
-  chopstickManager: {fileID: 1127302576}
-  minSwipeDistance: 50
-  maxSwipeDistance: 400
-  tapSlop: 24
+  Cam: {fileID: 0}
+  Ball: {fileID: 411828046}
+  ChopstickManager: {fileID: 1127302576}
+  MinSwipeDistance: 50
+  MaxSwipeDistance: 400
+  TapSlop: 24
 --- !u!4 &1746070462
 Transform:
   m_ObjectHideFlags: 0
