@@ -11,6 +11,7 @@ namespace Game.Core
 		[Header("Content")] public CardSettings Cards;
 		[Header("Content")] public DialogueSettings Dialogues;
 		[Header("Content")] public ChapterSettings Chapters;
+		[Header("Content")] public MinigameSettings Minigames; // optional — built without minigames tolerate null
 		[Header("Input")] public float MouseSensitivity = 1.0f;
 	}
 }

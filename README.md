@@ -144,6 +144,52 @@ Character/camera have no seams (production code is frozen), so they run as **Pla
 > `CharacterController` starts fighting `transform.Rotate` in a future Unity upgrade, that test
 > fails first and the rotation path needs revisiting.
 
+## Minigames
+
+Minigames are small interactive scenes launched from the narrative (a dialogue
+footer or any code) and bridged back by `MinigameService`. The system is three
+small pieces plus designer data:
+
+- `Content/MinigameSettings` (ScriptableObject) — `id → { scene_name, reward_card_id }`,
+  imported from `Assets/Settings/Game/YAML/minigames.yaml` by the same content pipeline
+  as cards/dialogues/chapters.
+- `Core/MinigameService` — `Start(id)` load-adds the scene over the persistent core
+  and remembers the interrupted level; `Complete(id, won)` grants `reward_card_id`
+  on a win (so chapter gates and save data work on it with zero new code) and
+  reloads the narrative level.
+- Dialogue footer: `DialogueEntry.MinigameId` (data, imported from dialogues.ln) —
+  when the dialogue ends, its minigame starts. `RewardCardId` is untouched.
+
+### Importing a minigame (the agent recipe)
+
+1. **Drop a scene** under `Assets/Scenes/` (additively loaded; talk to the core
+   through `Services`).
+2. **Add one entry** to `minigames.yaml`: `id: { scene_name, reward_card_id }` and
+   run *Assets → Import Content from YAML*.
+3. **Wire the trigger**: set `minigame_id` on a dialogues.yaml entry, or call
+   `Services.Minigame.Start("id")` from any scene code.
+
+No system file is touched per minigame.
+
+### Ported: Banh Đũa (Chơi Chuyền), codename Rat — rounds 1–3
+
+Port from `rice/rat` prototype, cut to minimum-functionality tap-through:
+
+| Shipped | Location |
+|---|---|
+| Ball / chopstick / pool physics | `Runtime/Minigames/Rat/` (BallController, Chopstick, ChopstickManager) — ported 1:1, new-physics API matches this project's build (6000.7.0a6) |
+| Round rules (Nhăt Một / Hai / Ba, 10 sticks, take r per turn) | `RoundRules.cs` — balance table removed, built-in traditional rules kept |
+| State machine + heart loss + miss detection | `RatManager.cs` — score/TuningHud stripped; drives the prompt panel; win/lose call `Services.Minigame.Complete` |
+| Tap + swipe-up throw input (mobile + desktop) | `GestureInput.cs` — sweep gesture and swipe steering stripped |
+| Prompt HUD (icons, chips, badges) | `Runtime/Minigames/Rat/UI/` — ActionPromptPanel + 4 procedural icons (PromptIcon, ArrowIcon, TapIcon, CircleIcon), ported 1:1; scene config GO restored |
+| Scene, prefabs, HUD | `Scenes/Rat.unity`, `Prefabs/Chopsticks.prefab`, `Prefabs/Table.prefab` — panel config GO restored, instruction/progress texts blanked (the panel renders live labels) |
+| Data + first hook | `minigames.yaml` (`rat` entry) + `minigame_id: rat` on the `card_chopsticks_tao` dialogue; win reward: `card_chopsticks` |
+
+**Not ported (deferred)** — sweep/drag-to-collect affordance, rounds 4+, the balance
+table tuning tier, score display, `TuningHud` (debug overlay, not player UI).
+Compile + import + play-mode tests are verified headless (`Unity.exe -batchmode`);
+the port still needs one interactive playthrough.
+
 ## Porting checklist
 
 1. Reread `InputMonitor.cs` — the whole input contract. Remap bindings in the actions asset.

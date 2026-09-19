@@ -24,6 +24,7 @@ namespace Game.Core
 		public CardInventory Cards { get; private set; }
 		public InteractionService Interactions { get; private set; }
 		public DialogueService Dialogue { get; private set; }
+		public MinigameService Minigames { get; private set; }
 		public ChapterState Chapter { get; private set; }
 		public InputSettings InputSettings { get; private set; }
 		public PauseState Pause { get; private set; }
@@ -50,7 +51,8 @@ namespace Game.Core
 					_settings.Dialogues.Entries.Keys,
 					_settings.Chapters != null ? _settings.Chapters.Entries.Keys : null,
 					_settings.Cards.Entries.Keys).ToArray()));
-			_container.Provide(g => new DialogueService(g.Grab<CardInventory>(), _settings.Dialogues));
+			_container.Provide(g => new MinigameService(g.Grab<CardInventory>(), _settings.Minigames));
+			_container.Provide(g => new DialogueService(g.Grab<CardInventory>(), _settings.Dialogues, g.Grab<MinigameService>()));
 			_container.Provide(g => new ChapterState(g.Grab<CardInventory>(), g.Grab<DialogueService>(), _settings.Chapters));
 			_container.Provide(g => new ProgressStore(g.Grab<CardInventory>(), g.Grab<DialogueService>(), g.Grab<ChapterState>()));
 
@@ -58,6 +60,7 @@ namespace Game.Core
 			Cards = _container.Grab<CardInventory>();
 			Interactions = _container.Grab<InteractionService>();
 			Dialogue = _container.Grab<DialogueService>();
+			Minigames = _container.Grab<MinigameService>();
 			Chapter = _container.Grab<ChapterState>();
 			InputSettings = _container.Grab<InputSettings>();
 			Pause = _container.Grab<PauseState>();
@@ -65,6 +68,8 @@ namespace Game.Core
 
 			Progress.Load(); // resume persisted progress on boot (cards, conversations, chapter)
 		}
+
+		public static string CurrentLevel => Instance != null ? Instance._currentLevel : null;
 
 		// Loads a level scene additively on top of the persistent core, unloading the
 		// previous level. Use this instead of SceneManager.LoadScene — a plain (non-additive)

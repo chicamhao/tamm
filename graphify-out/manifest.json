@@ -192,15 +192,15 @@
     "semantic_hash": ""
   },
   "Assets/Scripts/Editor/Dialogue/ContentAssetFactory.cs": {
-    "mtime": 1789276607.890627,
-    "seen": 1789656622.2978733,
-    "ast_hash": "cc4512d76ea05fa7607f08e401896d59",
+    "mtime": 1789779712.5552368,
+    "seen": 1789779992.6461482,
+    "ast_hash": "d154702aed6fe97a6759f9a87bb19428",
     "semantic_hash": ""
   },
   "Assets/Scripts/Editor/Dialogue/ContentTools.cs": {
-    "mtime": 1789276637.1001313,
-    "seen": 1789656622.2978756,
-    "ast_hash": "0ead59a3be143b6be95bf629ce089290",
+    "mtime": 1789779718.4097197,
+    "seen": 1789779992.6461508,
+    "ast_hash": "dbd000f8800c3629b55a13103fa5c29c",
     "semantic_hash": ""
   },
   "Assets/Scripts/Editor/Dialogue/ContentYAMLExporter.cs": {
@@ -210,9 +210,9 @@
     "semantic_hash": ""
   },
   "Assets/Scripts/Editor/Dialogue/ContentYAMLParser.cs": {
-    "mtime": 1789276587.8374836,
-    "seen": 1789656622.2978792,
-    "ast_hash": "b7d19722aa4cd34222e403f01ae45a21",
+    "mtime": 1789779712.557238,
+    "seen": 1789779992.6461546,
+    "ast_hash": "e5857176e707cfcacb7d28f4c722f315",
     "semantic_hash": ""
   },
   "Assets/Scripts/Framework/Container.cs": {
@@ -228,9 +228,9 @@
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Content/DialogueSettings.cs": {
-    "mtime": 1789274290.7655883,
-    "seen": 1789275359.1740506,
-    "ast_hash": "da88d7fe56b94988e83c277ff68c9bce",
+    "mtime": 1789779626.3629093,
+    "seen": 1789779992.6461651,
+    "ast_hash": "2bb04ae1f4a46170a5cd1882a05149ee",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Content/Identifier.cs": {
@@ -240,15 +240,15 @@
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Core/Bootstrapper.cs": {
-    "mtime": 1789576461.7246847,
-    "seen": 1789656622.2978978,
-    "ast_hash": "3dbe22f5a72a7638dec1308013e0f20b",
+    "mtime": 1789779613.198224,
+    "seen": 1789779992.6461725,
+    "ast_hash": "95e24858e6a9d9f5ba01b57d20d55c06",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Core/GameSettings.cs": {
-    "mtime": 1789274997.3741703,
-    "seen": 1789275359.1740549,
-    "ast_hash": "7716ecfcae60703ba1493246301be1e9",
+    "mtime": 1789779626.3629093,
+    "seen": 1789779992.6461785,
+    "ast_hash": "6010d8cc7d5e9bffa2c858b129429d7d",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Core/InputSettings.cs": {
@@ -270,9 +270,9 @@
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Core/Services.cs": {
-    "mtime": 1789276568.5547247,
-    "seen": 1789656622.2979102,
-    "ast_hash": "6bb857cd8bcbdcef05fb0903c66ce3cf",
+    "mtime": 1789779658.9882736,
+    "seen": 1789779992.6461878,
+    "ast_hash": "c9162c2a810f9797e729404c89f40f31",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/UI/SettingsMenu.cs": {
@@ -294,9 +294,9 @@
     "semantic_hash": ""
   },
   "Assets/Settings/Game/YAML/dialogues.yaml": {
-    "mtime": 1789243610.7730365,
-    "seen": 1789244449.0800414,
-    "ast_hash": "8c2986ddfcc79192b9f464f927231a25",
+    "mtime": 1789782375.4086015,
+    "seen": 1789782654.5620391,
+    "ast_hash": "a40a328d297895ed139dd71f43d09a87",
     "semantic_hash": ""
   },
   "Assets/Settings/Game/YAML/expressions.yaml": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789656593.0361035,
-    "seen": 1789656622.2979476,
-    "ast_hash": "96b5f14a5088bcb96450bd61cfa14d05",
+    "mtime": 1789782411.6942074,
+    "seen": 1789782654.5620468,
+    "ast_hash": "877078673fe41787199e2c998c88aa12",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Content/CardSettings.cs": {
@@ -414,9 +414,9 @@
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Core/DialogueService.cs": {
-    "mtime": 1789285869.1460352,
-    "seen": 1789656622.2979019,
-    "ast_hash": "ae76234bd68e852a57ea1999f40a6613",
+    "mtime": 1789780409.1769633,
+    "seen": 1789781459.272289,
+    "ast_hash": "12524f207cf0c506ac645158c9452034",
     "semantic_hash": ""
   },
   "Assets/Scripts/Runtime/Interaction/ChapterSpawner.cs": {
@@ -471,6 +471,96 @@
     "mtime": 1789483294.125098,
     "seen": 1789656622.2979367,
     "ast_hash": "9ff88864e2f69888292292aebb813bec",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Content/MinigameSettings.cs": {
+    "mtime": 1789779581.0251968,
+    "seen": 1789779992.6461706,
+    "ast_hash": "81778e369fa17c1e7bd6bfc573177971",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Core/MinigameService.cs": {
+    "mtime": 1789779893.0226395,
+    "seen": 1789779992.6461833,
+    "ast_hash": "489c50a3758a29528649b818b49592fd",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Tests/PlayMode/MinigameTest.cs": {
+    "mtime": 1789782559.2495587,
+    "seen": 1789782654.562034,
+    "ast_hash": "8a90700abe0fc3d8af2492066d02e923",
+    "semantic_hash": ""
+  },
+  "Assets/Settings/Game/YAML/minigames.yaml": {
+    "mtime": 1789782357.307023,
+    "seen": 1789782654.5620415,
+    "ast_hash": "6ab3b6442989e53b2dea26e9e882b1b4",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/BallController.cs": {
+    "mtime": 1789782140.608591,
+    "seen": 1789782654.561999,
+    "ast_hash": "8451a999ad3ff146a08fc84b0d3aa901",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/Chopstick.cs": {
+    "mtime": 1789782140.609589,
+    "seen": 1789782654.562002,
+    "ast_hash": "3bd81bec0d8660e3d199cd1cc71b3ad7",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/ChopstickManager.cs": {
+    "mtime": 1789782140.6105876,
+    "seen": 1789782654.5620034,
+    "ast_hash": "207ec268b63d756b42d07d89d1c97ba8",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/GestureInput.cs": {
+    "mtime": 1789782321.08742,
+    "seen": 1789782654.5620065,
+    "ast_hash": "c643e2b55fa52ed6acd6ed3451c7c994",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/RatManager.cs": {
+    "mtime": 1789782248.7178926,
+    "seen": 1789782654.5620084,
+    "ast_hash": "0aee7643309b1285d4dc9cc3a287b48f",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/RoundRules.cs": {
+    "mtime": 1789782140.613583,
+    "seen": 1789782654.5620093,
+    "ast_hash": "f7d26bac6b463b4a48f42d3a89c7b0a6",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/UI/ActionPromptPanel.cs": {
+    "mtime": 1789782140.6156013,
+    "seen": 1789782654.5620105,
+    "ast_hash": "51bb59d874af92822b6d171fd5696aed",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/UI/ArrowIcon.cs": {
+    "mtime": 1789782140.6185937,
+    "seen": 1789782654.5620117,
+    "ast_hash": "8079ecabe12db3b7a3358c28e6180ffc",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/UI/CircleIcon.cs": {
+    "mtime": 1789782140.6205952,
+    "seen": 1789782654.5620127,
+    "ast_hash": "04688d3f67cbb90417f0d90df8e53ff0",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/UI/PromptIcon.cs": {
+    "mtime": 1789782140.622594,
+    "seen": 1789782654.5620136,
+    "ast_hash": "fac2768f082e0074e9ea6497ab466fdc",
+    "semantic_hash": ""
+  },
+  "Assets/Scripts/Runtime/Minigames/Rat/UI/TapIcon.cs": {
+    "mtime": 1789782140.6245866,
+    "seen": 1789782654.5620148,
+    "ast_hash": "a8646fadf9b04ac2c706d2c59ffa0383",
     "semantic_hash": ""
   }
 }

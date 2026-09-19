@@ -14,6 +14,7 @@ namespace Game.Core
 	{
 		private readonly DialogueSettings _settings;
 		private readonly CardInventory _cards;
+		private readonly MinigameService _minigames;
 		private readonly HashSet<string> _conducted = new(); // "cardId_actorId"
 
 		private string _currentKey;
@@ -30,10 +31,11 @@ namespace Game.Core
 		/// <summary>Snapshot of every conducted conversation key (persisted by ProgressStore).</summary>
 		public IReadOnlyCollection<string> Conducted => _conducted;
 
-		public DialogueService(CardInventory cards, DialogueSettings settings)
+		public DialogueService(CardInventory cards, DialogueSettings settings, MinigameService minigames = null)
 		{
 			_cards = cards;
 			_settings = settings;
+			_minigames = minigames;
 		}
 
 		public bool HadConversation(string cardId, string actorId) => _conducted.Contains(Key(cardId, actorId));
@@ -92,6 +94,11 @@ namespace Game.Core
 
 			if (!string.IsNullOrEmpty(_current.RewardCardId))
 				_cards.GrantId(_current.RewardCardId);
+
+			// Dialogue-footer hook: a dialogue can launch a minigame when it ends.
+			// Null service = test/headless construction; dialogues without a MinigameId no-op anyway.
+			if (_minigames != null && !string.IsNullOrEmpty(_current.MinigameId))
+				_minigames.Start(_current.MinigameId);
 
 			IsPlaying.Value = false;
 			SpeakerName.Value = string.Empty;

@@ -50,6 +50,20 @@ namespace Game.Editor
 		public List<ExpressionEntry> ExpressionDefinitions { get; set; } = new();
 	}
 
+	/// <summary>Root shape of minigames.yaml.</summary>
+	public sealed class MinigameDefinitionsFile
+	{
+		public List<MinigameEntry> MinigameDefinitions { get; set; } = new();
+	}
+
+	/// <summary>Raw minigame definition from YAML.</summary>
+	public sealed class MinigameEntry
+	{
+		public string MinigameId { get; set; } = string.Empty;
+		public string SceneName { get; set; } = string.Empty;
+		public string RewardCardId { get; set; } = string.Empty;
+	}
+
 	/// <summary>Raw card definition from YAML.</summary>
 	public sealed class CardEntry
 	{
@@ -66,6 +80,7 @@ namespace Game.Editor
 	{
 		public string CardId { get; set; } = string.Empty;
 		public List<DialogueLineEntry> Lines { get; set; } = new();
+		public string MinigameId { get; set; } = string.Empty;
 	}
 
 	/// <summary>Single dialogue line from YAML.</summary>
@@ -165,6 +180,16 @@ namespace Game.Editor
 
 			var file = _deserializer.Deserialize<ExpressionsFile>(yamlText);
 			return file?.ExpressionDefinitions ?? new();
+		}
+
+		/// <summary>Parse minigames.yaml content into typed minigame entries.</summary>
+		public List<MinigameEntry> ParseMinigames(string yamlText)
+		{
+			if (string.IsNullOrWhiteSpace(yamlText))
+				return new();
+
+			var file = _deserializer.Deserialize<MinigameDefinitionsFile>(yamlText);
+			return file?.MinigameDefinitions ?? new();
 		}
 	}
 }
