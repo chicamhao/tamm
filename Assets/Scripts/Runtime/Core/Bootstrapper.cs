@@ -84,6 +84,15 @@ namespace Game.Core
 			Instance._currentLevel = name;
 		}
 
+		public static void UnloadLevel()
+		{
+			Assert.IsNotNull(Instance, "UnloadLevel requires the core scene to be running");
+			if (Instance._currentLevel == null)
+				return;
+			SceneManager.UnloadSceneAsync(Instance._currentLevel);
+			Instance._currentLevel = null;
+		}
+
 		private void OnDestroy()
 		{
 			if (Instance == this) Instance = null;

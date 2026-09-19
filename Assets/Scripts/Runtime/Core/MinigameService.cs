@@ -53,6 +53,8 @@ namespace Game.Core
 			// ever needs to survive mid-level, switch to an unload-only path.
 			if (!string.IsNullOrEmpty(_previousLevel))
 				Bootstrapper.LoadLevel(_previousLevel);
+			else
+				Bootstrapper.UnloadLevel(); // launched from the core scene: drop the minigame, keep the core
 
 			_previousLevel = null;
 		}
