@@ -5,10 +5,6 @@ using UnityEngine.InputSystem;
 
 namespace Game.Input
 {
-	// Static _pointerUnlockTime is intentional cross-instance state (minigame
-	// unlock and level-reload re-lock land on different instances), so opt out of
-	// Unity 6's auto statics cleanup that would wipe it exactly at that handoff.
-	[Unity.Scripting.LifecycleManagement.NoAutoStaticsCleanup]
 	public sealed class InputMonitor : MonoBehaviour
 	{
 		[Header("Character Input Values")]
@@ -113,43 +109,26 @@ namespace Game.Input
 			SetCursorState(CursorLocked);
 		}
 
-		// WebGL: Chrome rejects requestPointerLock() within ~1s of exitPointerLock
-		// (SecurityError in console, cursor stays free until the next request). Fast
-		// minigames (rat) unlock at takeover and re-lock on return inside that window,
-		// so defer the re-lock past it. The unlock timestamp is static: unlock and
-		// re-lock land on different instances (parked core monitor vs freshly loaded
-		// level monitor), and the first monitor may be destroyed before its deferred
-		// lock fires — the fresh level's Start() re-requests through the same guard.
-		private static float _pointerUnlockTime = float.NegativeInfinity;
-		private bool _relockPending;
-		private float _relockAt;
-
 		public void SetCursorState(bool newState)
 		{
 			if (!newState)
-			{
-				_pointerUnlockTime = Time.time;
-				_relockPending = false;
-				Cursor.lockState = CursorLockMode.None;
-				return;
-			}
+				_lockCursorAfter = -1f; // explicit unlock cancels a pending defer
 
-			if (Application.platform == RuntimePlatform.WebGLPlayer && Time.time - _pointerUnlockTime < 1f)
-			{
-				_relockPending = true;
-				_relockAt = _pointerUnlockTime + 1f;
-				return;
-			}
-
-			_relockPending = false;
-			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
+
+		public void RelockAfterDelay(float seconds)
+		{
+			_lockCursorAfter = Time.time + Mathf.Max(seconds, 0f);
+		}
+
+		private float _lockCursorAfter = -1f;
 
 		private void Update()
 		{
-			if (_relockPending && Time.time >= _relockAt)
+			if (_lockCursorAfter >= 0f && Time.time >= _lockCursorAfter)
 			{
-				_relockPending = false;
+				_lockCursorAfter = -1f;
 				Cursor.lockState = CursorLockMode.Locked;
 			}
 		}

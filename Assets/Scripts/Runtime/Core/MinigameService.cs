@@ -32,6 +32,9 @@ namespace Game.Core
 		/// <summary>Roots parked while a minigame owns the world (set back active in Complete).</summary>
 		private readonly List<GameObject> _parkedRoots = new();
 
+		/// <summary>ESC abort wants the re-lock deferred (web only, see RestoreCoreScene).</summary>
+		private bool _deferRelockOnRestore;
+
 		public MinigameService(CardInventory cards, MinigameSettings settings)
 		{
 			_cards = cards;
@@ -87,7 +90,17 @@ namespace Game.Core
 		public void Abort()
 		{
 			if (ActiveId != null)
+			{
+#if UNITY_WEBGL
+				// WebGL ESC-abort: the pointer is re-locked a beat after the minigame freed it,
+				// which Chrome rejects (SecurityError - requestPointerLock within ~1s of
+				// exitPointerLock) and drops the cursor until the next request. Defer just this
+				// one re-lock out of the window. Win/lose paths run the whole minigame first and
+				// are already past it; desktop has no such rule and locks immediately.
+				_deferRelockOnRestore = true;
+#endif
 				Complete(ActiveId, false);
+			}
 		}
 
 		// =========================================
@@ -136,7 +149,21 @@ namespace Game.Core
 			if (_playerInput != null)
 			{
 				_playerInput.EnableInput();
+
+#if UNITY_WEBGL
+				if (_deferRelockOnRestore)
+				{
+					_deferRelockOnRestore = false;
+					_playerInput.RelockAfterDelay(1f);
+				}
+				else
+				{
+					_playerInput.SetCursorState(true);
+				}
+#else
 				_playerInput.SetCursorState(true);
+#endif
+
 				_playerInput = null;
 			}
 
