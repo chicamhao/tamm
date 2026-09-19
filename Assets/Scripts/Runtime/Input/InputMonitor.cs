@@ -36,6 +36,11 @@ namespace Game.Input
 			_interactAction?.Enable();
 			_pauseAction = asset.FindAction("Player/Pause");
 			_pauseAction?.Enable();
+
+			// Apply the authored cursor state once at startup. The first focus event fires
+			// when the window opens — before an additively-loaded level's InputMonitor
+			// exists — so without this the cursor stays visible until the next focus change.
+			SetCursorState(CursorLocked);
 		}
 
 		public bool GetInteractInputDown() => InputEnabled && _interactAction != null && _interactAction.WasPressedThisFrame();
