@@ -17,6 +17,7 @@ namespace Game.Core
 		public static Bootstrapper Instance { get; private set; }
 
 		private string _currentLevel; // additive level scene currently loaded, if any
+		private string _overlayLevel; // minigame scene layered over the level, if any (popped first by UnloadLevel)
 
 		[SerializeField] private GameSettings _settings; // hub: content refs + input default
 
@@ -118,9 +119,27 @@ namespace Game.Core
 			Instance._currentLevel = level;
 		}
 
+		// Loads a minigame scene additively over the current level WITHOUT unloading
+		// it, so the level's state survives the overlay and resumes on unload.
+		public static void LoadOverlay(string name)
+		{
+			Assert.IsNotNull(Instance, "LoadOverlay requires the core scene to be running");
+			Assert.IsNull(Instance._overlayLevel, "LoadOverlay: a minigame overlay is already loaded");
+			SceneManager.LoadScene(name, LoadSceneMode.Additive);
+			Instance._overlayLevel = System.IO.Path.GetFileNameWithoutExtension(name);
+		}
+
+		// Drops the top of the scene stack: an overlay (minigame) when one is loaded,
+		// otherwise the level itself.
 		public static void UnloadLevel()
 		{
 			Assert.IsNotNull(Instance, "UnloadLevel requires the core scene to be running");
+			if (Instance._overlayLevel != null)
+			{
+				SceneManager.UnloadSceneAsync(Instance._overlayLevel);
+				Instance._overlayLevel = null;
+				return;
+			}
 			if (Instance._currentLevel == null)
 				return;
 			SceneManager.UnloadSceneAsync(Instance._currentLevel);
