@@ -76,5 +76,7 @@ crashlytics-build.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
 
+# graphify knowledge-graph output + scratch tooling
 .graphifyignore
-praphify-out/
+/graphify-out/
+/graphify_filter.py
