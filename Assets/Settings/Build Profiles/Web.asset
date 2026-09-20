@@ -209,16 +209,16 @@ BuildProfilePlayerSettings:
   CreateWallpaper: 0
   androidSplitApplicationBinary: 0
   keepLoadedShadersAlive: 0
-  StripUnusedMeshComponents: 0
+  StripUnusedMeshComponents: 1
   strictShaderVariantMatching: 0
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
   iOSSimulatorArchitecture: 0
-  iOSTargetOSVersionString: 15.0
+  iOSTargetOSVersionString: 16.0
   tvOSSdkVersion: 0
   tvOSSimulatorArchitecture: 0
   tvOSRequireExtendedGameController: 0
-  tvOSTargetOSVersionString: 15.0
+  tvOSTargetOSVersionString: 16.0
   VisionOSSdkVersion: 0
   VisionOSTargetOSVersionString: 1.0
   xcodeProjectType: 0
@@ -303,6 +303,7 @@ BuildProfilePlayerSettings:
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
   androidUseCustomKeystore: 0
+  androidRenderServiceUseVirtualDisplay: 0
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -549,15 +550,18 @@ BuildProfilePlayerSettings:
       m_Kind: 1
       m_SubKind: 
   m_BuildTargetBatching: []
+  m_UseLegacyStaticBatchingDefault: 1
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: iOSSupport
     m_APIs: 10000000i
+    m_UGKFlags: 00000000i
     m_Automatic: 1
   - m_BuildTarget: AndroidPlayer
     m_APIs: 150000000b000000i
+    m_UGKFlags: 0000000000000000i
     m_Automatic: 0
   m_DefaultShaderChunkSizeInMB: 16
   m_DefaultShaderChunkCount: 0
@@ -745,6 +749,10 @@ BuildProfilePlayerSettings:
   switchUpgradedPlayerSettingsToNMETA: 0
   switchCaStoreSource: 0
   switchCaStoreFilePath: 
+  switchStorageMode: 0
+  switchStorageMounts: []
+  switchPersistentDataPathMountName: 
+  switchTemporaryCachePathMountName: 
   ps4NPAgeRating: 12
   ps4NPTitleSecret: 
   ps4NPTrophyPackPath: 
@@ -855,16 +863,18 @@ BuildProfilePlayerSettings:
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
     Standalone: SENTIS_ANALYTICS_ENABLED;APP_UI_EDITOR_ONLY
-    WebGL: SENTIS_ANALYTICS_ENABLED;APP_UI_EDITOR_ONLY
+    WebGL: APP_UI_EDITOR_ONLY
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
   il2cppCompilerConfiguration: {}
-  il2cppCodeGeneration: {}
+  il2cppCodeGeneration:
+    WebGL: 1
   il2cppLTOMode: {}
   il2cppStacktraceInformation: {}
-  managedStrippingLevel: {}
+  managedStrippingLevel:
+    WebGL: 2
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
@@ -999,7 +1009,35 @@ MonoBehaviour:
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
-    m_Settings: []
+    m_Settings:
+    - line: 'webGLMemorySize: 32'
+    - line: 'webGLExceptionSupport: 1'
+    - line: 'webGLNameFilesAsHashes: 0'
+    - line: 'webGLShowDiagnostics: 0'
+    - line: 'webGLDataCaching: 1'
+    - line: 'webGLDebugSymbols: 0'
+    - line: 'webGLEmscriptenArgs: '
+    - line: 'webGLModulesDirectory: '
+    - line: 'webGLTemplate: APPLICATION:Default'
+    - line: 'webGLAnalyzeBuildSize: 0'
+    - line: 'webGLUseEmbeddedResources: 0'
+    - line: 'webGLCompressionFormat: 0'
+    - line: 'webGLWasmArithmeticExceptions: 0'
+    - line: 'webGLLinkerTarget: 1'
+    - line: 'webGLThreadsSupport: 0'
+    - line: 'webGLDecompressionFallback: 0'
+    - line: 'webGLInitialMemorySize: 32'
+    - line: 'webGLMaximumMemorySize: 2048'
+    - line: 'webGLMemoryGrowthMode: 2'
+    - line: 'webGLMemoryLinearGrowthStep: 16'
+    - line: 'webGLMemoryGeometricGrowthStep: 0.2'
+    - line: 'webGLMemoryGeometricGrowthCap: 96'
+    - line: 'webGLPowerPreference: 2'
+    - line: 'webGLWebAssemblyTable: 0'
+    - line: 'webGLWebAssemblyBigInt: 0'
+    - line: 'webGLCloseOnQuit: 0'
+    - line: 'webWasm2023: 1'
+    - line: 'webEnableSubmoduleStrippingCompatibility: 0'
   requiredComponents: []
   references:
     version: 2
@@ -1022,7 +1060,7 @@ MonoBehaviour:
         m_InsightsSettingsContainer:
           m_BuildProfileEngineDiagnosticsState: 2
         m_AdaptivePerformanceEnabled: 0
-        m_CodeOptimization: 0
+        m_CodeOptimization: 3
         m_WebGLClientBrowserPath: 
         m_WebGLClientBrowserType: 0
         m_WebGLTextureSubtarget: 0
