@@ -8,10 +8,12 @@ namespace Game.Core
 {
 	// Minigame host: the single place that knows how a minigame scene starts and ends,
 	// and how the core scene hands itself over while one runs.
-	// Scenes load additively on the persistent core (Bootstrapper.LoadLevel); the
-	// service bridges the scene's outcome back into the narrative - a win grants the
-	// entry's reward card (which is how chapter gates and persistence already see it,
-	// no new save data), then returns to the level the minigame interrupted.
+	// The minigame loads additively as an overlay on the persistent core
+	// (Bootstrapper.LoadOverlay) and drops without touching the level, so the
+	// playground's state survives the interruption; the service bridges the scene's
+	// outcome back into the narrative - a win grants the entry's reward card (which
+	// is how chapter gates and persistence already see it, no new save data), then
+	// the overlay drops and the interrupted level resumes where it was.
 	// While a minigame is up, the core's gameplay yields to it: the player's input is
 	// frozen (InputMonitor gate, same lever as SettingsMenu/CardSelectionMenu), the
 	// pointer is freed for gestures, and the core scene's cameras / audio listener /
@@ -20,8 +22,6 @@ namespace Game.Core
 	{
 		private readonly MinigameSettings _settings;
 		private readonly CardInventory _cards;
-
-		private string _previousLevel;
 
 		private InputMonitor _playerInput;
 
@@ -32,13 +32,16 @@ namespace Game.Core
 		/// <summary>Roots parked while a minigame owns the world (set back active in Complete).</summary>
 		private readonly List<GameObject> _parkedRoots = new();
 
+		/// <summary>ESC abort wants the re-lock deferred (web only, see RestoreCoreScene).</summary>
+		private bool _deferRelockOnRestore;
+
 		public MinigameService(CardInventory cards, MinigameSettings settings)
 		{
 			_cards = cards;
 			_settings = settings;
 		}
 
-		/// <summary>Launches the minigame scene additively, remembering the level to return to.</summary>
+		/// <summary>Launches the minigame scene as an overlay on the current level.</summary>
 		public void Start(string minigameId)
 		{
 			MinigameEntry entry = Resolve(minigameId);
@@ -48,7 +51,6 @@ namespace Game.Core
 				return;
 			}
 
-			_previousLevel = Bootstrapper.CurrentLevel;
 			ActiveId = minigameId;
 
 			// Hand the screen and input to the minigame BEFORE the scene loads, so its
@@ -56,13 +58,13 @@ namespace Game.Core
 			// camera (the core's are already off, not fighting for the lookup).
 			TakeOverCoreScene();
 
-			Bootstrapper.LoadLevel(entry.SceneName);
+			Bootstrapper.LoadOverlay(entry.SceneName);
 		}
 
 		/// <summary>
 		/// Reports the outcome. A win grants the entry's reward card (duplicates are
-		/// no-ops, so a replay cannot double-grant); then returns to the narrative
-		/// level that was replaced by the minigame scene and hands the core back.
+		/// no-ops, so a replay cannot double-grant); then drops the overlay and hands
+		/// the core back, resuming the interrupted level where it was.
 		/// </summary>
 		public void Complete(string minigameId, bool won)
 		{
@@ -77,14 +79,9 @@ namespace Game.Core
 			if (won && !string.IsNullOrEmpty(entry.RewardCardId))
 				_cards.GrantId(entry.RewardCardId);
 
-			// ponytail: restore = full level reload (fresh spawn). If the narrative
-			// ever needs to survive mid-level, switch to an unload-only path.
-			if (!string.IsNullOrEmpty(_previousLevel))
-				Bootstrapper.LoadLevel(_previousLevel);
-			else
-				Bootstrapper.UnloadLevel(); // launched from the core scene: drop the minigame, keep the core
-
-			_previousLevel = null;
+			// Overlay semantics: drop the minigame scene, keep the level's state intact
+			// (parked roots resume in RestoreCoreScene, no reload).
+			Bootstrapper.UnloadLevel();
 
 			RestoreCoreScene();
 		}
@@ -93,7 +90,17 @@ namespace Game.Core
 		public void Abort()
 		{
 			if (ActiveId != null)
+			{
+#if UNITY_WEBGL
+				// WebGL ESC-abort: the pointer is re-locked a beat after the minigame freed it,
+				// which Chrome rejects (SecurityError - requestPointerLock within ~1s of
+				// exitPointerLock) and drops the cursor until the next request. Defer just this
+				// one re-lock out of the window. Win/lose paths run the whole minigame first and
+				// are already past it; desktop has no such rule and locks immediately.
+				_deferRelockOnRestore = true;
+#endif
 				Complete(ActiveId, false);
+			}
 		}
 
 		// =========================================
@@ -142,7 +149,21 @@ namespace Game.Core
 			if (_playerInput != null)
 			{
 				_playerInput.EnableInput();
+
+#if UNITY_WEBGL
+				if (_deferRelockOnRestore)
+				{
+					_deferRelockOnRestore = false;
+					_playerInput.RelockAfterDelay(1f);
+				}
+				else
+				{
+					_playerInput.SetCursorState(true);
+				}
+#else
 				_playerInput.SetCursorState(true);
+#endif
+
 				_playerInput = null;
 			}
 

@@ -17,8 +17,12 @@ namespace Game.Core
 		public static Bootstrapper Instance { get; private set; }
 
 		private string _currentLevel; // additive level scene currently loaded, if any
+		private string _overlayLevel; // minigame scene layered over the level, if any (popped first by UnloadLevel)
 
 		[SerializeField] private GameSettings _settings; // hub: content refs + input default
+
+		/// <summary>Level loaded additively on boot (the world the player starts in).</summary>
+		[SerializeField] private string _initialLevel = "Playground";
 
 		private Container _container;
 
@@ -70,6 +74,14 @@ namespace Game.Core
 			Progress.Load(); // resume persisted progress on boot (cards, conversations, chapter)
 		}
 
+		// Boot the world level additively on top of the core once every service is up.
+		// Start (not Awake): the scene is fully activated, and the level's own Awake/Start
+		// run next frame after the additive load, so nothing races the core's construction.
+		private void Start()
+		{
+			LoadLevel(_initialLevel);
+		}
+
 		public static string CurrentLevel => Instance != null ? Instance._currentLevel : null;
 
 		// ESC while a minigame runs abandons it (no reward, back to the world).
@@ -90,20 +102,44 @@ namespace Game.Core
 		// load would destroy the Bootstrapper scene; additive keeps the core alive.
 		// The stored level name is normalized (path or plain name both accepted) because
 		// UnloadSceneAsync only takes a scene NAME, never an asset path.
-		// ponytail: fire-and-forget async unload, fine while transitions are one per user action.
+		// A request for a different level while the previous load is still in flight is
+		// dropped (LoadScene is async; stacking a second additively would wedge two levels
+		// in the hierarchy). Retry once the scene is loaded (GetSceneByName returns a
+		// non-loaded Scene while the request is in flight or after it fails). The async
+		// unload stays fire-and-forget; unloads are one frame, loads are the slow path.
 		public static void LoadLevel(string name)
 		{
 			Assert.IsNotNull(Instance, "LoadLevel requires the core scene to be running");
 			string level = System.IO.Path.GetFileNameWithoutExtension(name);
 			if (level.Equals(Instance._currentLevel)) return; // already there, no-op
+			if (Instance._currentLevel != null && !SceneManager.GetSceneByName(Instance._currentLevel).isLoaded)
+				return; // previous load in flight; the scene isn't in the hierarchy yet
 			if (Instance._currentLevel != null) SceneManager.UnloadSceneAsync(Instance._currentLevel);
 			SceneManager.LoadScene(name, LoadSceneMode.Additive);
 			Instance._currentLevel = level;
 		}
 
+		// Loads a minigame scene additively over the current level WITHOUT unloading
+		// it, so the level's state survives the overlay and resumes on unload.
+		public static void LoadOverlay(string name)
+		{
+			Assert.IsNotNull(Instance, "LoadOverlay requires the core scene to be running");
+			Assert.IsNull(Instance._overlayLevel, "LoadOverlay: a minigame overlay is already loaded");
+			SceneManager.LoadScene(name, LoadSceneMode.Additive);
+			Instance._overlayLevel = System.IO.Path.GetFileNameWithoutExtension(name);
+		}
+
+		// Drops the top of the scene stack: an overlay (minigame) when one is loaded,
+		// otherwise the level itself.
 		public static void UnloadLevel()
 		{
 			Assert.IsNotNull(Instance, "UnloadLevel requires the core scene to be running");
+			if (Instance._overlayLevel != null)
+			{
+				SceneManager.UnloadSceneAsync(Instance._overlayLevel);
+				Instance._overlayLevel = null;
+				return;
+			}
 			if (Instance._currentLevel == null)
 				return;
 			SceneManager.UnloadSceneAsync(Instance._currentLevel);

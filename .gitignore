@@ -1,3 +1,6 @@
+# macOS
+.DS_Store
+
 # Created by https://www.toptal.com/developers/gitignore/api/unity
 # Edit at https://www.toptal.com/developers/gitignore?templates=unity
 
@@ -76,7 +79,5 @@ crashlytics-build.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
 
-# graphify knowledge-graph output + scratch tooling
 .graphifyignore
-/graphify-out/
-/graphify_filter.py
+graphify-out/

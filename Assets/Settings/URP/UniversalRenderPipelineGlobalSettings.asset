@@ -75,10 +75,29 @@ MonoBehaviour:
       - rid: 773328588020645890
       - rid: 773328588020645891
       - rid: 773328588020645892
-      - rid: 6772020117991850081
-      - rid: 6772020117991850082
+      - rid: 6772020099115646978
+      - rid: 6772020099115646979
     m_RuntimeSettings:
-      m_List: []
+      m_List:
+      - rid: 6852985685364965378
+      - rid: 6852985685364965380
+      - rid: 6852985685364965381
+      - rid: 6852985685364965384
+      - rid: 6852985685364965392
+      - rid: 6852985685364965394
+      - rid: 8712630790384254976
+      - rid: 4284062438471237637
+      - rid: 5747374308340793346
+      - rid: 5747374308340793347
+      - rid: 5747374308340793348
+      - rid: 6588237625532874753
+      - rid: 6588237625532874757
+      - rid: 6588237625532874759
+      - rid: 6588237625532874761
+      - rid: 773328588020645889
+      - rid: 773328588020645890
+      - rid: 6772020099115646978
+      - rid: 6772020099115646979
   m_AssetVersion: 14
   m_ObsoleteDefaultVolumeProfile: {fileID: 0}
   m_RenderingLayerNames:
@@ -360,23 +379,23 @@ MonoBehaviour:
         m_BuildHlbvh: {fileID: 7200000, guid: 2d70cd6be91bd7843a39a54b51c15b13, type: 3}
         m_RestructureBvh: {fileID: 7200000, guid: 56641cb88dcb31a4398a4997ef7a7a8c, type: 3}
         m_Scatter: {fileID: 7200000, guid: a2eaeefdac4637a44b734e85b7be9186, type: 3}
-    - rid: 6772020117991850081
+    - rid: 6772020099115646978
       type: {class: Shadow2DGeometrySettings, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data:
         m_Version: 0
         m_Generators:
-        - rid: 6772020117991850083
-        - rid: 6772020117991850084
+        - rid: 6772020100036296704
+        - rid: 6772020100036296705
         m_GeometryVersion: 0
-    - rid: 6772020117991850082
+    - rid: 6772020099115646979
       type: {class: URPShadowBiasSettings, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 1
         m_DepthBiasMode: 0
-    - rid: 6772020117991850083
+    - rid: 6772020100036296704
       type: {class: LegacyShadowGeometryGenerator, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data: 
-    - rid: 6772020117991850084
+    - rid: 6772020100036296705
       type: {class: SoftShadowGeometryGenerator, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data: 
     - rid: 6852985685364965376

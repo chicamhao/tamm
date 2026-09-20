@@ -82,10 +82,6 @@ public class Outline : MonoBehaviour {
 
   void Awake() {
 
-    // Aim-highlight only: outlined objects are authored enabled-by-default, but nothing
-    // should render until something (Interactor's Aim/ClearAim) enables this component.
-    enabled = false;
-
     // Cache renderers
     renderers = GetComponentsInChildren<Renderer>();
 

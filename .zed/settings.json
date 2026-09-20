@@ -1,0 +1,20 @@
+{
+  "features": {
+    "agent_panel": false,
+    "chat_panel": false,
+    "inline_completion": false
+  },
+  "file_scan_exclusions": [
+    "Library",
+    "Temp",
+    "Logs",
+    "Builds",
+    "UserSettings",
+    "graphify-out",
+    "Packages/Plugins",
+    "*.meta",
+    "*.slnx",
+    ".vsconfig",
+    ".DS_Store"
+  ]
+}

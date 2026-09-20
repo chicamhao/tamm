@@ -36,6 +36,11 @@ namespace Game.Input
 			_interactAction?.Enable();
 			_pauseAction = asset.FindAction("Player/Pause");
 			_pauseAction?.Enable();
+
+			// Apply the authored cursor state once at startup. The first focus event fires
+			// when the window opens — before an additively-loaded level's InputMonitor
+			// exists — so without this the cursor stays visible until the next focus change.
+			SetCursorState(CursorLocked);
 		}
 
 		public bool GetInteractInputDown() => InputEnabled && _interactAction != null && _interactAction.WasPressedThisFrame();
@@ -106,7 +111,26 @@ namespace Game.Input
 
 		public void SetCursorState(bool newState)
 		{
+			if (!newState)
+				_lockCursorAfter = -1f; // explicit unlock cancels a pending defer
+
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+
+		public void RelockAfterDelay(float seconds)
+		{
+			_lockCursorAfter = Time.time + Mathf.Max(seconds, 0f);
+		}
+
+		private float _lockCursorAfter = -1f;
+
+		private void Update()
+		{
+			if (_lockCursorAfter >= 0f && Time.time >= _lockCursorAfter)
+			{
+				_lockCursorAfter = -1f;
+				Cursor.lockState = CursorLockMode.Locked;
+			}
 		}
 	}
 }
