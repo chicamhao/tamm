@@ -1,0 +1,47 @@
+.settings-panel {
+    width: 540px;
+    height: 420px;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.settings-slider-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.settings-slider-row > Label {
+    width: 150px;
+    font-size: 16px;
+    color: var(--chip-idle);
+}
+
+.sensitivity-slider {
+    flex-grow: 1;
+    margin-left: 12px;
+}
+
+.sensitivity-value {
+    width: 64px;
+    font-size: 18px;
+    color: var(--fill);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.settings-buttons {
+    margin-top: auto;
+    flex-direction: row;
+    justify-content: center;
+    gap: 14px;
+}
+
+.settings-hint {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--chip-idle);
+    -unity-text-align: middle-center;
+    opacity: 0.8;
+}

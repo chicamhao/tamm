@@ -4,36 +4,49 @@ using R3;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
+using UnityEngine.UIElements;
 
 namespace Game.UI
 {
-	// Card-acquired notifications: a stack of IMGUI toasts, zero scene wiring beyond
-	// dropping this component on any object. Fades each toast out after a few seconds.
-	// ponytail: dev-grade overlay; swap for a Canvas toast prefab when UI art lands.
+	// Card-acquired notifications: a stack of toasts in the runtime UI panel, zero
+	// scene wiring beyond dropping this component on any object. Fades each toast
+	// out after a few seconds.
 	public sealed class ToastOverlay : MonoBehaviour
 	{
 		private sealed class Toast
 		{
-			public string Text;
+			public Label View;
 			public float Remaining;
 		}
 
 		[SerializeField] private CardSettings _cards; // display names (optional)
 		[SerializeField] private float _lifespan = 4.0f;
+		[SerializeField] private RuntimeUI _runtimeUI;
 
 		private readonly List<Toast> _toasts = new();
+		private VisualElement _host;
 		private IDisposable _onGranted;
 
 		private void Start()
 		{
+			RuntimeUI ui = RuntimeUI.Resolve(_runtimeUI);
+			if (ui == null)
+			{
+				enabled = false;
+				return;
+			}
+
+			_host = ui.Q("ToastsHost");
+
 			_onGranted = Services.Cards.Granted.Subscribe(OnGranted);
 		}
 
 		private void OnGranted(string cardId)
 		{
-			Toast toast = new Toast { Text = "Got: " + DisplayName(cardId), Remaining = _lifespan };
-			_toasts.Add(toast);
+			Label label = new Label("Got: " + DisplayName(cardId));
+			label.AddToClassList("toast");
+			_host.Add(label);
+			_toasts.Add(new Toast { View = label, Remaining = _lifespan });
 		}
 
 		private void Update()
@@ -42,19 +55,17 @@ namespace Game.UI
 			float dt = Time.deltaTime;
 			for (int i = _toasts.Count - 1; i >= 0; i--)
 			{
-				_toasts[i].Remaining -= dt;
-				if (_toasts[i].Remaining <= 0) _toasts.RemoveAt(i);
-			}
-		}
-
-		private void OnGUI()
-		{
-			if (_toasts.Count == 0) return;
-			float y = 60;
-			foreach (Toast toast in _toasts)
-			{
-                GUI.Label(new Rect(12, y, 400, 22), toast.Text);
-				y += 24;
+				Toast toast = _toasts[i];
+				toast.Remaining -= dt;
+				if (toast.Remaining <= 0f)
+				{
+					toast.View.RemoveFromHierarchy();
+					_toasts.RemoveAt(i);
+				}
+				else if (toast.Remaining < 0.5f)
+				{
+					toast.View.style.opacity = Mathf.Clamp01(toast.Remaining / 0.5f); // final half-second fade
+				}
 			}
 		}
 
