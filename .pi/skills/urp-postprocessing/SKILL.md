@@ -1,8 +1,11 @@
 ---
 name: urp-postprocessing
 description: Sets up, configures, and debugs URP post-processing effects using the Volume framework. Use when the user asks about bloom, tonemapping, color adjustments, depth of field, vignette, motion blur, or other Volume overrides in a URP project.
-required_packages:
-  com.unity.render-pipelines.universal: ">=14.0.0"
+metadata:
+  dependencies:
+    - unity-cli
+  required_packages:
+    com.unity.render-pipelines.universal: ">=14.0.0"
 ---
 
 Help the user set up, configure, and debug post-processing effects using URP's Volume framework.

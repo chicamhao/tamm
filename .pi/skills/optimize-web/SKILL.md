@@ -1,6 +1,9 @@
 ---
 name: optimize-web
 description: Optimizes Unity 6 WebGL and WebGPU builds for smaller download size, faster initial load, and efficient browser runtime performance. Use when the user's web build is too large, stutters in a specific browser, consumes excessive battery, needs CDN/server compression configured, or needs guidance on resource stripping, shader variant reduction, KTX textures, quality settings, or web profiling.
+metadata:
+  dependencies:
+    - unity-cli
 ---
 ## Performance Notes
 - Take your time to do this thoroughly.
