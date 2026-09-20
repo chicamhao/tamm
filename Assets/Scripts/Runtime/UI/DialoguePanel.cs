@@ -2,9 +2,9 @@ using Game.Core;
 using Game.Input;
 using R3;
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UIElements;
 
 namespace Game.UI
 {
@@ -12,28 +12,34 @@ namespace Game.UI
 	// DisplayDuration (whichever comes first). Pacing lives here, state lives in DialogueService.
 	public sealed class DialoguePanel : MonoBehaviour
 	{
-		[SerializeField] private GameObject _panel;
-		[SerializeField] private TMP_Text _speakerText;
-		[SerializeField] private TMP_Text _lineText;
 		[SerializeField] private InputMonitor _input;
+		[SerializeField] private RuntimeUI _runtimeUI;
 
+		private VisualElement _screen;
+		private Label _speakerText;
+		private Label _lineText;
 		private IDisposable _onPlaying;
 		private IDisposable _onLine;
 		private float _lineTime;
 
 		private void Start()
 		{
-			Assert.IsNotNull(_panel, "DialoguePanel requires _panel");
-			Assert.IsNotNull(_speakerText, "DialoguePanel requires _speakerText");
-			Assert.IsNotNull(_lineText, "DialoguePanel requires _lineText");
 			Assert.IsNotNull(_input, "DialoguePanel requires the player's InputMonitor assigned");
+
+			RuntimeUI ui = RuntimeUI.Resolve(_runtimeUI);
+			Assert.IsNotNull(ui, "DialoguePanel requires a RuntimeUI in the scene");
+
+			_screen = ui.Q("DialogueScreen");
+			_speakerText = ui.Q<Label>("SpeakerText");
+			_lineText = ui.Q<Label>("LineText");
+			Assert.IsNotNull(_lineText, "DialoguePanel requires a LineText element");
 
 			DialogueService dialogue = Services.Dialogue;
 
-			_panel.SetActive(false);
+			_screen.style.display = DisplayStyle.None;
 			_onPlaying = dialogue.IsPlaying.Subscribe(playing =>
 			{
-				_panel.SetActive(playing);
+				_screen.style.display = playing ? DisplayStyle.Flex : DisplayStyle.None;
 				if (playing) _lineTime = 0;
 			});
 			_onLine = dialogue.CurrentLine.Subscribe(line =>

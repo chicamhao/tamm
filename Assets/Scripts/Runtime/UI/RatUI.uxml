@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Style src="common.uss" />
+    <ui:Style src="rat-hud.uss" />
+    <ui:Style src="toast-screen.uss" />
+    <ui:Style src="../../Debug/UI/debug-screen.uss" />
+
+    <!-- ============ Rat minigame HUD ============ -->
+    <ui:VisualElement name="RatHud" class="rat-hud" picking-mode="Ignore">
+        <ui:Label name="RoundText" class="hud-round" text="" />
+        <ui:Label name="HeartsText" class="hud-hearts" text="" />
+
+        <ui:VisualElement name="ChipRow" class="chip-row">
+            <ui:VisualElement name="Chip0" class="chip">
+                <ui:VisualElement class="chip-disc">
+                    <ui:Label class="chip-glyph" text="↑" />
+                </ui:VisualElement>
+                <ui:Label name="ChipCaption0" class="chip-caption" text="THROW" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Chip1" class="chip">
+                <ui:VisualElement class="chip-disc">
+                    <ui:VisualElement class="chip-glyph-tap" />
+                </ui:VisualElement>
+                <ui:Label name="ChipCaption1" class="chip-caption" text="TAP" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Chip2" class="chip">
+                <ui:VisualElement class="chip-disc">
+                    <ui:VisualElement class="chip-glyph-tap" />
+                </ui:VisualElement>
+                <ui:Label name="ChipCaption2" class="chip-caption" text="CATCH" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="PromptRoot" class="prompt-root">
+            <ui:Label name="ArrowIcon" class="prompt-icon arrow-up" text="↑" />
+            <ui:VisualElement name="HandIcon" class="prompt-icon tap-disc">
+                <ui:VisualElement name="Ripple" class="ripple" />
+            </ui:VisualElement>
+            <ui:Label name="SweepHint" class="prompt-icon sweep-hint" text="»" />
+            <ui:Label name="PromptLabel" class="prompt-label" text="" />
+            <ui:Label name="PromptCount" class="prompt-count" text="" />
+        </ui:VisualElement>
+
+        <ui:Label name="InstructionText" class="hud-instruction" text="" />
+        <ui:Label name="ProgressText" class="hud-progress" text="" />
+        <ui:Label name="ResultText" class="hud-result" text="" />
+    </ui:VisualElement>
+
+    <!-- ============ Card-granted toasts ============ -->
+    <ui:VisualElement name="ToastsHost" class="toasts-host" picking-mode="Ignore" />
+
+    <!-- ============ Screen-space world labels ============ -->
+    <ui:VisualElement name="WorldLabels" class="world-labels" picking-mode="Ignore" />
+
+    <!-- ============ Dev debug overlay (dev/editor builds only) ============ -->
+    <ui:VisualElement name="DebugScreen" class="debug-screen" style="display: none;" picking-mode="Position">
+        <ui:Label name="DebugTitle" text="DEBUG — F2 close" />
+        <ui:Label name="DebugChapter" text="Chapter: -" />
+        <ui:Label name="DebugCards" text="Cards: -" />
+        <ui:Label name="DebugHint" text="↑ advance chapter   ↓ back a chapter" />
+    </ui:VisualElement>
+</ui:UXML>
