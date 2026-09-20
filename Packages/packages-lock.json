@@ -231,7 +231,7 @@
       "source": "builtin",
       "dependencies": {
         "com.unity.render-pipelines.core": "17.7.0",
-        "com.unity.searcher": "4.9.3",
+        "com.unity.searcher": "4.9.5",
         "com.unity.graph-authoring": "1.0.0"
       }
     },
@@ -379,7 +379,8 @@
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.modules.smartstrings": "1.0.0",
         "com.unity.modules.unitywebrequest": "1.0.0",
-        "com.unity.modules.uielements": "1.0.0"
+        "com.unity.modules.uielements": "1.0.0",
+        "com.unity.modules.audio": "1.0.0"
       }
     },
     "com.unity.modules.particlesystem": {
