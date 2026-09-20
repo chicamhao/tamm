@@ -80,3 +80,8 @@ crashlytics-build.properties
 .graphifyignore
 /graphify-out/
 /graphify_filter.py
+# WebGL smoke-test harness — track the sources, ignore generated artifacts
+/.smoketest/*.pem
+/.smoketest/shot-*.png
+/.smoketest/*.log
+/.smoketest/s*.log
