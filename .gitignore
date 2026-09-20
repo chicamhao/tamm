@@ -81,3 +81,8 @@ crashlytics-build.properties
 
 .graphifyignore
 graphify-out/
+
+# Project-specific
+.smoketest/
+# Burst-generated WebGL plugins (regenerated on build)
+/Data/Plugins/
