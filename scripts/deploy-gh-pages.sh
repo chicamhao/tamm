@@ -19,8 +19,7 @@ cd "$(dirname "$0")/.."
 #    before deploying (only needed when the build profile has compression on).
 ( cd Builds/WebGL/Build
   shopt -s nullglob
-  for f in *.br; do brotli -d -f "$f" -o "${f%.br}"; done
-  rm *.br )
+  for f in *.br; do brotli -d -f "$f" -o "${f%.br}"; rm "$f"; done )
 
 ( cd Builds/WebGL
   sed -i '' -e 's|"/WebGL.data.br"|"/WebGL.data"|' \
