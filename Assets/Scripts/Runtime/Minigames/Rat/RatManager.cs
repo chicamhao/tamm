@@ -1,8 +1,7 @@
 using Game.Core;
+using Game.Minigames.Rat.UI;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Game.Minigames.Rat
 {
@@ -48,14 +47,9 @@ namespace Game.Minigames.Rat
 		public float RoundDelay = 1.4f;
 
 		[Header("UI")]
-		public TMP_Text RoundText;
-		public TMP_Text InstructionText;
-		public TMP_Text ProgressText;
-		public TMP_Text HeartsText;
-		public TMP_Text ResultText;
+		public RatHud Hud;
 
 		private ChopstickManager _chopstickManager;
-		private ActionPromptPanel _prompts;
 
 		private int _remainingInRound;
 		private int _requiredThisTurn;
@@ -84,12 +78,11 @@ namespace Game.Minigames.Rat
 			if (_chopstickManager == null)
 				Debug.LogError("RatManager: no ChopstickManager in the scene.", this);
 
-			Canvas canvas = FindAnyObjectByType<Canvas>();
+			if (Hud == null)
+				Hud = FindFirstObjectByType<RatHud>();
 
-			_prompts = ActionPromptPanel.CreateIn(canvas);
-
-			if (_prompts != null)
-				_prompts.AdoptExistingTexts(RoundText, InstructionText, ProgressText, HeartsText, ResultText);
+			if (Hud == null)
+				Debug.LogError("RatManager: no RatHud in the scene.", this);
 		}
 
 		private void Start() => StartGame();
@@ -125,8 +118,8 @@ namespace Game.Minigames.Rat
 		{
 			// The slice uses the traditional rules with no per-round tuning: every
 			// round keeps the built-in ball and spawn settings.
-			if (_prompts != null)
-				_prompts.SetRoundStyle(RoundRules.PromptVerb(Round), RoundRules.AllowSweep(Round));
+			if (Hud != null)
+				Hud.SetRoundStyle(RoundRules.PromptVerb(Round), RoundRules.AllowSweep(Round));
 		}
 
 		private void BeginTurn()
@@ -142,8 +135,8 @@ namespace Game.Minigames.Rat
 			if (Ball != null)
 				Ball.ResetBall();
 
-			if (_prompts != null)
-				_prompts.ShowThrow();
+			if (Hud != null)
+				Hud.ShowThrow();
 
 			UpdateUI();
 		}
@@ -171,8 +164,8 @@ namespace Game.Minigames.Rat
 
 			ClearResult();
 
-			if (_prompts != null)
-				_prompts.ShowTap(_collectedThisTurn, _requiredThisTurn);
+			if (Hud != null)
+				Hud.ShowTap(_collectedThisTurn, _requiredThisTurn);
 
 			UpdateUI();
 		}
@@ -200,8 +193,8 @@ namespace Game.Minigames.Rat
 		{
 			State = GameState.WaitingForCatch;
 
-			if (_prompts != null && Ball != null)
-				_prompts.ShowCatch(Ball.transform);
+			if (Hud != null && Ball != null)
+				Hud.ShowCatch(Ball.transform);
 		}
 
 		public void TryCatchBall()
@@ -226,8 +219,8 @@ namespace Game.Minigames.Rat
 
 			SetResult("SUCCESS");
 
-			if (_prompts != null)
-				_prompts.Hide();
+			if (Hud != null)
+				Hud.Hide();
 
 			UpdateUI();
 
@@ -265,8 +258,8 @@ namespace Game.Minigames.Rat
 
 			SetResult("MISS");
 
-			if (_prompts != null)
-				_prompts.Hide();
+			if (Hud != null)
+				Hud.Hide();
 
 			if (Ball != null)
 				Ball.ResetBall();
@@ -342,19 +335,19 @@ namespace Game.Minigames.Rat
 
 		private void SetResult(string s)
 		{
-			if (ResultText != null)
-				ResultText.text = s;
+			if (Hud != null)
+				Hud.SetResultText(s);
 		}
 
 		private void ClearResult() => SetResult("");
 
 		private void UpdateUI()
 		{
-			if (RoundText != null)
-				RoundText.text = "ROUND " + Round + " - " + RoundRules.RoundName(Round);
+			if (Hud != null)
+				Hud.SetRoundText("ROUND " + Round + " - " + RoundRules.RoundName(Round));
 
-			if (HeartsText != null)
-				HeartsText.text = "HEARTS: " + Mathf.Max(Hearts, 0);
+			if (Hud != null)
+				Hud.SetHeartsText("HEARTS: " + Mathf.Max(Hearts, 0));
 		}
 	}
 }

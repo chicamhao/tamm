@@ -1,28 +1,29 @@
 using Game.Core;
 using Game.Input;
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace Game.UI
 {
 	// Pause menu: the hub's Pause action toggles it. Opening pauses the game
 	// (timeScale 0) and frees the cursor through the hub; closing resumes.
 	// The panel holds the sensitivity slider + save/load buttons.
-	// Attach this to a persistent GameObject; _panel toggles the actual UI.
+	// Attach this to a persistent GameObject; the SettingsScreen element toggles.
 	public sealed class SettingsMenu : MonoBehaviour
 	{
 		[SerializeField] private InputMonitor _input;
-		[SerializeField] private GameObject _panel;
-		[SerializeField] private Slider _sensitivitySlider;
-		[SerializeField] private TMP_Text _sensitivityText;
-		[SerializeField] private Button _saveButton;
-		[SerializeField] private Button _loadButton;
-		[SerializeField] private Button _newGameButton;
 		[SerializeField] private float _min = 0.25f;
 		[SerializeField] private float _max = 4.0f;
+		[SerializeField] private RuntimeUI _runtimeUI;
+
+		private VisualElement _screen;
+		private Slider _sensitivitySlider;
+		private Label _sensitivityValue;
+		private Button _saveButton;
+		private Button _loadButton;
+		private Button _newGameButton;
 
 		private PauseState _pause;
 		private InputSettings _inputSettings;
@@ -36,35 +37,46 @@ namespace Game.UI
 			_inputSettings = Game.Core.Services.InputSettings;
 			_progress = Game.Core.Services.Progress;
 
-			if (_panel != null) _panel.SetActive(false);
+			AssignElements();
+
+			if (_screen != null) _screen.style.display = DisplayStyle.None;
 			if (_sensitivitySlider == null) return;
 
-			_sensitivitySlider.minValue = _min;
-			_sensitivitySlider.maxValue = _max;
+			_sensitivitySlider.lowValue = _min;
+			_sensitivitySlider.highValue = _max;
 			_sensitivitySlider.value = _inputSettings.MouseSensitivity.Value;
-			_sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
-            if (_sensitivityText != null) _sensitivityText.text = FormatSensitivity(_inputSettings.MouseSensitivity.Value);
+			_sensitivitySlider.RegisterValueChangedCallback(evt => OnSensitivityChanged(evt.newValue));
+			if (_sensitivityValue != null) _sensitivityValue.text = FormatSensitivity(_inputSettings.MouseSensitivity.Value);
 
-            _saveButton?.onClick.AddListener(() => _progress.Save());
-			_loadButton?.onClick.AddListener(() => _progress.Load());
-			_newGameButton?.onClick.AddListener(() =>
-			{
-				_progress.Clear();
-				Game.Core.Services.Cards.Clear();
-			});
+			if (_saveButton != null) _saveButton.clicked += () => _progress.Save();
+			if (_loadButton != null) _loadButton.clicked += () => _progress.Load();
+			if (_newGameButton != null) _newGameButton.clicked += NewGame;
+		}
+
+		private void AssignElements()
+		{
+			RuntimeUI ui = RuntimeUI.Resolve(_runtimeUI);
+			if (ui == null) return;
+
+			_screen = ui.Q("SettingsScreen");
+			_sensitivitySlider = ui.Q<Slider>("SensitivitySlider");
+			_sensitivityValue = ui.Q<Label>("SensitivityValue");
+			_saveButton = ui.Q<Button>("SaveButton");
+			_loadButton = ui.Q<Button>("LoadButton");
+			_newGameButton = ui.Q<Button>("NewGameButton");
 		}
 
 		private void Update()
 		{
 			if (!_input.GetPauseInputDown()) return;
 
-			if (_panel.activeInHierarchy) CloseMenu();
+			if (_screen.style.display == DisplayStyle.Flex) CloseMenu();
 			else OpenMenu();
 		}
 
 		private void OpenMenu()
 		{
-			_panel.SetActive(true);
+			_screen.style.display = DisplayStyle.Flex;
 			_pause.Toggle();
 			_input.DisableInput(); // freeze Look/Move so the camera can't rotate under the menu
 			_input.SetCursorState(false);
@@ -72,16 +84,22 @@ namespace Game.UI
 
 		private void CloseMenu()
 		{
-			_panel.SetActive(false);
+			_screen.style.display = DisplayStyle.None;
 			_pause.Toggle();
 			_input.EnableInput();
 			_input.SetCursorState(true);
 		}
 
+		private void NewGame()
+		{
+			_progress.Clear();
+			Game.Core.Services.Cards.Clear();
+		}
+
 		private void OnSensitivityChanged(float sensitivity)
 		{
 			_inputSettings.MouseSensitivity.Value = sensitivity;
-			if (_sensitivityText != null) _sensitivityText.text = FormatSensitivity(sensitivity);
+			if (_sensitivityValue != null) _sensitivityValue.text = FormatSensitivity(sensitivity);
 		}
 
 		private static String FormatSensitivity(float sensitivity)

@@ -4,10 +4,9 @@ using Game.Input;
 using R3;
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace Game.UI
 {
@@ -16,27 +15,27 @@ namespace Game.UI
 	// the NPC responds (or has nothing to say) from there.
 	public sealed class CardSelectionMenu : MonoBehaviour
 	{
-		[SerializeField] private GameObject _panel;
-		[SerializeField] private RectTransform _listRoot;
-		[SerializeField] private TMP_Text _cardButtonTemplate; // inactive template child with a Button
 		[SerializeField] private CardSettings _cards; // for display names; label falls back to the raw id
 		[SerializeField] private InputMonitor _input; // frozen while the menu is open (like SettingsMenu)
+		[SerializeField] private RuntimeUI _runtimeUI;
 
-		private readonly List<GameObject> _buttons = new();
+		private readonly List<Button> _buttons = new();
+		private VisualElement _screen;
+		private VisualElement _listRoot;
 		private IDisposable _onRequest;
 		private string _actorId;
 
 		private void Start()
 		{
-			Assert.IsNotNull(_panel, "CardSelectionMenu requires _panel");
-			Assert.IsNotNull(_listRoot, "CardSelectionMenu requires _listRoot");
-			Assert.IsNotNull(_cardButtonTemplate, "CardSelectionMenu requires a button template");
-			// includeInactive: the template is inactive by design (Unity 6 defaults GetComponentInParent to skip inactive)
-			Assert.IsNotNull(_cardButtonTemplate.GetComponentInParent<Button>(true), "card button template needs a Button component");
+			RuntimeUI ui = RuntimeUI.Resolve(_runtimeUI);
+			Assert.IsNotNull(ui, "CardSelectionMenu requires a RuntimeUI in the scene");
+
+			_screen = ui.Q("CardScreen");
+			_listRoot = ui.Q("CardList");
+			Assert.IsNotNull(_listRoot, "CardSelectionMenu requires a CardList element");
 			Assert.IsNotNull(_input, "CardSelectionMenu requires the player's InputMonitor assigned");
 
-			_cardButtonTemplate.gameObject.SetActive(false);
-			_panel.SetActive(false);
+			_screen.style.display = DisplayStyle.None;
 
 			_onRequest = Services.Cards.CardSelectionRequested.Subscribe(Open);
 		}
@@ -47,34 +46,33 @@ namespace Game.UI
 			if (owned.Count == 0) return;
 			_actorId = actorId;
 
-			foreach (GameObject go in _buttons) Destroy(go);
-			_buttons.Clear();
+			Clear();
 
 			foreach (string cardId in owned)
 			{
-				// clone the template ROOT so Button + Image + Label come as one piece
-				GameObject templateRoot = _cardButtonTemplate.transform.parent.gameObject;
-				GameObject clone = Instantiate(templateRoot, _listRoot);
-				SetActiveRecursively(clone, true); // Instantiate preserves per-GO inactive flags; wake the whole subtree
-				TMP_Text label = clone.GetComponentInChildren<TMP_Text>(true);
-				label.text = DisplayName(cardId);
-
-				// stack top-down under the list root (anchored to its top edge)
-				clone.transform.localPosition = new Vector3(0, -(float)_buttons.Count * 52.0f, 0);
-				Button button = clone.GetComponent<Button>();
-				if (button != null)
-					button.onClick.AddListener(() => Pick(cardId));
-				_buttons.Add(clone);
+				Button button = new Button { text = DisplayName(cardId) };
+				button.AddToClassList("card-button");
+				button.clicked += () => Pick(cardId); // captured cardId is stable per iteration
+				_listRoot.Add(button);
+				_buttons.Add(button);
 			}
 
-			_panel.SetActive(true);
+			_screen.style.display = DisplayStyle.Flex;
 			_input.DisableInput(); // freeze Look/Move so the camera can't rotate under the menu
 			_input.SetCursorState(false); // show + unlock the mouse so buttons are clickable
 		}
 
+		private void Clear()
+		{
+			foreach (Button button in _buttons)
+				button.RemoveFromHierarchy();
+			_buttons.Clear();
+		}
+
 		private void Pick(string cardId)
 		{
-			_panel.SetActive(false);
+			_screen.style.display = DisplayStyle.None;
+			Clear();
 			Services.Dialogue.Play(cardId, _actorId, Services.Chapter.CurrentChapter.Value);
 			_input.EnableInput();
 			_input.SetCursorState(true);
@@ -90,13 +88,6 @@ namespace Game.UI
 		private void OnDestroy()
 		{
 			_onRequest?.Dispose();
-		}
-
-		private static void SetActiveRecursively(GameObject go, bool active)
-		{
-			go.SetActive(active);
-			for (int i = 0; i < go.transform.childCount; i++)
-				SetActiveRecursively(go.transform.GetChild(i).gameObject, active);
 		}
 	}
 }
