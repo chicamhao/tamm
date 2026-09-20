@@ -4,8 +4,7 @@
     "references": [
         "Game.Core",
         "QuickOutline",
-        "Unity.InputSystem",
-        "Unity.TextMeshPro"
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

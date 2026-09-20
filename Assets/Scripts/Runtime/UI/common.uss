@@ -121,6 +121,25 @@
     bottom: 0;
 }
 
+/* One Interactable tag (WorldLabel): a small chip translated to the owner's
+   on-screen position. Absolutely positioned so siblings never lay it out. */
+.world-label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--panel-bg);
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--ink);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+    color: var(--fill);
+    -unity-text-align: middle-center;
+}
+
 /* ---------- tutorial (exported builds only) ---------- */
 
 .tutorial-box {

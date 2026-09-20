@@ -9,10 +9,10 @@ namespace Game.Minigames.Rat
 	// the catch-line miss check. Input and UI both talk to this; neither holds rules.
 	//
 	// Ported from rice/rat prototype: score counter and TuningHud are gone; the
-	// ActionPromptPanel HUD is ported with it. Win/lose report to the core
-	// MinigameService, which grants the reward card and returns to the narrative
-	// level (Bootstrapper.LoadLevel handles the scene swap). The scene is
-	// unloaded when the minigame ends, so the static Instance needs lifecycle cleanup.
+	// RatHud (UI Toolkit) replaced the uGUI ActionPromptPanel. Win/lose report to
+	// the core MinigameService, which grants the reward card and returns to the
+	// narrative level (Bootstrapper.LoadLevel handles the scene swap). The scene
+	// is unloaded when the minigame ends, so the static Instance needs cleanup.
 	[Unity.Scripting.LifecycleManagement.AutoStaticsCleanup]
 	public sealed partial class RatManager : MonoBehaviour
 	{

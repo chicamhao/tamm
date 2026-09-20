@@ -43,8 +43,15 @@ namespace Game.UI.Tests
 			// 2. The UITK host + its document must be present and resolved.
 			Game.UI.RuntimeUI ui = Object.FindFirstObjectByType<Game.UI.RuntimeUI>();
 			Assert.IsNotNull(ui, "No RuntimeUI host in Playground");
-			Assert.IsNotNull(ui.Document, "RuntimeUI host has no UIDocument");
-			Assert.IsNotNull(ui.Root, "RuntimeUI document has no root element");
+			Assert.IsNotNull(ui.Root, "RuntimeUI host exposes no root element");
+
+			// Phase 5 gate: every host is consolidated onto the PanelRenderer (+ UIDocument)
+			// pair — the scriptable-anchor UIDocument holds the tree, the PanelRenderer is
+			// the renderer. A host that lost its anchor (UIDocument) can't be scripted.
+			Assert.IsNotNull(ui.gameObject.GetComponent<UnityEngine.UIElements.PanelRenderer>(),
+				"RuntimeUI host must carry a PanelRenderer (everything-on-PanelRenderer)");
+			Assert.IsNotNull(ui.gameObject.GetComponent<UnityEngine.UIElements.UIDocument>(),
+				"RuntimeUI host must carry a UIDocument scripting anchor");
 
 			// 3. Every screen subtree the leaves bind to must exist by name.
 			AssertScreen(ui, "SettingsScreen");
@@ -56,7 +63,13 @@ namespace Game.UI.Tests
 			Assert.IsNotNull(ui.Q<UnityEngine.UIElements.Slider>("SensitivitySlider"), "SensitivitySlider missing");
 			Assert.IsNotNull(ui.Q<UnityEngine.UIElements.Button>("SaveButton"), "SaveButton missing");
 
-			// 4. A leaf reacting to a live service event produces a visible view
+			// 4. World tags: every world-tagged Interactable's WorldLabel appends a
+			//    screen-space label under the shared WorldLabels layer (Phase 4 gate
+			//    — Playground currently carries six tagged Interactables).
+			Assert.That(ui.Q("WorldLabels").childCount, Is.EqualTo(6),
+				"expected one screen-space label per world-tagged Interactable");
+
+			// 5. A leaf reacting to a live service event produces a visible view
 			//    (ToastOverlay.OnGranted -> Label added under ToastsHost).
 			Game.Core.Services.Cards.Granted.OnNext("smoke_card");
 			yield return null;

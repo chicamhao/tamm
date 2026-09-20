@@ -170,6 +170,11 @@ The repo keeps a working game at every commit; nothing merges with red tests.
 - 2026-09-20: include `DebugMenu` (zero IMGUI target)
 - 2026-09-20: full purge incl. `WorldTag` TMP labels (no `com.unity.ugui` in manifest)
 - 2026-09-20: rat icons restyled native (not 1:1 port)
+- 2026-09-20 (Phase 4): delete orphaned uGUI-era prefabs (`Template.prefab`,
+  `UI_EventSystem.prefab`, `NestedParent_Unpack.prefab`) — nothing instantiates them and
+  `com.unity.ugui`/EventSystem vanish with the purge
+- 2026-09-20 (Phase 4): do **not** preserve `LiberationSans.ttf` — UITK keeps the accepted
+  default font; the §3 font-registration intent is dropped
 
 ---
 
@@ -197,16 +202,104 @@ scenes). Palette/skins live in `Runtime/UI/*.uss`.
   in `EditorBuildSettings`; added as the first scene so builds/players boot services.
 
 ### Not started (do next)
-- **Phase 3 — Rat scene surgery** (code is ready: `RatHud.cs`, `RatUI.uxml`, `rat-hud.uss`,
-  `RatManager` rewired): headlessly strip Rat's uGUI Canvas + `ActionPrompts` GO, add the
-  `RuntimeUI` host (RatUI document + `RatHud`), delete `ActionPromptPanel.cs` +
-  `ArrowIcon/TapIcon/CircleIcon/PromptIcon.cs`. Plan: `-executeMethod` Editor script.
-- **Phase 4 — WorldTag + purge** — `WorldTag` → screen-space `WorldLabel`; delete
-  `TextMesh Pro/` + `TMP Settings.asset`; drop `com.unity.ugui` from the manifest; strip
-  `TMPro`/`Unity.UI` usings; delete old icon files.
 - **Phase 5 — consolidation** — scene sweep, PlayMode-suite judgement of the 3 pre-existing
   headless failures (Jump/MoveInput physics tests + `MinigameTest.WinningGrants` fail on clean
   HEAD too — batch-environment, not migration regressions), Windows/Web build check.
+
+### Phase 3 — done (2026-09-20 later session)
+- **Rat scene surgery** — headless via `RatSceneSurgery` editor script
+  (`Assets/Scripts/Editor/RatSceneSurgery.cs`, `-executeMethod`): stripped `ActionPromptPanel`,
+  `resultText`, `roundText`, `InstructionText`, `ProgressText`, `heartsText`, `Canvas`,
+  `EventSystem` GOs; rebuilt the `RatManager` component (dropped the five stale TMP text refs,
+  re-wired `Ball`); added the `RuntimeUI` root (UIDocument → `RatUI.uxml` on the shared
+  `RuntimeUIPanelSettings`, mirroring the Playground host field-for-field) and the `RatHud`
+  leaf with its `_runtimeUI` serialized to the Rat host (required — Rat is an additive overlay
+  over Playground, so two hosts are alive at once). SceneRoots updated; zero `RectTransform`/
+  `Canvas`/`EventSystem` left in `Rat.unity`.
+- **Old icon files deleted** — `ActionPromptPanel.cs`, `ArrowIcon.cs`, `TapIcon.cs`,
+  `CircleIcon.cs`, `PromptIcon.cs` (+ `.meta`); `RatManager` doc comment updated. Zero
+  references remain (only the `ArrowIcon` *element name* in `RatUI.uxml`, unrelated to class).
+- **New PlayMode gate** — `RatUITest` (`Assets/Scripts/Tests/PlayMode/RatUITest.cs`) boots the
+  real entry chain (core → Playground → Rat additive overlay), asserts the Rat document is
+  hosted by the Rat scene's own `RuntimeUI`, every `RatHud` subtree resolves by name, the
+  rewired `RatManager` drives the HUD to THROW on boot, and the uGUI roots are gone.
+- **Tests** — EditMode 22/22 pass. PlayMode 6/9 pass: the same 3 documented pre-existing
+  headless failures (Jump/MoveInput physics + `WinningGrants`); the new `RatUITest` is green.
+
+### Phase 4 — done (2026-09-20 later session)
+- **`WorldTag` → `WorldLabel`** (`Assets/Scripts/Runtime/Interaction/WorldLabel.cs`): same
+  GameObject as the `Interactable`, resolves the level `RuntimeUI` (serialized `_runtimeUI` set
+  to the Playground host — additive scenes), appends a `Label` under the shared `WorldLabels`
+  layer in `PlaygroundUI.uxml`/`RatUI.uxml`, and `LateUpdate`s the owner's world position via
+  `Camera.main.WorldToScreenPoint` → `style.translate` (same math as `RatHud.PlacePrompt`),
+  `display: none` while the point is behind the camera. Chip styling in `common.uss`
+  (`.world-label`). `WorldTag.cs` deleted — last `using TMPro;` in the repo.
+- **Scene surgery** — one-shot `WorldLabelSurgery` editor script (pattern of `RatSceneSurgery`,
+  deleted after use since it referenced the removed class): rewired all 6 Playground tags
+  (4 cubes + 2 RobotKyle NPCs), copying `_cards` + `_heightOffset` (0.8/1.0), and destroyed the
+  6 TMP `Tag` child GOs. `Playground.unity` now has **zero** `RectTransform`/`TextMeshPro`/
+  `WorldTag`.
+- **Package purge** — `com.unity.ugui` removed from `Packages/manifest.json` and
+  `packages-lock.json` (no dependents). `Assets/TextMesh Pro/` deleted entirely (incl.
+  `TMP Settings.asset`; *decision*: the LiberationSans TTF was not preserved — UITK keeps the
+  verified default font, plan's §3 registration intent dropped). Orphaned prefabs deleted:
+  `Template.prefab` (uGUI `Image` + `TextMeshProUGUI`), `UI_EventSystem.prefab` +
+  `NestedParent_Unpack.prefab` (both referenced `UnityEngine.EventSystem`, which ships inside
+  `com.unity.ugui`; unused). Zero `using UnityEngine.UI;`/`using TMPro;` left in runtime code
+  (only UniTask's vendored README prose mentions TMP).
+- **Gates** — EditMode 22/22 pass. PlayMode 6/9 pass: the same 3 documented pre-existing
+  headless failures (Jump/MoveInput physics + `WinningGrants`); `RuntimeUITest` extended with a
+  Phase 4 gate (6 labels under `WorldLabels` when Playground boots) and is green.
+  `BuildWebCLI` Web export builds clean (no missing-script/uGUI/TMP errors). Windows build not
+  runnable on this macOS host — same caveat as Phase 5.
+
+### Phase 5 — done (2026-09-20 later session)
+- **Scene sweep — clean.** Ran `grep` over `Assets/Scenes/*.unity` and every `*.prefab` for
+  `RectTransform`/`Canvas`/`GraphicRaycaster`/`UnityEngine.EventSystems.EventSystem`/`TextMeshPro`:
+  all zero (the only hits were UITK's own `UnityEngine.UIElements`, a false positive). The
+  Playground/Rat/Bootstrapper scenes and the remaining prefabs carry no uGUI/IMGUI/TMP remnants.
+- **Regression found & fixed (this is why the smoke suite was red at the start of Phase 5).** Unity
+  6.7 split the old `UIDocument` host into a renderer (`PanelRenderer`) and a scriptable-anchor UI
+  `UIDocument`. The 6.7 editor auto-migrated the Playground host's `UIDocument` → `PanelRenderer` on a
+  save *after* the Phase-4 checkpoint, leaving the host with ***only*** a `PanelRenderer`. Reflecting
+  the real API (probed via a throwaway editor/play test, since removed): `PanelRenderer` is a pure
+  renderer with **no `rootVisualElement`** — that surface lives only on `UIDocument` — so the whole
+  Playground UI tree became un-scriptable and `RuntimeUITest` failed (
+  `RuntimeUI requires a UIDocument on the same GameObject`). A `UIDocument`-only host (Rat) still works,
+  and re-adding a `UIDocument` beside the `PanelRenderer` (same `PanelSettings` + `sourceAsset`)
+  restores `rootVisualElement` (SettingsScreen/CardScreen resolve, verified empirically).
+- **Consolidation: every host carries the `PanelRenderer` + `UIDocument` pair.** Added the
+  idempotent `PanelRendererHostMigration` editor script (`-executeMethod`) that gives each host the
+  component it's missing, copying `PanelSettings`/`sourceAsset` from the one it has: `Playground.unity`
+  got its `UIDocument` back; `Rat.unity` got a `PanelRenderer`; `UI_TouchScreenInput.prefab` (mobile)
+  also got a `PanelRenderer`. Runtime code stays on `UIDocument.rootVisualElement` (the only scripting
+  API — PanelRenderer can't be scripted in this build); the pair is the canonical 6.7 arrangement.
+- **Smoke tests hardened** — both `RuntimeUITest` and `RatUITest` now assert the host carries the
+  `PanelRenderer` + `UIDocument` pair, so this drift can't silently regress again.
+- **Gates** — EditMode 22/22. PlayMode 6/9: the UI smoke tests (`UitkPanel`, `RatHud`) are green; the
+  remaining 3 are **pre-existing on clean HEAD** (their sources are unchanged by the migration):
+  `Jump_WhenGrounded`/`MoveInput_Advances` (physics don't settle headless — character never grounds/
+  moves) and `WinningGrantsTheRewardCard`. Corrections to the earlier note: `WinningGrants` is **not**
+  a batch-environment artifact — it's a deterministic test-setup mismatch (it constructs a
+  `MinigameService` but never calls `Start`, so `ActiveId` stays null and `Complete`'s stale-outcome
+  guard swallows the grant). Out of the migration's remit; left as-is and documented.
+- **Builds** — `BuildWebCLI` Web export builds clean again with the pair on both level hosts
+  (fresh `WebGL.data.br`, no missing-script/uGUI/TMP errors). Windows build still not runnable on this
+  macOS host (documented since Phase 4).
+
+### Notes / discoveries (additional)
+- `Object.FindFirstObjectByType` emits a deprecation warning on this build — fine, it is the
+  supported surface here (see notes below) and matches existing `RuntimeUI`/test usage.
+- Test runs go through the Unity CLI (`unity test . --mode EditMode|PlayMode --output f.xml`),
+  not raw `-runTests` flags. Reminder: startup logs only after `unity open .` on first diff.
+- This build's (6000.7.0b1) Dart-flavored surface lacks `Object.FindFirstObjectByName` and
+  `SerializedObject.SetProperty` — write against `GameObject.Find` and
+  `SerializedProperty` value props (`objectReferenceValue` / `enumValueIndex` / …) instead.
+- NUnit `Is.EqualTo` on UITK enums (`DisplayStyle.Flex`) compares enum instances, not values,
+  in PlayMode here — assert on `.ToString()`.
+- The Rat overlay's prefab activation fires the QuickOutline uv4 log *after* load, so
+  `RatUITest` keeps `LogAssert.ignoreFailingMessages` on for all its frames and gates on
+  structural asserts (same noise rationale as `RuntimeUITest`).
 
 ### Notes / discoveries
 - The repo's Dart-flavored runtime rejects `import`/`using` in `eval`, `for (T x : col)`
@@ -215,5 +308,5 @@ scenes). Palette/skins live in `Runtime/UI/*.uss`.
   README’s “Playground holds the Bootstrapper” is stale.
 - Batch (headless) PlayMode trips pre-existing scene noise (QuickOutline uv4 mesh writes,
   2 legacy missing-script warnings); the smoke test suppresses its load window.
-- `Playground.unity` and `ProjectSettings/EditorBuildSettings.asset` contain the migration
-  scene work; all other files listed in `git status` are the user’s own WIP.
+- `Playground.unity`, `Rat.unity`, and `ProjectSettings/EditorBuildSettings.asset` contain the
+  migration scene work; all other files listed in `git status` are the user’s own WIP.
