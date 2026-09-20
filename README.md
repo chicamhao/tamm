@@ -144,6 +144,62 @@ Character/camera have no seams (production code is frozen), so they run as **Pla
 > `CharacterController` starts fighting `transform.Rotate` in a future Unity upgrade, that test
 > fails first and the rotation path needs revisiting.
 
+## Build & deploy (web)
+
+The whole pipeline is CLI-driven; no editor clicks needed beyond the one-time
+Pages toggle.
+
+**0. Prereq:** close the Unity editor first — batch mode exits immediately while it holds the project lock.
+
+**1. Export WebGL** (uses the committed `BuildWebCLI` editor script + the `Web`
+build profile):
+
+```sh
+/Applications/Unity/Hub/Editor/6000.7.0b1/Unity.app/Contents/MacOS/Unity \
+  -batchmode -quit -projectPath . -executeMethod BuildWebCLI.Build \
+  -logFile /tmp/unity_webgl.log
+```
+
+Outputs to `Builds/WebGL/` (worlds, loader, wasm). **Compression is brotli**
+(`webGLCompressionFormat: 0` in `Assets/Settings/Build Profiles/Web.asset`).
+
+**2. Decompress for GitHub Pages.** Pages can't send `Content-Encoding: br` on
+static files, and Unity's loader refuses brotli payloads it wasn't told to
+inflate — so strip the compression before deploying (only needed when the
+profile has compression on):
+
+```sh
+cd Builds/WebGL/Build
+for f in *.br; do brotli -d -f "$f" -o "${f%.br}"; done
+rm *.br
+cd ../..
+sed -i '' -e 's|"/WebGL.data.br"|"/WebGL.data"|' \
+          -e 's|"/WebGL.framework.js.br"|"/WebGL.framework.js"|' \
+          -e 's|"/WebGL.wasm.br"|"/WebGL.wasm"|' index.html
+```
+
+**3. Deploy** — the gh-pages branch serves the build from its **repo root**
+(`Build/`, `TemplateData/`, `index.html` — not `Builds/WebGL`):
+
+```sh
+git checkout gh-pages
+rm -rf Build TemplateData
+cp -R Builds/WebGL/Build Build
+cp -R Builds/WebGL/TemplateData TemplateData
+cp Builds/WebGL/index.html index.html
+git add -f Build TemplateData index.html   # /Build is gitignored on main — force
+git commit -m "deploy"; git push origin gh-pages
+git checkout main
+```
+
+**4. One-time Pages toggle:** repo Settings → Pages → **Deploy from a branch** →
+`gh-pages` `/ (root)`. Site: <https://chicamhao.github.io/tamm/> — first deploy
+takes ~1 min; browsers cache it for 10 min (`max-age=600`), so hard-refresh or
+incognito after a deploy.
+
+**5. Verify** (optional): headless render the live URL — the title should read
+`Unity Web Player | starter` and a `<canvas>` must exist with no page errors.
+
 ## Minigames
 
 Minigames are small interactive scenes launched from the narrative (a dialogue
