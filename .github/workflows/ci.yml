@@ -1,0 +1,111 @@
+name: ci
+
+# Builds the WebGL player with the Unity CLI (build profile "Web") and then
+# runs the headless-browser smoke test from .smoketest/ against the output.
+# The smoke job fails the pipeline on any regression: HTTP >= 400, Unity boot
+# failure, browser console errors, or runtime exceptions.
+
+on:
+  push:
+    branches: [web-build]
+  pull_request:
+    branches: [web-build]
+  workflow_dispatch:
+    inputs:
+      unity_version:
+        description: Unity Editor version to install + build with (match the editor that makes your local builds)
+        required: false
+        default: '6000.7.0b1'
+      run_build:
+        description: 'Build the player (requires Unity license secrets). Set false to smoke-test an artifact you upload.'
+        type: boolean
+        default: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.run_build != 'false'
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install unity-cli
+        run: |
+          curl -fsSL https://public-cdn.cloud.unity3d.com/hub/prod/cli/install.sh | UNITY_CLI_CHANNEL=beta bash
+          echo "$HOME/.unity/bin" >> "$GITHUB_PATH"
+
+      # Either auth provisioning works. Configure the repo secrets you use:
+      #   A) service account (recommended, non-interactive): UNITY_SERVICE_ACCOUNT_ID + UNITY_SERVICE_ACCOUNT_SECRET
+      #   B) classic serial:                            UNITY_SERIAL
+      - name: Authenticate Unity
+        env:
+          SA_ID: ${{ secrets.UNITY_SERVICE_ACCOUNT_ID }}
+          SA_SECRET: ${{ secrets.UNITY_SERVICE_ACCOUNT_SECRET }}
+          SERIAL: ${{ secrets.UNITY_SERIAL }}
+        run: |
+          set -euo pipefail
+          if [ -n "$SA_ID" ] && [ -n "$SA_SECRET" ]; then
+            printf '%s' "$SA_SECRET" | unity auth login --client-id "$SA_ID" --secret-from-stdin
+            unity license activate
+          elif [ -n "$SERIAL" ]; then
+            unity license activate --serial "$SERIAL"
+          else
+            echo "::error::No Unity license credentials configured. Add repository secrets:"
+            echo "::error::  UNITY_SERVICE_ACCOUNT_ID + UNITY_SERVICE_ACCOUNT_SECRET (recommended), or"
+            echo "::error::  UNITY_SERIAL,"
+            echo "::error::then re-run this workflow."
+            exit 1
+          fi
+
+      - name: Install editor
+        run: |
+          # If your version is a beta/tech stream that `unity install` can't resolve,
+          # append `--stream beta` here (or change the unity_version workflow input).
+          unity install "${{ github.event.inputs.unity_version || '6000.7.0b1' }}" \
+            --module webgl --yes --accept-eula
+
+      - name: Build WebGL (profile Web)
+        run: |
+          unity build "$GITHUB_WORKSPACE" \
+            --profile Web \
+            -o "$GITHUB_WORKSPACE/Builds/WebGL" \
+            --editor-version "${{ github.event.inputs.unity_version || '6000.7.0b1' }}"
+
+      - name: Sanity-check Brotli output
+        run: |
+          ls -la Builds/WebGL/Build/
+          test -f Builds/WebGL/Build/WebGL.wasm.br || { echo "::error::build produced no .br files - WebGL compression is off"; exit 1; }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: webgl-build
+          path: Builds/WebGL
+          if-no-files-found: error
+
+  smoke:
+    needs: build
+    if: |
+      (github.event_name != 'workflow_dispatch' && needs.build.result == 'success') ||
+      (github.event_name == 'workflow_dispatch' && (github.event.inputs.run_build == 'false' || needs.build.result == 'success'))
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: webgl-build
+          path: Builds/WebGL
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install headless Chromium
+        run: npx -y playwright install chromium
+
+      - name: Run WebGL smoke test
+        run: node .smoketest/smoke.mjs --json --timeout 120
