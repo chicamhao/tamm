@@ -1,8 +1,5 @@
-# uni-tam — chapter-driven, first-person narrative adventure
-
-Built on the **starter** frame — a thin, copy-pasteable foundation for Unity projects.
-Everything is a **pattern**, not a monolithic engine: DI via composition root, an input hub
-bound to the InputSystem asset, R3-reactive services, config-as-ScriptableObject, PlayerPrefs saves.
+# tamm
+Chapter-driven, first-person narrative adventure.
 
 The loop: **interact with objects to collect cards, use cards to converse with NPCs,
 progress chapters, and reshape the world around you.**
