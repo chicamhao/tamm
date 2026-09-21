@@ -1,277 +1,50 @@
-# uni-tam — chapter-driven, first-person narrative adventure
-
-Built on the **starter** frame — a thin, copy-pasteable foundation for Unity projects.
-Everything is a **pattern**, not a monolithic engine: DI via composition root, an input hub
-bound to the InputSystem asset, R3-reactive services, config-as-ScriptableObject,
-PlayerPrefs saves.
+# tamm
+Chapter-driven, first-person narrative adventure.
 
 The loop: **interact with objects to collect cards, use cards to converse with NPCs,
 progress chapters, and reshape the world around you.**
 
 The card-interaction scaffold in `Game.Core`/`Game.Interaction`/`Game.UI` is the
-**reference loop** — copy its shape (interact → service rule → reactive UI): every
-`Interactable` carries an id; `InteractionService` grants known card ids and opens the
-card selection menu for known actor ids.
+**reference loop** — copy its shape (interact → service rule → reactive UI).
 
-## Designer & writer onboarding
+## Quick start
 
-Content is text files first — you never touch script code.
+1. Open the project in Unity **6000.7.0b1**.
+2. `Assets → Import Content from YAML` — content is YAML-first
+   ([docs/content-pipeline.md](docs/content-pipeline.md)).
+3. Open `Assets/Scenes/Bootstrapper.unity` — the core scene — and press Play. It boots the
+   services and loads the `Playground` level additively. (Pressing Play from `Playground`
+   alone runs the level without the core: every UI leaf logs a warning and nothing works.)
+   Settings gear → Save / Load / New Game; **F2** opens the dev chapter stepper.
 
-**Your daily loop:**
-1. **Edit a YAML file** under `Assets/Settings/Game/YAML/` while Unity is open
-   (also valid in VS Code — refresh Unity after).
-   - `cards.yaml` — the collectible cards: `card_id`, `display_name`, `description`, `target_actor_ids`.
-   - `dialogues.yaml` — NPC reactions, keyed by card + actor: `card_id` is `cardId_actorId`
-     (add `_2` → that line only plays in chapter 2). Each line: `text`, `duration`, optional `expression_id`.
-   - `chapters.yaml` — per-actor scene state per chapter (`spawn_point_id`, `is_visible`), plus
-     `chapter_advances` gates that unlock the next chapter from progress (e.g. `owns_card` / `had_conversation`).
-   - `expressions.yaml` — facial-expression morph targets (id-referenced by dialogue lines).
-2. **Import:** `Assets → Import Content from YAML`. A console warning appears if you edit YAML
-   without re-importing.
-3. **Play test** the Playground scene. World tags show what each object/NPC is; aim glow marks
-   what's interactable; **F2** opens the dev chapter stepper (↑/↓ moves chapters, gates bypassed);
-   the Settings gear has Save / Load / New Game (boot auto-restores your save).
-4. **Iterate ids:** object ids grant cards, actor ids (e.g. `cam`, `sm`) open the card menu. New
-   card ids in `cards.yaml` just work; new *actor* ids also just work (derived from dialogue keys).
+## The invariant
 
-**Scene wiring** (once per object/NPC, in the Inspector): an `Interactable` with the id + a
-collider; optional `Outline` (aim glow) and `WorldTag` (3D label above). UI leaves
-(`CardSelectionMenu`, `DialoguePanel`, …) live under the Canvas and hold font/layout config.
+`Services.*` is never null at runtime — services are built once in `Bootstrapper.Awake` and leaves
+subscribe in `Start`. `Assets/Scenes/Bootstrapper.unity` is the persistent **core scene**: its
+`Bootstrapper` GameObject is `DontDestroyOnLoad` and owns every service; level scenes hold only
+content. Never call `SceneManager.LoadScene` directly — use `Bootstrapper.LoadLevel("...")`
+([docs/architecture.md](docs/architecture.md)).
 
-**Scenes — Persistent Core Model:** `Playground.unity` is the **core scene**: it holds the
-`Bootstrapper` GameObject (`DontDestroyOnLoad`, so it survives every transition) plus the
-`GameSettings` asset, and it owns all services. Level scenes hold only content — spawners,
-interactables, UI leaves. Switch levels via `Bootstrapper.LoadLevel("LevelName")` (loads
-additively over the core, unloading the previous level); never call `SceneManager.LoadScene`
-directly. Because the core is always alive, `Services.*` is never null at runtime — no null
-guards on service access (see `conventions.yaml`).
+## Docs
 
-## Stack
-
-- Unity **6000.7.0a6** (alpha) with the **Input System (New)** — `activeInputHandler: 1` in ProjectSettings
-- [R3](https://github.com/Cysharp/R3) (NuGet + R3.Unity) — reactive state, the game loop
-- [UniTask](https://github.com/Cysharp/UniTask) (NuGet) — async flows (installed; pacing currently lives in leaf `Update`s)
-- [YamlDotNet](https://github.com/yaml) (NuGet) — the content pipeline's YAML
-- TextMeshPro, Cinemachine, URP (rendering), QuickOutline (aim highlight)
-- PlayerPrefs (Windows registry) save file — design, not a file format
-- Manifest trimmed to used packages/modules (see `Packages/manifest.json`)
-
-## Assemblies
-
-| Assembly | Folder | Contents |
+| Doc | For | Covers |
 |---|---|---|
-| `Game.Core` | `Assets/Scripts/Framework/` | Pure-C# DI container. Zero deps — reuse first. |
-| `Game.Runtime` | `Assets/Scripts/Runtime/` | Composition root, services, input hub, interaction, UI leaves, content data classes (`Game.Content`). |
-| `Game.Editor` | `Assets/Scripts/Editor/` | Designer tools: YAML ⇄ ScriptableObject content pipeline (cards/dialogues/chapters/expressions) + `ChapterDebug` (persisted chapter bump). |
-| `Game.Debug` | `Assets/Scripts/Debug/` | Dev overlays (`DebugMenu`, F2 chapter stepper); editor/dev builds only. |
-| `QuickOutline` | `Assets/QuickOutline/` | Vendored `Outline` component (aim highlight). |
-| `Game.Runtime.Tests` | `Assets/Scripts/Tests/` | Edit-mode NUnit tests (Test Runner). |
-
-## Layers
-
-```
-Game.Core       Container (DI, pure C#)
-Game.Core       PauseState / ProgressStore / CardInventory / DialogueService / ChapterState / InputSettings — services owned by Bootstrapper
-Game.Content    CardSettings / DialogueSettings / ChapterSettings / ExpressionSettings — id-keyed content dictionaries (imported from YAML)
-Game.Input      InputMonitor — THE input contract: actions bound from the asset, cursor, hub state
-Game.Character  Controller / Pusher — kit character controller (consumes hub)
-Game.UI         SettingsMenu / CardSelectionMenu / DialoguePanel / ToastOverlay / TutorialPrompt — leaf MonoBehaviours; the only files allowed to touch Services
-Game.Interaction Interactor / Interactable / WorldTag / ChapterSpawner — crosshair interact, aim highlight, world labels, chapter placement
-Game.Debug      DebugMenu — F2 dev overlay (chapter stepper)
-```
-
-Invariant: **only** leaves read `Game.Core.Services`; services never reference leaves;
-`InputMonitor` is the only file that touches input devices or `Cursor` (debug overlays
-violate it on purpose — see `DebugMenu`/`ToastOverlay` ponytail notes).
-
-## Scene setup (reference: Playground)
-
-1. `Bootstrapper` (any persistent object) + assign `GameSettings` (Assets → Create → Game/Settings).
-   Its Content refs (`Cards`/`Dialogues`/`Chapters`) are generated by the YAML import.
-2. Player with `InputMonitor` + `Controller`. `InputMonitor._actions` optional — falls back to
-   `InputSystem.actions`, registered in `ProjectSettings/EditorBuildSettings.asset` →
-   `com.unity.input.settings.actions` (points at the `InputSystem_Actions.inputactions` asset
-   under `Assets/Settings/Input/`). Add `Interactor` (+ `_input` → the player's InputMonitor).
-3. Every interactable is an `Interactable` with an `_id` (collider + id). The id routes via
-   `InteractionService`: registered card ids grant, registered actor ids open the card menu.
-   Optional feedback per entity: `Outline` (aim glow) and `WorldTag` (3D label above, TMPro child).
-4. UI leaves: `SettingsMenu`; `CardSelectionMenu` (panel + button template + `_cards` + `_input`);
-   `DialoguePanel` (speaker/line TMP texts + `_input`); `ToastOverlay` (card notifications);
-   `DebugMenu` (F2 dev overlay); `TutorialPrompt` (build-only first-run hint).
-
-## Patterns
-
-- **Add a service:** class in `Gem.Core`-style namespace → `Provide` in `Bootstrapper.Awake` (deps first)
-  → expose on `Bootstrapper` → add accessor on `Services` (if leaves need it) → dispose via `IDisposable`.
-- **Add an action:** add name + bindings in the `InputSystem_Actions.inputactions` asset (Player map)
-  → bind in `InputMonitor.Start` → read: state fields (`Move`, …), edge reads (`GetPauseInputDown`), or new getter.
-- **Content pipeline (designer tools):** edit `Assets/Settings/Game/YAML/{cards,dialogues,chapters,expressions}.yaml`
-  → `Assets → Import Content from YAML` populates four id-keyed dictionaries — `CardSettings.asset`,
-  `DialogueSettings.asset`, `ChapterSettings.asset` (incl. `chapter_advances` gates), `ExpressionSettings.asset`.
-  Export is the reverse. Staleness check warns when YAML changes without an import.
-- **Gameplay loop:** every `Interactable` carries an id → `InteractionService` grants cards / opens the
-  card menu (`CardSelectionMenu`) → `DialogueService` plays the keyed entry (`cardId_actorId[_chapter]`,
-  `DialoguePanel` shows it) → conversations + grants publish progress → `ChapterState` advances when a
-  gate's conditions all hold → `ChapterSpawner` re-places actors.
-- **Pause:** `Services.Pause.Toggle()` → `Time.timeScale` freezes simulation; cursor unlock through
-  `InputMonitor.SetCursorState(false)` freezes gameplay input via `CanProcessInput`.
-- **Save/load:** `Services.Progress.Save()/Load()` persisting cards (comma list), conducted
-  conversations, and the current chapter (PlayerPrefs; swap for a file format the day saves grow).
-  Bootstrapper auto-loads on boot; `SettingsMenu` exposes Save/Load/New Game.
-- **Settings persistence:** `InputSettings` seeds from `GameSettings`, writes PlayerPrefs on change.
-- **Dev overlays:** `Game.Debug`-only `DebugMenu` (F2, arrow keys step chapters); `ToastOverlay` (card
-  notifications); `TutorialPrompt` (first-run hint, exported builds only); `ChapterDebug` (batch-mode
-  `-executeMethod` chapter bump for CI). IMGUI leaves need no scene wiring — just the component.
-
-## Conventions
-
-`conventions.yaml` at the root — sealed-by-default, `Assert.IsNotNull` at init, `?.Invoke()` events.
+| [docs/architecture.md](docs/architecture.md) | engineers | stack, assemblies, layers, scene setup, patterns, minigame system |
+| [docs/content-pipeline.md](docs/content-pipeline.md) | designers & writers | YAML editing, import, playtest loop, ids |
+| [docs/testing.md](docs/testing.md) | engineers | what is tested and how |
+| [docs/adr/](docs/adr/) | everyone | why the key decisions were made |
+| [docs/ui-toolkit-migration.md](docs/ui-toolkit-migration.md) | engineers | uGUI/IMGUI → UI Toolkit migration plan (in flight) |
+| [CHANGELOG.md](CHANGELOG.md) | everyone | shipped work, append-only (ports, backlogs) |
+| `conventions.yaml` | engineers | naming / class structure / null-checking rules (sealed by default) |
+| `scripts/build-web.sh` · `scripts/deploy-gh-pages.sh` | release | web build & deploy runbooks (executable) |
 
 ## Tests
 
-Test Runner → `Game.Runtime.Tests` (Edit Mode). The pure rule engines:
-`CardInventoryTest` (grant-once, silent restore), `InteractionServiceTest` (id routing + actor derivation
-from dialogue/chapter keys), `DialogueServiceTest` (resolution, chapter-key fallback, reward on finish),
-`ChapterStateTest` (gate conditions, auto-advance). R3 ticks are frame-driven and inert in Edit Mode,
-so these tests drive rules directly.
-
-Character/camera have no seams (production code is frozen), so they run as **Play Mode** tests in
-`Game.Runtime.PlayTests`: a self-built player (`Controller` + `CharacterController` + `PlayerInput` +
-`InputMonitor`) is driven on a live scene — move, jump, camera pitch clamps, body yaw.
-
-> Both suites take real seconds (the play-mode tests wait ~2s each for physics/look accumulation).
-> The yaw test asserts the body actually rotates under `Look.x` — if the built-in
-> `CharacterController` starts fighting `transform.Rotate` in a future Unity upgrade, that test
-> fails first and the rotation path needs revisiting.
+`Game.Runtime.Tests` (Edit Mode — rule engines) + `Game.Runtime.PlayTests` (Play Mode —
+character/camera) — [docs/testing.md](docs/testing.md).
 
 ## Build & deploy (web)
 
-The whole pipeline is CLI-driven; no editor clicks needed beyond the one-time
-Pages toggle.
-
-**0. Prereq:** close the Unity editor first — batch mode exits immediately while it holds the project lock.
-
-**1. Export WebGL** (uses the committed `BuildWebCLI` editor script + the `Web`
-build profile):
-
-```sh
-/Applications/Unity/Hub/Editor/6000.7.0b1/Unity.app/Contents/MacOS/Unity \
-  -batchmode -quit -projectPath . -executeMethod BuildWebCLI.Build \
-  -logFile /tmp/unity_webgl.log
-```
-
-Outputs to `Builds/WebGL/` (worlds, loader, wasm). **Compression is brotli**
-(`webGLCompressionFormat: 0` in `Assets/Settings/Build Profiles/Web.asset`).
-
-**2. Decompress for GitHub Pages.** Pages can't send `Content-Encoding: br` on
-static files, and Unity's loader refuses brotli payloads it wasn't told to
-inflate — so strip the compression before deploying (only needed when the
-profile has compression on):
-
-```sh
-cd Builds/WebGL/Build
-for f in *.br; do brotli -d -f "$f" -o "${f%.br}"; done
-rm *.br
-cd ../..
-sed -i '' -e 's|"/WebGL.data.br"|"/WebGL.data"|' \
-          -e 's|"/WebGL.framework.js.br"|"/WebGL.framework.js"|' \
-          -e 's|"/WebGL.wasm.br"|"/WebGL.wasm"|' index.html
-```
-
-**3. Deploy** — the gh-pages branch serves the build from its **repo root**
-(`Build/`, `TemplateData/`, `index.html` — not `Builds/WebGL`):
-
-```sh
-git checkout gh-pages
-rm -rf Build TemplateData
-cp -R Builds/WebGL/Build Build
-cp -R Builds/WebGL/TemplateData TemplateData
-cp Builds/WebGL/index.html index.html
-git add -f Build TemplateData index.html   # /Build is gitignored on main — force
-git commit -m "deploy"; git push origin gh-pages
-git checkout main
-```
-
-**4. One-time Pages toggle:** repo Settings → Pages → **Deploy from a branch** →
-`gh-pages` `/ (root)`. Site: <https://chicamhao.github.io/tamm/> — first deploy
-takes ~1 min; browsers cache it for 10 min (`max-age=600`), so hard-refresh or
-incognito after a deploy.
-
-**5. Verify** (optional): headless render the live URL — the title should read
-`Unity Web Player | starter` and a `<canvas>` must exist with no page errors.
-
-## Minigames
-
-Minigames are small interactive scenes launched from the narrative (a dialogue
-footer or any code) and bridged back by `MinigameService`. The system is three
-small pieces plus designer data:
-
-- `Content/MinigameSettings` (ScriptableObject) — `id → { scene_name, reward_card_id }`,
-  imported from `Assets/Settings/Game/YAML/minigames.yaml` by the same content pipeline
-  as cards/dialogues/chapters.
-- `Core/MinigameService` — `Start(id)` load-adds the scene over the persistent core
-  and remembers the interrupted level; `Complete(id, won)` grants `reward_card_id`
-  on a win (so chapter gates and save data work on it with zero new code) and
-  reloads the narrative level.
-- Dialogue footer: `DialogueEntry.MinigameId` (data, imported from dialogues.ln) —
-  when the dialogue ends, its minigame starts. `RewardCardId` is untouched.
-
-### Importing a minigame (the agent recipe)
-
-1. **Drop a scene** under `Assets/Scenes/` — additive level, with its **own camera,
-   AudioListener and EventSystem** (the core's are parked while it runs). The scene
-   must be **enabled in Build Profiles** (File → Build Profiles), or
-   `SceneManager.LoadScene` rejects it.
-2. **Add one entry** to `minigames.yaml`: `id: { scene_name, reward_card_id }` and
-   run *Assets → Import Content from YAML*.
-3. **Wire a trigger**: the sandbox way is a `MinigameTrigger` on a prop — an
-   `Interactable` subclass whose `_id` **is** the minigame id, so `Interactor`
-   handles it like any object (collider + optional `Outline`/`WorldTag`). The
-   narrative way is `minigame_id` on a dialogues.yaml entry, or call
-   `Services.Minigame.Start("id")` from any scene code.
-
-No system file is touched per minigame.
-
-### While a minigame owns the world
-
-The minigame loads **additively into the same world**, so `MinigameService.Start`
-hands the whole session over before the scene loads, and `Complete` hands it back:
-
-- every **root object** of every loaded (pre-minigame) scene is parked
-  (`SetActive(false)`, the persistent `Bootstrapper` container excepted) — the
-  minigame's camera sees an empty world, and its own camera/AudioListener/
-  EventSystem are the only ones left; the player controller and HUD are off too
-- the player's `InputMonitor` is frozen and the **pointer freed** for gestures
-- **ESC** (`Bootstrapper.Update` → `MinigameService.Abort()`) exits any minigame
-  early with no reward; `ActiveId` gates against stale/double outcomes
-- `Bootstrapper.LoadLevel` accepts a scene **path or plain name** and stores the
-  normalized name (UnloadSceneAsync only takes plain names)
-
-### Ported: Banh Đũa (Chơi Chuyền), codename Rat — rounds 1–3
-
-Port from `rice/rat` prototype, cut to minimum-functionality tap-through:
-
-| Shipped | Location |
-|---|---|
-| Ball / chopstick / pool physics | `Runtime/Minigames/Rat/` (BallController, Chopstick, ChopstickManager) — ported 1:1, new-physics API matches this project's build (6000.7.0a6) |
-| Round rules (Nhăt Một / Hai / Ba, 10 sticks, take r per turn) | `RoundRules.cs` — balance table removed, built-in traditional rules kept |
-| State machine + heart loss + miss detection | `RatManager.cs` — score/TuningHud stripped; drives the prompt panel; win/lose call `Services.Minigame.Complete` |
-| Tap + swipe-up throw input (mobile + desktop) | `GestureInput.cs` — sweep gesture and swipe steering stripped |
-| Prompt HUD (icons, chips, badges) | `Runtime/Minigames/Rat/UI/` — ActionPromptPanel + 4 procedural icons (PromptIcon, ArrowIcon, TapIcon, CircleIcon), ported 1:1; scene config GO restored |
-| Scene, prefabs, HUD | `Scenes/Rat.unity`, `Prefabs/Chopsticks.prefab`, `Prefabs/Table.prefab` — panel config GO restored, instruction/progress texts blanked (the panel renders live labels) |
-| Data + first hook | `minigames.yaml` (`rat` entry) + `minigame_id: rat` on the `card_chopsticks_tao` dialogue; win reward: `card_chopsticks` |
-| Trigger | Sandbox path: `MinigameTrigger` (`_id: rat`) on any prop with a collider in a level. Committed entry: the `minigame_id: rat` dialogue hook (`card_chopsticks_tao`) |
-
-**Not ported (deferred)** — sweep/drag-to-collect affordance, rounds 4+, the balance
-table tuning tier, score display, `TuningHud` (debug overlay, not player UI).
-
-Playtested in-editor (Playground → disc → play → ESC/win/lose → back to the world):
-controller freezes and the pointer frees during the minigame, the playground hides,
-offset returns and gameplay resumes cleanly.
-
-## Porting checklist
-
-1. Reread `InputMonitor.cs` — the whole input contract. Remap bindings in the actions asset.
-2. Decide cursor/sensitivity per platform (already centralized).
-3. Swap `Time.timeScale` pause for an OS-level pause if needed.
-4. Everything else is engine-agnostic C# + R3.
+CLI-driven, no editor clicks: `./scripts/build-web.sh` then `./scripts/deploy-gh-pages.sh`.
+Site: <https://chicamhao.github.io/tamm/> — first deploy ~1 min; browsers cache the build
+for 10 min, so hard-refresh (or incognito) after a deploy.

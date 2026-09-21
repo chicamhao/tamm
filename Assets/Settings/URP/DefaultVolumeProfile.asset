@@ -222,10 +222,10 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 3
   agxContrast:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1.193
   agxMidGrey:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.18
   hueShiftAmount:
     m_OverrideState: 1
@@ -342,7 +342,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 2
   lightTransportWarmupSampleMultiplier:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 2
   patchFilteringTemporalSmoothing:
     m_OverrideState: 1
@@ -929,10 +929,10 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   contactHardeningScale:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   contactDistanceBias:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   minimumSmoothness:
     m_OverrideState: 1

@@ -2,7 +2,6 @@
     "name": "Game.Runtime.Tests",
     "rootNamespace": "",
     "references": [
-        "Game.Core",
         "Game.Runtime",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",

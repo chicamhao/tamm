@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Game.Runtime::Game.Core.Bootstrapper
   _settings: {fileID: 11400000, guid: d05b69e205d96794c879d0886ce096be, type: 2}
+  _initialLevel: Playground
 --- !u!4 &244831411
 Transform:
   m_ObjectHideFlags: 0
