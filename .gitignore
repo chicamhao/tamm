@@ -31,6 +31,8 @@
 
 # Visual Studio cache directory
 .vs/
+.vsconfig
+unity-tam.slnx
 
 # Gradle cache directory
 .gradle/
@@ -60,6 +62,7 @@ ExportedObj/
 
 # Unity3D generated file on crash reports
 sysinfo.txt
+.editorconfig
 
 # Builds
 *.apk
@@ -81,6 +84,7 @@ crashlytics-build.properties
 
 .graphifyignore
 graphify-out/
+graphify_filter.py
 
 # Project-specific
 .smoketest/
