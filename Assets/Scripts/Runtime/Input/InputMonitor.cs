@@ -36,6 +36,7 @@ namespace Game.Input
 			_interactAction?.Enable();
 			_pauseAction = asset.FindAction("Player/Pause");
 			_pauseAction?.Enable();
+			SetCursorState(CursorLocked);
 		}
 
 		public bool GetInteractInputDown() => InputEnabled && _interactAction != null && _interactAction.WasPressedThisFrame();
