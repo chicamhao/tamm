@@ -1,7 +1,8 @@
-using Game.Content;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Game.Core;
+using Game.Content;
 
 namespace Game.Interaction
 {
@@ -11,13 +12,14 @@ namespace Game.Interaction
 	public sealed class WorldTag : MonoBehaviour
 	{
 		[SerializeField] private TMP_Text _label;
-		[SerializeField] private CardSettings _cards; // display names; unknown ids show raw
 		[SerializeField] private float _heightOffset = 2.5f;
 
+		private CardSettings _cards;
 		private Camera _camera;
 
 		private void Start()
 		{
+			_cards = Bootstrapper.Instance.GameSettings.Cards;
 			Interactable owner = GetComponent<Interactable>();
 			Assert.IsNotNull(owner, "WorldTag requires an Interactable on the same object");
 			Assert.IsNotNull(_label, "WorldTag requires a TMP label child assigned");

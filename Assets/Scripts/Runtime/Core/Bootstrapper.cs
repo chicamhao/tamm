@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace Game.Core
 {
@@ -19,30 +20,33 @@ namespace Game.Core
 		private string _currentLevel; // additive level scene currently loaded, if any
 		private string _overlayLevel; // minigame scene layered over the level, if any (popped first by UnloadLevel)
 
+		public GameSettings GameSettings { get; private set; }
 		[SerializeField] private GameSettings _settings; // hub: content refs + input default
 
 		/// <summary>Level loaded additively on boot (the world the player starts in).</summary>
-		[SerializeField] private string _initialLevel = "Playground";
+		private readonly string _initialLevel = "Playground";
 
 		// Services tear down in reverse construction order (see Awake).
-		private readonly List<System.IDisposable> _disposables = new();
+		private readonly List<IDisposable> _disposables = new();
 
 		public CardInventory Cards { get; private set; }
 		public InteractionService Interactions { get; private set; }
 		public DialogueService Dialogue { get; private set; }
 		public MinigameService Minigames { get; private set; }
 		public ChapterState Chapter { get; private set; }
-		public InputSettings InputSettings { get; private set; }
 		public PauseState Pause { get; private set; }
 		public ProgressStore Progress { get; private set; }
+		public InputSettings InputSettings { get; private set; }
 
 		private void Awake()
 		{
-			Object.DontDestroyOnLoad(gameObject); // persistent core: survives level transitions
+			UnityEngine.Object.DontDestroyOnLoad(gameObject); // persistent core: survives level transitions
 			Instance = this;
 			Assert.IsNotNull(_settings, "Bootstrapper requires a GameSettings asset assigned");
 			Assert.IsNotNull(_settings.Cards, "GameSettings requires CardSettings assigned");
 			Assert.IsNotNull(_settings.Dialogues, "GameSettings requires DialogueSettings assigned");
+
+			GameSettings = _settings;
 
 			// Construction order == dependency order; add Gui, Save, etc. here (deps first).
 			var inputSettings = new InputSettings(_settings);
@@ -60,7 +64,7 @@ namespace Game.Core
 				new List<string>(_settings.Cards.Entries.Keys).ToArray(),
 				InteractionService.DeriveActorIds(
 					_settings.Dialogues.Entries.Keys,
-					_settings.Chapters != null ? _settings.Chapters.Entries.Keys : null,
+					_settings.Chapters?.Entries.Keys,
 					_settings.Cards.Entries.Keys).ToArray());
 			_disposables.Add(Interactions);
 
@@ -85,7 +89,7 @@ namespace Game.Core
 			LoadLevel(_initialLevel);
 		}
 
-		public static string CurrentLevel => Instance != null ? Instance._currentLevel : null;
+		public static string CurrentLevel => Instance?._currentLevel;
 
 		// ESC while a minigame runs abandons it (no reward, back to the world).
 		// The poll lives here (the one persistent core Mono) while the policy lives
@@ -124,9 +128,7 @@ namespace Game.Core
 				Instance._currentLevel = level;
 				return;
 			}
-			if (Instance._currentLevel != null && !SceneManager.GetSceneByName(Instance._currentLevel).isLoaded)
-				return; // previous load in flight; the scene isn't in the hierarchy yet
-			if (Instance._currentLevel != null) SceneManager.UnloadSceneAsync(Instance._currentLevel);
+			if (Instance._currentLevel != string.Empty) SceneManager.UnloadSceneAsync(Instance._currentLevel);
 			SceneManager.LoadScene(name, LoadSceneMode.Additive);
 			Instance._currentLevel = level;
 		}
@@ -136,7 +138,7 @@ namespace Game.Core
 		public static void LoadOverlay(string name)
 		{
 			Assert.IsNotNull(Instance, "LoadOverlay requires the core scene to be running");
-			Assert.IsNull(Instance._overlayLevel, "LoadOverlay: a minigame overlay is already loaded");
+			Assert.IsTrue(Instance._overlayLevel == string.Empty, "LoadOverlay: a minigame overlay is already loaded");
 			SceneManager.LoadScene(name, LoadSceneMode.Additive);
 			Instance._overlayLevel = System.IO.Path.GetFileNameWithoutExtension(name);
 		}
@@ -146,16 +148,16 @@ namespace Game.Core
 		public static void UnloadLevel()
 		{
 			Assert.IsNotNull(Instance, "UnloadLevel requires the core scene to be running");
-			if (Instance._overlayLevel != null)
+			if (Instance._overlayLevel != string.Empty)
 			{
 				SceneManager.UnloadSceneAsync(Instance._overlayLevel);
-				Instance._overlayLevel = null;
+				Instance._overlayLevel = string.Empty;
 				return;
 			}
-			if (Instance._currentLevel == null)
+			if (Instance._currentLevel == string.Empty)
 				return;
 			SceneManager.UnloadSceneAsync(Instance._currentLevel);
-			Instance._currentLevel = null;
+			Instance._currentLevel = string.Empty;
 		}
 
 		private void OnDestroy()

@@ -1,5 +1,0 @@
-﻿<Solution>
-  <Project Path="Game.Runtime.csproj" />
-  <Project Path="Game.Core.csproj" />
-  <Project Path="Game.Runtime.Tests.csproj" />
-</Solution>

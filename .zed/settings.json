@@ -1,0 +1,23 @@
+{
+  "file_scan_exclusions": [
+    "Library",
+    "Temp",
+    "Logs",
+    "Builds",
+    "UserSettings",
+    "graphify-out",
+    "Packages/Plugins",
+    "*.meta",
+    "*.slnx",
+    ".vsconfig",
+    ".DS_Store",
+    "ProjectSettings",
+    "Build",
+    "*.meta",
+    "*.tif",
+    "Assets/Animation/",
+    "Assets/Art/",
+    "Assets/Prefabs/",
+    "Assets/Scenes/"
+  ]
+}
