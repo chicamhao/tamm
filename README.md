@@ -29,14 +29,12 @@ content. Never call `SceneManager.LoadScene` directly — use `Bootstrapper.Load
 
 | Doc | For | Covers |
 |---|---|---|
-| [docs/architecture.md](docs/architecture.md) | engineers | stack, assemblies, layers, scene setup, patterns, minigame system |
-| [docs/content-pipeline.md](docs/content-pipeline.md) | designers & writers | YAML editing, import, playtest loop, ids |
-| [docs/testing.md](docs/testing.md) | engineers | what is tested and how |
-| [docs/adr/](docs/adr/) | everyone | why the key decisions were made |
-| [docs/ui-toolkit-migration.md](docs/ui-toolkit-migration.md) | engineers | uGUI/IMGUI → UI Toolkit migration plan (in flight) |
-| [CHANGELOG.md](CHANGELOG.md) | everyone | shipped work, append-only (ports, backlogs) |
+| [.pi/memories/content-pipeline.md](content-pipeline.md) | designers & writers | YAML editing, import, playtest loop, ids |
+| [.pi/memories/changelog.md](changelog.md) | engineers & designer | shipped work, append-only (ports, backlogs) |
+| [.pi/memories/architecture.md](architecture.md) | engineers | stack, assemblies, layers, scene setup, patterns, minigame system |
+| [.pi/memories/testing.md](testing.md) | engineers | what is tested and how |
+| [.pi/memories/deploy-gh-pages.sh](pages.md)| engineers | web build & deploy runbooks (executable) |
 | `conventions.yaml` | engineers | naming / class structure / null-checking rules (sealed by default) |
-| `scripts/build-web.sh` · `scripts/deploy-gh-pages.sh` | release | web build & deploy runbooks (executable) |
 
 ## Tests
 
