@@ -37,6 +37,11 @@ namespace Game.UI
 			}
 
 			_host = ui.Q("ToastsHost");
+			if (Bootstrapper.Instance == null)
+			{
+				Debug.LogWarning("ToastOverlay: core scene not running — open Assets/Scenes/Bootstrapper.unity and press Play (it loads the Playground level)");
+				return;
+			}
 
 			_onGranted = Services.Cards.Granted.Subscribe(OnGranted);
 		}

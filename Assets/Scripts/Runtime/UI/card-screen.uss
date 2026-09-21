@@ -9,7 +9,7 @@
     flex-direction: column;
     gap: 10px;
     margin-top: 8px;
-    overflow-y: auto;
+    overflow: auto; /* 'overflow-y' is rejected by the USS parser in this version */
 }
 
 .card-button {

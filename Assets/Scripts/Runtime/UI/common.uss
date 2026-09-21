@@ -19,6 +19,10 @@
     top: 0;
     right: 0;
     bottom: 0;
+    /* flex-centering (not transform/translate: rejected by this USS parser -> panels drift) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dim {
@@ -31,10 +35,6 @@
 }
 
 .panel {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     background-color: var(--panel-bg);
     border-radius: 14px;
     border-width: 2px;

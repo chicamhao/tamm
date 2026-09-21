@@ -34,6 +34,11 @@ namespace Game.UI
 			_listRoot = ui.Q("CardList");
 			Assert.IsNotNull(_listRoot, "CardSelectionMenu requires a CardList element");
 			Assert.IsNotNull(_input, "CardSelectionMenu requires the player's InputMonitor assigned");
+			if (Bootstrapper.Instance == null)
+			{
+				Debug.LogWarning("CardSelectionMenu: core scene not running — open Assets/Scenes/Bootstrapper.unity and press Play (it loads the Playground level)");
+				return;
+			}
 
 			_screen.style.display = DisplayStyle.None;
 

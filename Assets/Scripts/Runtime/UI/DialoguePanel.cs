@@ -25,6 +25,11 @@ namespace Game.UI
 		private void Start()
 		{
 			Assert.IsNotNull(_input, "DialoguePanel requires the player's InputMonitor assigned");
+			if (Bootstrapper.Instance == null)
+			{
+				Debug.LogWarning("DialoguePanel: core scene not running — open Assets/Scenes/Bootstrapper.unity and press Play (it loads the Playground level)");
+				return;
+			}
 
 			RuntimeUI ui = RuntimeUI.Resolve(_runtimeUI);
 			Assert.IsNotNull(ui, "DialoguePanel requires a RuntimeUI in the scene");
@@ -54,7 +59,7 @@ namespace Game.UI
 		private void Update()
 		{
 			DialogueService dialogue = Services.Dialogue;
-			if (!dialogue.IsPlaying.Value) return;
+			if (dialogue == null || !dialogue.IsPlaying.Value) return;
 
 			_lineTime += Time.deltaTime;
 			bool pressed = _input.GetInteractInputDown();

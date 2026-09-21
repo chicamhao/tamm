@@ -33,6 +33,12 @@ namespace Game.UI
 		{
 			Assert.IsNotNull(_input, "SettingsMenu requires the player's InputMonitor assigned");
 
+			if (Bootstrapper.Instance == null)
+			{
+				Debug.LogWarning("SettingsMenu: core scene not running — open Assets/Scenes/Bootstrapper.unity and press Play (it loads the Playground level)");
+				return;
+			}
+
 			_pause = Game.Core.Services.Pause;
 			_inputSettings = Game.Core.Services.InputSettings;
 			_progress = Game.Core.Services.Progress;
