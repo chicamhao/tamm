@@ -17,8 +17,8 @@ namespace Game.Core
 	{
 		public static Bootstrapper Instance { get; private set; }
 
-		private string _currentLevel; // additive level scene currently loaded, if any
-		private string _overlayLevel; // minigame scene layered over the level, if any (popped first by UnloadLevel)
+		private string _currentLevel = string.Empty; // additive level scene currently loaded, if any
+		private string _overlayLevel = string.Empty; // minigame scene layered over the level, if any (popped first by UnloadLevel)
 
 		public GameSettings GameSettings { get; private set; }
 		[SerializeField] private GameSettings _settings; // hub: content refs + input default

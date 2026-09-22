@@ -13,7 +13,7 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 [Unity.Scripting.LifecycleManagement.AutoStaticsCleanup]
-public  partial class Outline : MonoBehaviour {
+public partial class Outline : MonoBehaviour {
   private static HashSet<Mesh> registeredMeshes = new HashSet<Mesh>();
 
   public enum Mode {
@@ -80,28 +80,31 @@ public  partial class Outline : MonoBehaviour {
 
   private bool needsUpdate;
 
-  void Awake() {
+    void Awake()
+    {
+        // Apply material properties immediately
+        needsUpdate = true;
 
-	enabled = false;
+        // Cache renderers
+        renderers = GetComponentsInChildren<Renderer>();
 
-    // Cache renderers
-    renderers = GetComponentsInChildren<Renderer>();
+        // Instantiate outline materials
+        outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
+        outlineFillMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineFill"));
 
-    // Instantiate outline materials
-    outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
-    outlineFillMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineFill"));
+        outlineMaskMaterial.name = "OutlineMask (Instance)";
+        outlineFillMaterial.name = "OutlineFill (Instance)";
 
-    outlineMaskMaterial.name = "OutlineMask (Instance)";
-    outlineFillMaterial.name = "OutlineFill (Instance)";
+        enabled = false;
+    }
 
-    // Retrieve or generate smooth normals
-    LoadSmoothNormals();
+    void Start()
+    {
+        enabled = false;
 
-    // Apply material properties immediately
-    needsUpdate = true;
-
-    enabled = false;
-  }
+        // Retrieve or generate smooth normals
+        LoadSmoothNormals();
+    }
 
   void OnEnable() {
     foreach (var renderer in renderers) {
