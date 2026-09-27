@@ -116,6 +116,13 @@ if the repo's own code (non-gesture parts) uses it.
 
 1. **Check out the repo** at `Assets/Minigames/<Name>/` (submodule URL, or copy
    for in-repo work), then add `<Name>.asmdef` per above.
+     - Verify the parent actually has the submodule **gitlink** in its index
+       (`git ls-files -s Assets/Minigames/<Name>` → mode `160000`). A checkout can
+       leave the folder initialized without the index entry; `git add` the folder
+       once to register it, then commit the parent.
+     - Hand-written `.meta` files (asmdef/cs) must **end with a trailing newline**;
+       Unity's parser silently rejects the file without one and regenerates a new
+       GUID, orphaning any scene reference you already wrote against the old GUID.
      - Rename the repo's top-level classes only if a name clashes **with
        Game.Runtime** (assembly isolation handles A-vs-B clashes for free).
 2. **Convert the entry point**: pick the scene's root manager component, make it
