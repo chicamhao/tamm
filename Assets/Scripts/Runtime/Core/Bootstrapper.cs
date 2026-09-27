@@ -97,6 +97,9 @@ namespace Game.Core
 		private void Update()
 		{
 			if (Instance != this || Minigames == null) return; // core not initialized; leaf guards handle the UI
+
+			Minigames.Pump(); // start hand-off is async (overlay scene loads a frame later); poll until done
+
 			if (Minigames.ActiveId != null &&
 				Keyboard.current != null &&
 				Keyboard.current.escapeKey.wasPressedThisFrame)

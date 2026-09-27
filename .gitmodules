@@ -1,0 +1,3 @@
+[submodule "Assets/Minigames/buffalo"]
+	path = Assets/Minigames/buffalo
+	url = https://github.com/chicamhao/buffalo.git

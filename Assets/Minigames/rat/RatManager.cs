@@ -15,7 +15,7 @@ namespace Game.Minigames.Rat
 	// level (Bootstrapper.LoadLevel handles the scene swap). The scene is
 	// unloaded when the minigame ends, so the static Instance needs lifecycle cleanup.
 	[Unity.Scripting.LifecycleManagement.AutoStaticsCleanup]
-	public sealed partial class RatManager : MonoBehaviour
+	public sealed partial class RatManager : MonoBehaviour, IMinigame
 	{
 		public static RatManager Instance;
 
@@ -92,7 +92,27 @@ namespace Game.Minigames.Rat
 				_prompts.AdoptExistingTexts(RoundText, InstructionText, ProgressText, HeartsText, ResultText);
 		}
 
-		private void Start() => StartGame();
+		private void Start()
+		{
+			// Standalone dev run (minigame scene hosted alone, no core service): the
+			// core calls OnStart only when a minigame is active, so self-start with a
+			// throwaway input channel. Hosted runs defer to OnStart, which arrives
+			// right after the overlay is live.
+			if (Services.Minigame == null || Services.Minigame.ActiveId != _minigameId)
+				OnStart(new MinigameInputProvider());
+		}
+
+		/// <summary>Contract entry: the core found this component after loading the
+		/// overlay and hands over the shared input channel. Receives the channel and
+		/// starts the game.</summary>
+		public void OnStart(IMinigameInput input)
+		{
+			Input = input;
+			StartGame();
+		}
+
+		/// <summary>Shared input channel handed over by the core (GestureInput reads it).</summary>
+		public IMinigameInput Input { get; private set; }
 
 		public void StartGame()
 		{

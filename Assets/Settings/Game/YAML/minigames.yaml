@@ -2,3 +2,6 @@ minigame_definitions:
 - minigame_id: rat
   scene_name: Assets/Scenes/Rat.unity
   reward_card_id: card_chopsticks
+- minigame_id: buffalo
+  scene_name: Assets/Minigames/buffalo/Assets/Scenes/prototype.unity
+  reward_card_id: card_incense

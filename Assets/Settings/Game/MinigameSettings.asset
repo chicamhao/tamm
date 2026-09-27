@@ -17,3 +17,7 @@ MonoBehaviour:
     value:
       SceneName: Assets/Scenes/Rat.unity
       RewardCardId: card_chopsticks
+  - key: buffalo
+    value:
+      SceneName: Assets/Minigames/buffalo/Assets/Scenes/prototype.unity
+      RewardCardId: card_incense

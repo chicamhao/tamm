@@ -3,6 +3,7 @@
     "rootNamespace": "",
     "references": [
         "Game.Runtime",
+        "Game.Rat",
         "Unity.InputSystem",
         "UnityEngine.TestRunner"
     ],
