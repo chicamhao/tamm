@@ -94,16 +94,14 @@ public partial class Outline : MonoBehaviour {
 
         outlineMaskMaterial.name = "OutlineMask (Instance)";
         outlineFillMaterial.name = "OutlineFill (Instance)";
-
-        enabled = false;
     }
 
     void Start()
     {
-        enabled = false;
-
         // Retrieve or generate smooth normals
         LoadSmoothNormals();
+
+        enabled = false;
     }
 
   void OnEnable() {
