@@ -101,7 +101,7 @@ MonoBehaviour:
     obsoleteHasProbeVolumes:
       m_Keys: []
       m_Values: 
-  m_PrefilteringModeMainLightShadows: 3
+  m_PrefilteringModeMainLightShadows: 0
   m_PrefilteringModeAdditionalLight: 0
   m_PrefilteringModeAdditionalLightShadows: 2
   m_PrefilterXRKeywords: 1
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_PrefilterReflectionProbeAtlas: 0
   m_PrefilterPointSamplingUpsampling: 1
   m_PrefilterExposure: 1
-  m_PrefilterVolumetricFog: 0
+  m_PrefilterVolumetricFog: 1
   m_Light2DPrefilteringMode: 0
   m_Light2DKeptVariantCombos: []
   m_ShaderVariantLogLevel: 0
