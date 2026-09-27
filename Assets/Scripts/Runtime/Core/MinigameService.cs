@@ -21,8 +21,12 @@ namespace Game.Core
 	{
 		private readonly MinigameSettings _settings;
 		private readonly CardInventory _cards;
+		private readonly IMinigameInput _input = new MinigameInputProvider();
 
 		private InputMonitor _playerInput;
+
+		/// <summary>Id armed by Start, consumed by Pump once the scene's IMinigame is alive.</summary>
+		private string _pendingStartId;
 
 		/// <summary>Id of the minigame currently running (null when none). Drives
 		/// ESC-abort and stale-outcome rejection.</summary>
@@ -51,6 +55,7 @@ namespace Game.Core
 			}
 
 			ActiveId = minigameId;
+			_pendingStartId = minigameId;
 
 			// Hand the screen and input to the minigame BEFORE the scene loads, so its
 			// Awake/Start phases see a free pointer and Camera.main resolves to its own
@@ -58,6 +63,38 @@ namespace Game.Core
 			TakeOverCoreScene();
 
 			Bootstrapper.LoadOverlay(entry.SceneName);
+		}
+
+		/// <summary>
+		/// Drives the start hand-off once the overlay is actually loaded: the scene
+		/// loads additively (async), so its IMinigame component is not findable in the
+		/// same frame Start ran. Polled by Bootstrapper.Update until the scene's
+		/// minigame is alive, then calls OnStart with the shared input channel.
+		/// </summary>
+		public void Pump()
+		{
+			if (_pendingStartId == null || _pendingStartId != ActiveId)
+				return; // nothing pending, or already handed off / aborted
+
+			// FindAnyObjectByType<T> takes classes only, not interfaces, so scan the
+			// active MonoBehaviours. The core/level roots are parked (inactive) while a
+			// minigame runs, so this only ever sees the overlay scene's components.
+			IMinigame minigame = FindActiveMinigame();
+			if (minigame == null)
+				return; // scene still loading
+
+			_pendingStartId = null;
+			minigame.OnStart(_input);
+		}
+
+		private static IMinigame FindActiveMinigame()
+		{
+			foreach (MonoBehaviour behaviour in Object.FindObjectsByType<MonoBehaviour>())
+			{
+				if (behaviour is IMinigame minigame)
+					return minigame;
+			}
+			return null;
 		}
 
 		/// <summary>

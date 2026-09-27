@@ -1,10 +1,14 @@
+using Game.Core;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Game.Minigames.Rat
 {
-	// Input only: turns mouse drags and touches into intents and hands them to
+	// Input only: turns pointer drags and touches into intents and hands them to
 	// RatManager. Holds no game rules and no state beyond the current gesture.
+	//
+	// Reads the pointer through the core's shared IMinigameInput (handed over at
+	// RatManager.OnStart) instead of touching UnityEngine.InputSystem, so this
+	// minigame stays device-agnostic.
 	//
 	// Ported from rice/rat minus the sweep (drag-to-collect) affordance and the
 	// swipe-direction steering — v1 is tap-only, every throw goes straight up and
@@ -58,43 +62,33 @@ namespace Game.Minigames.Rat
 		}
 
 		// =========================================
-		// POINTER (mouse or touch)
+		// POINTER (through the core's shared channel)
 		// =========================================
+
+		private IMinigameInput Input => RatManager.Instance != null ? RatManager.Instance.Input : null;
 
 		private bool TryReadPointerDown(out Vector2 position)
 		{
-			if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+			IMinigameInput input = Input;
+			if (input == null)
 			{
-				position = Mouse.current.position.ReadValue();
-				return true;
+				position = Vector2.zero;
+				return false;
 			}
 
-			if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
-			{
-				position = Touchscreen.current.primaryTouch.position.ReadValue();
-				return true;
-			}
-
-			position = Vector2.zero;
-			return false;
+			return input.GetPointerDown(out position);
 		}
 
 		private bool TryReadPointerUp(out Vector2 position)
 		{
-			if (Mouse.current != null && Mouse.current.leftButton.wasReleasedThisFrame)
+			IMinigameInput input = Input;
+			if (input == null)
 			{
-				position = Mouse.current.position.ReadValue();
-				return true;
+				position = Vector2.zero;
+				return false;
 			}
 
-			if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasReleasedThisFrame)
-			{
-				position = Touchscreen.current.primaryTouch.position.ReadValue();
-				return true;
-			}
-
-			position = Vector2.zero;
-			return false;
+			return input.GetPointerUp(out position);
 		}
 
 		// =========================================

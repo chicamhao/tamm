@@ -6,7 +6,7 @@ minigame system. Content editing lives in [content-pipeline.md](content-pipeline
 
 ## Stack
 
-- Unity **6000.7.0b1** with the **Input System (New)** — `activeInputHandler: 1` in ProjectSettings
+- Unity **6000.7.0b2** with the **Input System (New)** — `activeInputHandler: 1` in ProjectSettings
 - [R3](https://github.com/Cysharp/R3) (NuGet + R3.Unity) — reactive state, the game loop
 - [UniTask](https://github.com/Cysharp/UniTask) (NuGet) — async flows (installed; pacing currently lives in leaf `Update`s)
 - [YamlDotNet](https://github.com/yaml) (NuGet) — the content pipeline's YAML
