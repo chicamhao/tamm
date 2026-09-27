@@ -11,7 +11,6 @@ namespace Game.Interaction
 	{
 		[SerializeField] private InputMonitor _input;
 		[SerializeField] private float _maxReach = 100.0f;
-		[SerializeField] private Color _aimColor = new Color(1.0f, 0.72f, 0.15f, 1.0f);
 
 		private Camera _camera;
 		private Interactable _aimed;
@@ -27,8 +26,7 @@ namespace Game.Interaction
 
 		private void Update()
 		{
-			Vector3 center = new(Screen.width / 2.0f, Screen.height / 2.0f, 0.0f);
-			bool pressed = _input.GetInteractInputDown();
+            Vector3 center = new(Screen.width / 2.0f, Screen.height / 2.0f, 0.0f);
 
 			RaycastHit hit;
 			if (_camera != null && Physics.Raycast(_camera.ScreenPointToRay(center), out hit, _maxReach))
@@ -37,7 +35,10 @@ namespace Game.Interaction
 				if (target != null)
 				{
 					Aim(target);
-					if (pressed) target.Interact();
+                    if (_input.GetInteractInputDown())
+                    {
+                        target.Interact();
+                    }
 					return;
 				}
 			}
@@ -53,7 +54,6 @@ namespace Game.Interaction
 			if (outline != null)
 			{
 				outline.enabled = true;
-				outline.OutlineColor = _aimColor;
 			}
 		}
 

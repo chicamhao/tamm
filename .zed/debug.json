@@ -1,0 +1,7 @@
+[{
+    "adapter": "unity",
+    "label": "Attach to Unity Editor",
+    "request": "attach",
+    "projectPath": "${ZED_WORKTREE_ROOT}",
+    "adapterPath": "/path/to/unity-debug-adapter.exe/.dll"
+}]

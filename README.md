@@ -9,7 +9,7 @@ The card-interaction scaffold in `Game.Core`/`Game.Interaction`/`Game.UI` is the
 
 ## Quick start
 
-1. Open the project in Unity **6000.7.0b1**.
+1. Open the project in Unity **6000.7.0b2**.
 2. `Assets → Import Content from YAML` — content is YAML-first
    ([docs/content-pipeline.md](docs/content-pipeline.md)).
 3. Open `Assets/Scenes/Bootstrapper.unity` — the core scene — and press Play. It boots the
